@@ -1,0 +1,1603 @@
+FORMAT: 1A
+HOST: https://app.workadu.com
+
+# Workadu API v.2
+
+*The Workadu's API is a RESTful API. This means that the API is designed to allow you to get, create, update, & delete objects with the HTTP verbs GET, POST, PUT, PATCH, & DELETE.*
+
+## Response Type (JSON)
+
+The Workadu's API responses are exclusively in JSON format. This means that you should always set the Content-Type header to application/json to ensure that your requests are properly
+ accepted and processed by the API.
+
+
+
+## Authentication 
+
+Workadu's REST API is protected by the same restrictions which are provided via Workadu standard web interface. This means that if you do not log in, you will not have any access
+to workadu Information. Furthermore, if you log in and do not have permission to view something in workadu, you will not be able to view it using the workadu REST API either.
+Because we are using workadu backend authentication credentials or API Key we should define them at the API call. Credentials should be encoded with Base64. The header is formatted like so.
+
+### Get your API KEY 
+Sign in to https://app.workadu.com with admin credentials. Go at settings and then at Users & Permissions. Create or Edit user with api role and copy paste the API KEY provided there.
+
+[Get your api key here!](https://app.workadu.com/companyadmin/users)
+
+
+
+### Authentication with API KEY 
+Include this Authorization to header in each api call 
+```
+curl https://app.workadu.com/api/services -u $2y$10$Ag6LxUSJsdfsdfrhFNQlQuDxiMAIaHr3BDuY8gLC32f5C681NCOge:
+```
+<aside class="note">
+Authorization uses the -u flag to pass basic auth credentials. Adding a colon after your API key prevents curl from asking for password.
+</aside>
+
+
+
+### Authentication with username & password (Deprecated)
+Altenatice you can use Basic Authorization with user name and password. 
+
+```
+curl https://app.workadu.com/api/services -u $USERNAME:$PASSWORD
+```
+<aside class="warning">
+This is deprecate candidate. It will be removed in next version.
+</aside>
+
+All API requests must be made over https. API requests without authentication will fail.
+
+
+
+## Versioning
+
+The workadu API is constantly being worked on to add features, make improvements, and fix bugs. This means that you should expect changes to be introduced and documented.
+Whenever we make a significant change to an endpoint, we will increase the version number used in the path of the resource being requested. However, there are some changes
+or additions that are considered backwards-compatible and your applications should be flexible enough to handle them.
+
+ These include: Adding new endpoints to the API
+Adding new attributes to the response of an existing endpoint.Changing the order of attributes of responses (JSON by definition is an object of unordered key/value pairs)
+Because we aren’t versioning the API in the URI we need to define an Accept header to request a specific version.
+
+
+For the current version (v2) header is formatted like so.
+
+```
+Accept: application/vnd.rengine.v2+json
+```
+<aside class="note">
+The default version is v2. You can ignore this header in case you work with v2 version.  
+</aside>
+
+
+For the first version (v1) the header is formatted like so.
+
+```
+Accept: application/vnd.rengine.v1+json
+```
+
+<aside class="warning">
+The documentation for the first version (v1) is available <a href='http://carrental.reservationengine.net/documentation'>here</a>
+</aside>
+
+
+
+
+
+# Group Getting Started
+
+## How to start
+    In order to start using workadu API you just need to:
++ Sign in using your workadu Ultimate administrator account. If you don’ t have workadu Ultimate account please sign up or watch 
+        our [introduction video](https://www.youtube.com/watch?v=SQe-zyrm8m8) learn more,
++ Create a new api user account,
++ Ready to go!
+
+## Make your first API call
+
+Once you have created your app, you will be given a a username and a password. These will be used to authenticate your application when calling the API.
+
+Try executing the following command to see the workadu services available in your account, just replace $APIKey with your application’s api user key.
+
+```
+curl https://app.workadu.com/api/services -u $APIkey: 
+
+```
+<aside class="note">
+You can also user header -H "Cache-Control: no-cache", to prevent from api calls caching
+</aside>
+
+## Filtering
+
+All GET Request endpoints can be filtered by multiple keys as query parameters as listed below.
+
+```
+/api/services/?filter[$RESPONSE_KEY]=$VALUE
+```
+
+Multiple filters are implemented using “&”. In many cases instead of ‘=’ you can replace it with specific operators that will be inticated a each end point.
+ A sapmle call will look like so.
+ 
+ ```
+/api/services/?filter[$RESPONSE_KEY][$OPERATOR]$VALUE
+```
+
+## Sorting
+
+All GET Request endpoints can be sorted by a key adding a sorting query parameter as listed below (ASCEDING SORTING).
+
+ ```
+/api/services/?sort=$RESPONSE_KEY
+```
+
+It sorts only with one key and if it has a minus prefix it sorts descending as listed below (DECEDING SORTING).
+
+ ```
+/api/services/?sort=-$RESPONSE_KEY
+```
+
+# Group Services
+
+The services resource
+The Services endpoint returns information about the workadu Services (vehicles, equipments, yachts) offered from the companies associated to authenticated user. The response includes the display name and other details and groups of info about each service,
+and lists the services in the proper display order as they are stored initial at the database. You can re-sort the results by add sorting filter at your request as [show here](#header-sorting).
+
+This endpoint does not reflect real-time availability of the services without “Availability filters”. You can use the the same endpoint to determine real-time availability by using “Availability filters” as show below.
+
+In some cases, the list of service returned may contain double or more services with duplicate names. This is due to multi-company results. You can get unique results if your filter them by company.
+
+![](images/services.png "")
+
+
+**Resource End Points**
+
+| Method | Endpoint                                   | Description                                 |
+|--------|--------------------------------------------| --------------------------------------------|
+|  POST  | /api/services                              | Create new service [beta]                   |
+|  PUT   | /api/services                              | Update a service [beta]                     |
+|  DELETE| /api/services                              | Delete a service -> price list -> price schemes |
+|  GET   | /api/services/                             | List all services                           |
+|  GET   | /api/services/{service_id}{service_id},... | Retriece a specific service(s)              |
+|  POST  | /api/services/pricelist                    | Add a price list  to a service [beta]       |
+|  POST  | /api/services/rates                        | Add rates/availability to price scheme(s)  [beta]  |
+|  DELETE| /api/services/rates                        | Delete a price scheme(s)  [beta]            |
+
+
+
+## Create a new Service [POST /api/services/]
+BETA - This object contains information about a service for sale or book. At the service you can attach optionaly (expect the basic information: what includes, what excludes), attributes, extra charges, rates and avalability schemes. 
+
+**Error codes**
+
+| HTTP status      | Code                                                             | Description                                                |
+|------------------|------------------------------------------------------------------| -----------------------------------------------------------|
+| `400`            | `A service name,an category are mandatory data for a new service` | Service name and category are required.                    |
+| `400`            | `The email you supplied is malformed!`                           | Please check the customer’s email format.                  |
+
+
++ Request Required
+    + Attributes (Service_param_post_short)
+
++ Request Required + Optional
+    + Attributes (Service_param_post)
+
+
++ Response 200
+    + Attributes
+        + `data`(Service)
+
+
+## Update a Service [PUT /api/services/]
+BETA - Update service object information. 
+
+**Error codes**
+
+| HTTP status      | Code                                                             | Description                                                |
+|------------------|------------------------------------------------------------------| -----------------------------------------------------------|
+| `400`            | `An id is mandatory data to update the service`                  | Service id is required.                                    |
+
++ Request Required
+    + Attributes (Service_param_put_short)
+
++ Request Required + Updatable fields
+    + Attributes (Service_param_put)
+
++ Response 200
+    + Attributes
+        + `data`(Service)
+
+
+# Delete a Service [DELETE /api/services/]
+BETA - Delete service object information and its relevates price catalogs and price schemes. 
+
+**Error codes**
+
+| HTTP status      | Code                                                             | Description                                                |
+|------------------|------------------------------------------------------------------| -----------------------------------------------------------|
+| `400`            | `An id is mandatory data to delete the service`                  | Service id is required.                                    |
+| `400`            | `Service id was not found in company services`                   | Wrong service id or service already deleted.               |
+
+
++ Request Required
+    + Attributes (Service_param_put_short)
+
+
++ Response 200
+    + Attributes
+        + `data`(Service_delete)
+
+
+
+## List Services [GET /api/services{filter%5Bextra_filters%5D%5Bcompanyid%5D,filter%5Bextra_filters%5D%5Bbrand%5D,filter%5Bextra_filters%5D%5Balias%5D,filter%5Bextra_filters%5D%5Btitle%5D,filter%5Bextra_filters%5D%5Bcategory_id%5D,filter%5Bextra%5F%5D%5Bradius%5D}]
+
+
++ Parameters
+    + filter%5Bextra_filters%5D%5Bcompanyid%5D: `14` (optional, integer) - The companyid of the company you want services from
+    + filter%5Bextra_filters%5D%5Bbrand%5D: `10` (optional, integer) - The brand of the brand you want services from. 
+    + filter%5Bextra_filters%5D%5Balias%5D: `vw-polo` (optional, String) - The alias of a specific service. 
+    + filter%5Bextra_filters%5D%5Btitle%5D: `Volkswagen Polo` (optional, String) - The title of a specific service.
+    + filter%5Bextra_filters%5D%5Bcategory_id%5D: `10` (optional, integer) - The category_id of a specific group of services.
+    + filter%5Bextra%5Ffilters%5D%5Bradius%5D: `R-100` (optional,String) - value = -1 (default) unstricted results sorted by closest.<br>value = 1 restrinct results to search zone.<br>value = R-100 restrict resuts to 100kms from start_coordinates point.
+    
++ Response 200
+    + Attributes
+        + `data`(array)
+            + (Service)
+
+         
+## Get Service Availability [GET /api/services{filter%5Bextra_filters%5D%5Bcompanyid%5D,filter%5Bextra_filters%5D%5Bbrand%5D,filter%5Bextra_filters%5D%5Balias%5D,filter%5Bextra_filters%5D%5Btitle%5D,filter%5Bextra_filters%5D%5Bcategory_id%5D,filter%5Bextra%5F%5D%5Bradius%5D,filter%5Bavailability%5D%5Bstart_coordinates%5D,filter%5Bavailability%5D%5Bend_coordinates%5D,filter%5Bavailability%5D%5Bstart_date%5D,filter%5Bavailability%5D%5Bend_date%5D,filter%5Bavailability%5D%5Bstart_time%5D,filter%5Bavailability%5D%5Bend_time%5D,filter%5Bavailability%5D%5Bcoupon%5D}]
+
++ Parameters
+    + filter%5Bavailability%5D%5Bstart_coordinates%5D: `(31.65464,27.99954)` (required,String) - The starting coordinates use the form (lat,lon). 
+    + filter%5Bavailability%5D%5Bend_coordinates%5D: `(31.65464,27.99954)`  (required,String) - The ending coordinates use the form (lat,lon). 
+    + filter%5Bavailability%5D%5Bstart_date%5D: `2018-08-30` (required,String) - The starting date uses the form Y-m-d. 
+    + filter%5Bavailability%5D%5Bend_date%5D: `2018-08-30` (required,String) - The ending date uses the form Y-m-d.
+    + filter%5Bavailability%5D%5Bstart_time%5D: `08:00` (required,String) - The starting date uses the form H:i 
+    + filter%5Bavailability%5D%5Bend_time%5D:  `08:00` (required,String) - The ending date uses the form H:i 
+    + filter%5Bavailability%5D%5Bcoupon%5D: `XMASPARTY` (optional,String) - A coupon code that should be enabled as a dynamic policy at the backend 
+    + filter%5Bextra_filters%5D%5Bcompanyid%5D: `14` (optional, integer) - The companyid of the company you want services from
+    + filter%5Bextra_filters%5D%5Bbrand%5D: `10` (optional, integer) - The brand of the brand you want services from. 
+    + filter%5Bextra_filters%5D%5Balias%5D: `vw-polo` (optional, String) - The alias of a specific service. 
+    + filter%5Bextra_filters%5D%5Btitle%5D: `Volkswagen Polo` (optional, String) - The title of a specific service.
+    + filter%5Bextra_filters%5D%5Bcategory_id%5D: `10` (optional, integer) - The category_id of a specific group of services.
+    + filter%5Bextra%5Ffilters%5D%5Bradius%5D: `R-100` (optional,String) - value = -1 (default) unstricted results sorted by closest.<br>value = 1 restrinct results to search zone.<br>value = R-100 restrict resuts to 100kms from start_coordinates point.
+   
+
+
++ Response 200
+    + Attributes
+        + `data`(array)
+            + (Service_availability)
+
+  
+## Get Specific Service [GET /api/services/{service_id}] 
+
++ Parameters
+    + service_id :`32161` (optional, integer) - The companyid of the company you want services from
+    
++ Response 200
+    + Attributes
+        + `data`(array)
+            + (Service)
+
+
+## Create a new Price List [POST /api/services/pricelist]
+BETA - This object creates a price list and attach it to a service. A service can have many price lists. Every price list may have multiple price periods with rates and availability. 
+
+<aside class="warning"> ATTENTION! Price lists are used only if you want to attach a different pricing policy to an affiliate. It SHOULD NOT USED to change or add rates and availability. Use <strong>Add Rates & Availability</strong> endpoint instead.</aside>
+
+<aside class="note"> Workflow of creating a price list:  Create/Retrieve a service -> <strong>Create new price list</strong> -> Add Rates & Availability</aside>
+
+**Error codes**
+
+| HTTP status      | Code                                                             | Description                                                |
+|------------------|------------------------------------------------------------------| -----------------------------------------------------------|
+| `400`            | `Service id, name, type and unit are mandatory data to create a new price list`  | Scheme Service id, name, type and unit are required. |
+| `400`            | `There is no service with service id: 33445`                     | Service id doesn't much company services                    |
+
+
++ Request Required
+    + Attributes (Service_scheme_post_short)
+
++ Response 200
+    + Attributes
+        + `data`(Service)
+
+
+## Create a Price Scheme [POST /api/services/rates]
+BETA - This end point add rates & availability to one or multiple price schemes. If there is no price_list_id added, then system gets service first-default price list 
+
+<aside class="note"> Workflow of adding rates & availability:  Retrieve a service -> <strong>Add Rates & Availability</strong> to one or multiple price lists</aside>
+
+**Error codes**
+
+| HTTP status      | Code                                                             | Description                                                |
+|------------------|------------------------------------------------------------------| -----------------------------------------------------------|
+| `400`            | `Service ids, rate`                                               | Service ids, and a rate are required.                     |
+| `400`            | `There is no service with provided service ids`                   | Service ids doesn't much company services                 |
+
+
++ Request Required
+    + Attributes (Service_rates_post_short)
+
++ Request Required + Optional
+    + Attributes (Service_rates_post)
+
++ Response 200
+    + Attributes
+        + `data`(Service)
+
+
+## Delete a Price Scheme [DELETE /api/services/rates]
+BETA - This end point deletes rates & availability scheme. The deletion will recreate all the pricing policy of the service, by re-calculation the rates and availability from the remaining pricing schemes 
+
+
+**Error codes**
+
+| HTTP status      | Code                                                             | Description                                                |
+|------------------|------------------------------------------------------------------| -----------------------------------------------------------|
+| `400`            | `A price_sheme_id  or a service_id is mandatory to retrieve service data`| A price_sheme_id  or a service_id is mandatory to retrieve service data. |
+| `400`            | `There is no service with provided service id`                   | Service id doesn't much to a company service               |
+
+
++ Request Delete a scheme
+    + Attributes (Service_rates_delete)
+
++ Request Delete all schemes
+    + Attributes (Service_rates_delete_2)
+
++ Response 200
+    + Attributes
+        + `data`(Service_rates_deleted)
+
+
+# Group Discounts & Sales policies
+
+The Sales policies resource are here to help you build dynamic pricing and offering automations to your platform. You can build discounts offers for specific service or create availability restrictions policies in specific geographical zones and many more. 
+
+| Method  | Endpoint                                   | Description                                                                                                                    |
+|---------|--------------------------------------------| -------------------------------------------------------------------------------------------------------------------------------|
+|  POST   | /api/sales/                                | Create a new sales policy                                                                                                     |
+|  DELETE | /api/sales/                                | Delete a sales policy                                                                                                         |
+
+
+
+**Action field short codes apendix**
+| Field   | CODE                                       | Description                                                                                                                    |
+|---------|--------------------------------------------| -------------------------------------------------------------------------------------------------------------------------------|
+|  action | 120                                        | Set price to a fixed amount per spot                                                                                           |
+|  action | 1609                                       | Set total price to a fixed amount                                                                                          |
+|  action | 154                                        | Modify price per spot                                                                                           |
+|  action | 160                                        | Modify total price                                                                                        |
+|  action | 170                                        | Modify Allotment per spot                                                                                          |
+|  action | 1843                                       | Modify Availability per spot                                                                                           |
+|  action | 180                                        | Round total price                                                                                           |
+|  action | 130                                        | Change Start Time                                                                                           |
+|  action | 140                                        | Change Start Location                                                                                          |
+|  action | 150                                        | Add a comment                                                                                          |
+
+
+**Condition field short codes apendix**
+| Field      | CODE                                       | Description                                                                                                                    |
+|------------|--------------------------------------------| -------------------------------------------------------------------------------------------------------------------------------|
+|  condition | 100                                        | Searching Date                                                                                                                |
+|  condition | 102                                        | Start Date                                                                                                                 |
+|  condition | 103                                        | Start Time                                                                                                                |
+|  condition | 104                                        | Start Location                                                                                                                |
+|  condition | 105                                        | End Date                                                                                                                 |
+|  condition | 106                                        | End Time                                                                                                                 |
+|  condition | 107                                        | End Location                                                                                                                |
+|  condition | 108                                        | Weekday of Searching                                                                                                                 |
+|  condition | 109                                        | Weekday of Start                                                                                                                 |
+|  condition | 110                                        | Weekday of End                                                                                                                 |
+|  condition | 111                                        | Contains Date                                                                                                                 |
+|  condition | 112                                        | Contains Weekday                                                                                                                 |
+|  condition | 113                                        | Days ahead of start date                                                                                                                 |
+|  condition | 148                                        | Booking Days                                                                                                                 |
+|  condition | 114                                        | Total Cost                                                                                                                |
+|  condition | 115                                        | Times Applied                                                                                                                 |
+|  condition | 116                                        | Affiliate                                                                                                                 |
+|  condition | 117                                        | Booking Source                                                                                                                 |
+|  condition | 147                                        |  Reservation Between                                                                                                                 |
+|  condition | 119                                        | Coupon code                                                                                                                 |
+|  condition | 120                                        | Start Location in Zone                                                                                                                 |
+|  condition | 121                                        | End Location in Zone                                                                                                                 |
+|  condition | 122                                        | Minutes ahead of start timeb                                                                                                                |
+|  condition | 123                                        | Booking slots in minutes                                                                                                                 |
+|  condition | 124                                        | Distance in meters                                                                                                               |
+
+
+**Request OPERATOR shortcodes anpedix**
+| Field      | CODE                                       | Description                                                                                                                    |
+|------------|--------------------------------------------| -------------------------------------------------------------------------------------------------------------------------------|
+|  operator  | >=                                        | Greater or equal                                                                                                               |
+|  operator  | >*                                        | Greater                                                                                                                |
+|  operator  | <=                                        | Lower or equal                                                                                                               |
+|  operator  | <*                                        | Lower                                                                                                                |
+|  operator  | ==                                        | Equal                                                                                                                |
+|  operator  | !=                                        | Not equal                                                                                                                |
+|  operator  | <>                                        | Between                                                                                                               |
+|  operator  | !<>                                       | Not between                                                                                                               |
+
+
+## Create new Sales Policy [POST /api/sales]
+[BETA] When you create a sales policy you must specify at least one service (or price list) as scope to be applied. 
+
+<aside class="note">A sales policy need all of the 4 elementes to fullfiled in order to trigger. <strong>1. The action</strong> -> <strong>2. The rules/conditions </strong> -> <strong>3. The scope (services to be applied) </strong> -> <strong>4. The validity period </strong></aside>
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                          |
+|------------------|--------------------------------------------------------------------------------------| -------------------------------------|
+| `400`            | `A title, action, action_value are required to create an Sales policy`               | A title, action, action_value are required to create an Sales policy                  |
+| `400`            | `No action with this short code exists. Please check Action Shortcodes and try again!` | No action with this short code exists. Please check Action Shortcodes and try again!                  |
+
++ Request Required
+    + Attributes (Sales_params_post_short)
+
++ Request Required + Optional
+    + Attributes (Sales_params_post)
+
++ Response 200
+    + Attributes
+        + `data`(Sales)
+
+## Delete a Sales Policy [DELETE /api/sales]
+[BETA] Delete a sales policy 
+
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                          |
+|------------------|--------------------------------------------------------------------------------------| -------------------------------------|
+| `400`            | `An id is requird to delete this resource`               | An id is requird to delete this resource                  |
+
++ Request Required
+    + Attributes (Sales_id_short)
+ 
++ Response 200
+    + Attributes
+        + `data`(Sales_deleted)
+
+         
+# Group Orders
+
+The Orders endpoints returns information about the workadu Orders (Bookings) that have been made by the authenticated user. The response includes the display name and other
+ details and groups of info about each order, and lists the orders in the proper display order as they are stored initial at the database. You can re-sort the results by add
+ sorting filter at your request as [show here](#header-sorting).
+
+| Method  | Endpoint                                   | Description                                                                                                                    |
+|---------|--------------------------------------------| -------------------------------------------------------------------------------------------------------------------------------|
+|  POST   | /api/orders/                               | Check for availability and create a new order                                                                                  |
+|  GET    | /api/orders/                               | Get logged in user related order(s)                                                                                            |
+|  GET    | /api/orders/{booking_id}{booking_id},...   | Get details about specific order(s)                                                                                            |
+|  PATCH  | /api/orders/{booking_id}                   | Cancel the specific order and copy to a new one with the updated post info. This endpoint can be used for updating order info  |
+|  DELETE | /api/orders/{booking_id}                   | Check and cancel an existing order.                                                                                            |
+
+## Create new Order [POST /api/orders]
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                                                                                                    |
+|------------------|--------------------------------------------------------------------------------------| ---------------------------------------------------------------------------------------------------------------|
+| `500`            | `Undefined index: distance`                                                          | Distance between starting coordinates and the desks'(user role) locations cannot be resolved.                  |
+| `400`            | `No customer fullname was supplied! No mobile or email was supplied!`                | There is no customer_id or customer fullname, email and mobile provided                                        |
+| `400`            | `No customer found!    `                                                             | There is no customer with the customer_id that was provided.                                                   |
+| `400`            | `There is no availability or rate set for this service for your selected criteria`   | There is on availability at the specific dates and time that was provided. Please try other dates or services. |
+
+
++ Request
+    + Attributes (Order_params)
+
+
++ Response 200
+    + Attributes
+        + `data`(Order)
+
+## Get all Orders [GET /api/orders/{filter%5Bbooking_reference%5D,filter%5Bbooking_status%5D,filter%5Bcompany_id%5D,filter%5Bcustomer_id%5D,filter%5Bservice_id%5D,filter%5Bstart_coordinates%5D,filter%5Bstart_location_name%5D,filter%5Bend_coordinates%5D,filter%5Bend_location_name%5D,filter%5Bstatus%5D,filter%5Btotal_cost%5D,filter%5Bstart_date%5D,filter%5Bstart_time%5D,filter%5Bend_date%5D,filter%5Bend_time%5D}]
+
++ Parameters
+    + filter%5Bbooking_reference%5D: `VBV7DH` (optional, string) - Filter orders by booking reference.
+    + filter%5Bbooking_status%5D: `PAID` (optional, string) - Filter orders by booking status.
+        + Members
+            + `ON_PROGRESS`
+            + `PAID`
+            + `NOT_PAID`
+
+    + filter%5Bcompany_id%5D: `14` (optional, integer) - The companyid of the specific company you want orders from.
+    + filter%5Bcustomer_id%5D: `119` (optional, integer) - Filter orders by the id of a specific customer.
+    + filter%5Bservice_id%5D: `32161` (optional, integer) - Filter orders by the id of a specific service.
+    + filter%5Bstart_coordinates%5D: `(39.074208, 21.824312)` (optional, string) - Filter orders by the coordinates of a specific starting point.
+    + filter%5Bstart_location_name%5D: `London` (optional, string) - Filter orders by the name of a specific starting point.
+    + filter%5Bend_coordinates%5D: `(39.074208, 21.824312)` (optional, string) - Filter orders by the coordinates of a specific ending point.
+    + filter%5Bend_location_name%5D: `London` (optional, string) - Filter orders by the name of a specific ending point.
+    + filter%5Bstatus%5D: `CANCELLED` (optional, enum[string]) - Filter orders by the status of the order.
+        + Members
+            + `PRE_ASSIGNED`
+            + `ASSIGNED_NOT_CONFIRMED`
+            + `ASSIGNED_AND_AGREED`
+            + `CHECKED_OUT`
+            + `CHECKED_IN`
+            + `CHECKED_IN_EARLIER`
+            + `CANCELLED`
+    + filter%5Btotal_cost%5D: `20.00` (optional, float) - Filter orders by checking the total cost of each order. Operators may be applied here. 
+    + filter%5Bstart_date%5D: `2018-08-30` (optional, string) - Filter orders by checking the starting date of each order. Operators may be applied here.
+    + filter%5Bstart_time%5D: `13:00` (optional, string) - Filter orders by checking the starting time of each order. Operators may be applied here. 
+    + filter%5Bend_date%5D: `2018-08-31` (optional, string) - Filter orders by checking the ending date of each order. Operators may be applied here.
+    + filter%5Bend_time%5D: `18:00` (optional, string) - Filter orders by checking the ending time of each order. Operators may be applied here.
+
++ Response 200
+    + Attributes
+        + `data`(array)
+            + (Order)
+            
+## Get Specific Order [GET /api/orders/{booking_id}] 
+
++ Parameters
+    + `booking_id` : `1831` (optional, integer) - you can specify more booking_id separated by comma `,`
+    
++ Response 200
+    + Attributes
+        + `data`(array)
+            + (Order)
+
+
+        
+## Update an Order [PATCH /api/orders/{booking_id}]
+
+Cancels the specific order and creates a new one based on POST parameters. If any manatory paramenter are not provided they will be copied from the canceled order
+
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                                                                                                    |
+|------------------|--------------------------------------------------------------------------------------|----------------------------------------------------------------------------------------------------------------|
+| `400`            | `This order can not be modified in its current state.	`                             | If order status is “CANCELLED” cannot be tested.                                                               |
+| `400`            | `This order can not be tested using the data you provided.`                          | You might have not provide order id, or your request parameters are not valid.                                 |
+
++ Parameters
+    + `booking_id` : `1831` (optional, integer) - the id of the specific order
+
+
++ Request
+    + Attributes
+        + id: `992` (number) - The id you want the order to change to.
+
+
++ Response 200
+    + Attributes
+        + `data`(patch_example_order)
+        
+        
+
+
+## Delete an Order [DELETE /api/orders/{booking_id}]
+
+Check and cancel an existing order. The status of the specific order should be ‘PRE_ASSIGNED’, ‘NOT_PAID’ or ‘ASSIGNED_NOT_CONFIRMED’. In any other case response with a 400 Error.
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                                                                                                                                                                                                                   |
+|------------------|--------------------------------------------------------------------------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| `400`            | `You must provide the order ID(s)`                                                   | If order status is `CANCELLED` cannot be tested.                                                                                                                                                                              |
+| `400`            | `No orders found to be canceled.`                                                    | The order ids you specified cannot be found, or cannot be canceled. Cancelation can be done only in order that their status is `PRE_ASSIGNED`, `NOT_PAID` or `ASSIGNED_NOT_CONFIRMED` and belong to the authenticated user.   |
+
++ Parameters
+    + booking_id :`32161` (optional, integer) - the id of the specific order.
+
++ Response 200
+    + Attributes
+        + `data` (delete_example_order)
+
+# Group Customers
+
+The Customers endpoints returns information about the workadu Customers that have been made by the authenticated user. In case user is has a “companyadmin” role, then the results contain all the customers that belong at user company. The response includes the display name and other details and groups of info about each customer, and lists the customers in the proper display order as they are stored initial at the database.
+You can re-sort the results by add sorting filter at your request as [show here](#header-sorting).
+
+| Method  | Endpoint                                        | Description                                                                                                                                             |
+|---------|-------------------------------------------------| --------------------------------------------------------------------------------------------------------------------------------------------------------|
+|  GET    | /api/customers/                                 | Get logged in user related customers. In case user is has a “companyadmin” role, then the results contain all the customers that belong at user company |
+|  GET    | /api/customers/{customer_id}{customer_id},...   | Get specific customers details                                                                                                                          |
+|  POST   | /api/customers/                                 | Add a new customer                                                                                                                                      |
+|  PATCH  | /api/customers/{customer_id}                    | Update customer’s details.                                                                                                                              |
+
+
+## Create a new Customer [POST /api/customers/]
+
+**Error codes**
+
+| HTTP status      | Code                                                             | Description                                                |
+|------------------|------------------------------------------------------------------| -----------------------------------------------------------|
+| `400`            | `A fullname and an email are mandatory data for a new customer`  | Fullname and email are mandatory post parameters.          |
+| `400`            | `The email you supplied is malformed!`                           | Please check the customer’s email format.                  |
+
++ Request
+    + Attributes (Customer_params_post)
+
+
++ Response 200
+    + Attributes
+        + `data`(Customer)
+
+## List all Customers [GET /api/customers/{filter%5Bfullname%5D,filter%5Bemail%5D,filter%5Bmobile%5D,filter%5BCountry%5D,filter%5Bcity%5D,filter%5Bpostal_code%5D,filter%5Bcompany_id%5D}]
+
++ Parameters
+    + filter%5Bfullname%5D: `John Doe` (string,optional) - The fullname of customer(s) you want details from. 
+    + filter%5Bemail%5D: `jdoe@gmail.com` (string,optional) - The email of customer(s) you want details from. 
+    + filter%5Bmobile%5D: `+4469960022` (string,optional) - The mobile of customer(s) you want details from. 
+    + filter%5BCountry%5D: `UK` (string,optional) - The country of customer(s) you want details from. ISO Country codes should be used. 
+    + filter%5Bcity%5D: `London` (string,optional) - The city of customer(s) you want details from. 
+    + filter%5Bpostal_code%5D: `N1 7GU` (string,optional) - The city of customer(s) you want details from. 
+    + filter%5Bcompany_id%5D: `14` (integer,optional) -  The company id of customer(s) you want details from. 
+
++ Response 200
+    + Attributes
+        + `data`(Customer)
+
+## Get a specific Customer [GET /api/customers/{customer_id}]
+
++ Response 200
+    + Attributes
+        + `data`(Customer)
+
++ Parameters
+    + customer_id :`3332` (optional, integer) - The id for the specific customer.
+    
+
+## Update a Customer [PATCH /api/customers/{customer_id}]
+
+**Error codes**
+
+| HTTP status      | Code                            | Description                                                                       |
+|------------------|---------------------------------| ----------------------------------------------------------------------------------|
+| `400`            | `No customers could be found.`  | The customer_id you provided is not in authenticated user customer list.          |
+| `400`            | `Please provide a customer_id!` | The endpoint doesn’t have a valid customer_id.                                    |
+
++ Parameters
+    + customer_id :`32161` (optional, integer) - The id for the specific customer.
+
++ Request
+    + Attributes (Customer_params_patch)
+
+
++ Response 200
+    + Attributes
+        + `data`(patch_example_customer)
+
+
+# Group Invoices
+The Invoices/documents resource return information about workadu invoices or any other document type. Invoices can be automatically or manualy generated by user or API. 
+
+|  Method | Endpoint                                        |  Description       |
+|---------|-------------------------------------------------|--------------------|
+|  GET    | /api/invoices/{invoice_id}{invoice_id},...      | Get invoices       |
+|  POST   | /api/invoices/                                  | Add a new Invoice |
+|  POST   | /api/invoiceline/                               | Add a new invoice line  |
+|  POST   | /api/invoices/publish                           | Publish and send a draft invoice  |
+|  GET    | /api/series/{series_id}{series_id},...          | Get company series  |
+|  POST   | /api/invoices/publish                           | Publish a Draft invoice and optionaly send it to email| 
+
+
+## List Invoices [GET /api/invoices/]
+
++ Parameters
+    + `customer_id`: `12443` (number,optional) - The id of the customer. 
+    + `series_id`: `1233` (number,optional) - The document series_id you want to get . 
+    + status: `valid` (string,optional) - The invoice status (valid, draft, cancelled). 
+    + `issue_date_from`: `2018-01-13` (string,optional) - The issue date you want to get invoice from. 
+    + `issue_date_to`: `2018-01-22` (string,optional) - The issue date you want to get invoice to. 
+
++ Request curl 
+    curl https://app.workadu.com/api/invoices \ 
+    -H "Accept: application/vnd.rengine.v2+json" \
+    -u wk_abcd123123abcd1234: \
+
++ Request curl + Parameters
+    curl https://app.workadu.com/api/invoices/1234 \ 
+    -H "Accept: application/vnd.rengine.v2+json" \
+    -u wk_abcd123123abcd1234: \
+    -d customer_id = 1234 \
+    -d series_id = 2100 \
+    -d issue_date_from = 2019-01-01 \
+    -d issue_date_to = 2019-03-01 
+
++ Response 200
+    + Attributes
+        + `data`(Invoice)
+
+
+## Create a new Invoice [POST /api/invoices/]
+This endpoint create an invoice (draft if status is not defined), for a given customer.
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                                                                                                                                         |
+|------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `400`            | `You didn’t specify a correct customer ID.`                                           | Please provide a valid customer_id as a POST parameter |
+
+
++ Parameters 
+    + `customer_id` :`1231` (number,required) - The customer id of the specific payment. if not status parameter is set the invoice will be set up as a draft invoice.
+    + `series_id` :`1231` (number,required) - The series id of the document.
+    + `discount_percent`  : 10 (number, optinal) - A discount percent for the all invoice lines
+    + `vat_percent`  : 19 (number, optinal) - A vat percent of this specific invoice. In case of not set company vat percent will be used.
+    + `currency`  :  `EUR` (string, optinal) - The currency of this specific invoice. In case of not set company currency will be used.
+
+
++ Request curl 
+    curl https://app.workadu.com/api/services \ 
+    -u wk_abcd123123abcd1234: \
+    -d customer_id = 1234 \
+    -d series_id = 2100 
+
++ Request curl + optional 
+    curl https://app.workadu.com/api/services \ 
+    -u wk_abcd123123abcd1234: \
+    -d customer_id = 1234 \
+    -d series_id = 2100 \
+    -d discount_percent = 10 \ 
+    -d vat_percent = 19 \
+    -d currency = "EUR" \
+    -d tag = "#2AMSJ72"
+
+
+
++ Response 200
+    + Attributes
+        + `data` (Invoice)
+
+## Create a new Invoice line [POST /api/invoiceline/]
+This endpoint create an invoice item line to be added to a draft invoice.
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                                                                                                                                         |
+|------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `400`            | `The invoice is not in Draft mode`                                           | Please check the invoice status then |
+| `400`            | `The invoice is not valid or exist`                                           | The invoice_id does not exist |
+
++ Request Required
+    + Attributes
+        + `invoice_id` :`1231` (number,required) - The customer id of the specific payment. if not status parameter is set the invoice will be set up as a draft invoice.
+        + `description` :`2 days charge` (string,required) - The description of the line item.
+        + `amount` :`12.00` (string,required) - The total amount of the line.
+
++ Request Required + optional
+    + Attributes
+        + `invoice_id` :`1231` (number,required) - The customer id of the specific payment. if not status parameter is set the invoice will be set up as a draft invoice.
+        + `description` :`2 days charge` (string,required) - The description of the line item.
+        + `amount` :12.00 (number,required) - The item amount of the line.
+        + `quantity` :`1` (number,optional) - the quantity of the line item. If not set we will add 1 as default value.
+        + `line_discount` :10 (number,optional) -The discount that will be added to the item line amount.
+
++ Response 200
+    + Attributes
+        + `data` (Invoice)
+
+## Publish and sent a draft Invoice line [POST /api/invoices/publish]
+This endpoint Publish a draft invoice and give the next available invoice number based on its series. If send is true invoice will be send to customer as email attachment.
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                                                                                                                                         |
+|------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `400`            | `The invoice is not in Draft mode`                                           | Please check the invoice status then |
+| `400`            | `The invoice is not valid or exist`                                           | The invoice_id does not exist |
+
++ Request Required
+    + Attributes
+        + `invoice_id` :`1231` (number,required) - The customer id of the specific payment. if not status parameter is set the invoice will be set up as a draft invoice.
+        + `send` :`true` (boolean,required) - True if you want to send the invoice to user
+
++ Response 200
+    + Attributes
+        + `data` (Invoice)
+
+
+## List company Series [GET /api/series/series_id]
+Seies are the documents type. For example series can be Invoice, Expense, Quote or payment types like cash, credit card, deposit 
+
++ Response 200
+    + Attributes
+        + `data`(Series)
+
+## Publish a draft Invoice [POST /api/publish/]
+This endpoint publish an allready created invoice, and optionaly send it to customer as PDF through email using the relative email template.
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                                                                                                                                         |
+|------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `400`            | `You didn’t specify a correct invoice ID.`                                           | Please provide a valid invoice_id as a POST parameter |
+
+
++ Parameters 
+    + `invoice_id` :`1231` (number,required) - The invoice id of the specific resource.
+    + `send`  :  `true` (boolean, optional) - If this is set to true then the invoice will be published and send to customer. If not the end point will only publish the invoice.
+
+
++ Request curl 
+    curl https://app.workadu.com/api/services \ 
+    -u wk_abcd123123abcd1234: \
+    -d invoice_id = 1234 \
+
++ Request curl + optional 
+    curl https://app.workadu.com/api/services \ 
+    -u wk_abcd123123abcd1234: \
+    -d invoice_id = 1234 \
+    -d send = true 
+    
+
++ Response 200
+    + Attributes
+        + `data` (Invoice)
+
+
+
+# Group Payments
+The payments has only one POST endpoint. You can always add new payments. If you like to discard a payment you have to add a new one with minus amount.
+You cannot delete or modify or get details for a payment. as [show here](#header-sorting).
+
+|  Method | Endpoint                                        |  Description       |
+|---------|-------------------------------------------------|--------------------|
+|  GET    | /api/payments/payment_id1,payment_id1,...       | Get Payments       |
+|  POST   | /api/payments/                                  | Add a new payment for invoices  |
+|  POST   | /api/payments/                                  | Add a new payment for an Order or Booking  |
+|  POST   | /api/payments/                                  | Add a new general payment for a customer  |
+
+## List Payments [GET /api/payments/]
+Get all company payments or filter them optionaly with parameters. 
+
++ Parameters
+    + `customer_id`: `12443` (number,optional) - The id of the customer. 
+    + `series_id`: `1233` (number,optional) - The document series_id you want to get . 
+    + status: `valid` (string,optional) - The invoice status (valid, draft, cancelled). 
+    + `issue_date_from`: `2018-01-13` (string,optional) - The issue date you want to get invoice from. 
+    + `issue_date_to`: `2018-01-22` (string,optional) - The issue date you want to get invoice to. 
+
++ Request curl 
+    curl https://app.workadu.com/api/payments \ 
+    -H "Accept: application/vnd.rengine.v2+json" \
+    -u wk_abcd123123abcd1234: \
+
++ Request curl + Parameters
+    curl https://app.workadu.com/api/payments/1234 \ 
+    -H "Accept: application/vnd.rengine.v2+json" \
+    -u wk_abcd123123abcd1234: \
+    -d customer_id = 1234 \
+    -d series_id = 2100 \
+    -d issue_date_from = 2019-01-01 \
+    -d issue_date_to = 2019-03-01 
+
++ Response 200
+    + Attributes
+        + `data`(Payment)
+
+
+## Add a new Payment for Invoices [POST /api/payments/]
+Pay an invoice or invoices should concern the same customer. This payment end point will add a payment and relate the payment with the invoices. The amount of the payment will be granted to customer's balance. 
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                                                                                                                                         |
+|------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `400`            | `You didn’t specify a correct order_id or booking ID or customer_id.`                                           | Payments are assigned to orders. You cannot pass a payment without defining a specific order. Please provide a valid booking_id as a POST parameter |
+| `400`            | `This order does not have the CANCELLED status!`                         | The only accepted status for adding a payment through this end point are: `NOT_PAID` and `CANCELLED`                                                |
+
+
++ Parameters 
+    + `invoice_ids` :`1231, 1334, 14455` (string,required) - The invoice_ids this payment will be related with. It works optinaly with deposit parameter & series parameter is optional. 
+    + `deposit`  :  `157.22 or 30%` (string, optional) - If this is set to % (works in order_id, booking_id, invoice_ids) then it calulates at deposit amount the % of the total order or booking or invoices amount. If it set to amount mode then this specific amount will be added as payment 
+    + `series`  :  `122` (number, optional) - The series of payment (e.g cash or credit card) for this payment. If none it will take the first payment type, usually CASH.
+    + `comment`  :  `Payment for anything` (string, optional) - The comment that we want to add at the payment.
+
++ Request curl with Invoices
+    curl https://app.workadu.com/api/services \ 
+    -u wk_abcd123123abcd1234: \
+    -d invoice_ids = 1234, 1234 \
+    -d deposit = 100%
+
++ Response 200
+    + Attributes
+        + `data` (Payment)
+
+
+## Add a new Payment for an Order or Booking [POST /api/payments/]
+Pay an order or booking should concern the order or booking customer. This payment end point will add a payment and relate the payment with the order. The amount of the payment will be granted to customer's balance. 
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                                                                                                                                         |
+|------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `400`            | `You didn’t specify a correct order_id or booking ID or customer_id.`                                           | Payments are assigned to orders. You cannot pass a payment without defining a specific order. Please provide a valid booking_id as a POST parameter |
+| `400`            | `This order does not have the CANCELLED status!`                         | The only accepted status for adding a payment through this end point are: `NOT_PAID` and `CANCELLED`                                                |
+
+
++ Parameters 
+    + `order_id` :`1231` (number,required) - The order or booking Id your want to pay for. It works optionaly with deposit & series parameter
+    + `deposit`  :  `157.22 or 30%` (string, optional) - If this is set to % (works in order_id, booking_id, invoice_ids) then it calulates at deposit amount the % of the total order or booking or invoices amount. If it set to amount mode then this specific amount will be added as payment 
+    + `series`  :  `122` (number, optional) - The series of payment (e.g cash or credit card) for this payment. If none it will take the first payment type, usually CASH.
+    + `comment`  :  `Payment for anything` (string, optional) - The comment that we want to add at the payment.
+
+
++ Request curl with Order or Booking
+    curl https://app.workadu.com/api/services \ 
+    -u wk_abcd123123abcd1234: \
+    -d order_id = 1234 \
+    -d deposit = 30%
+
+
++ Response 200
+    + Attributes
+        + `data` (Payment)
+
+
+## Add a general Payment for a Customer [POST /api/payments/]
+This payment end point will add a payment and and will not relate it with an order or invoice. The amount of the payment will be granted to customer's balance. 
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                                                                                                                                         |
+|------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `400`            | `You didn’t specify a correct order_id or booking ID or customer_id.`                                           | Payments are assigned to orders. You cannot pass a payment without defining a specific order. Please provide a valid booking_id as a POST parameter |
+| `400`            | `This order does not have the CANCELLED status!`                         | The only accepted status for adding a payment through this end point are: `NOT_PAID` and `CANCELLED`                                                |
+
+
++ Parameters 
+    + `customer_id` :`1231` (number,required) - The customer_Id your want to pay for. It works always with required deposit parameter. Series parameter is optional. 
+    + `deposit`  :  `157.22 or 30%` (string, required) - If this is set to % (works in order_id, booking_id, invoice_ids) then it calulates at deposit amount the % of the total order or booking or invoices amount. If it set to amount mode then this specific amount will be added as payment 
+    + `series`  :  `122` (number, optional) - The series of payment (e.g cash or credit card) for this payment. If none it will take the first payment type, usually CASH.
+    + `comment`  :  `Payment for anything` (string, optional) - The comment that we want to add at the payment.
+
+
++ Request curl with Customer
+    curl https://app.workadu.com/api/services \ 
+    -u wk_abcd123123abcd1234: \
+    -d customer_id = 1234 \
+    -d deposit = 100
+    -d comment = hello
+    -d series = 122
+
+
++ Response 200
+    + Attributes
+        + `data` (Payment)
+
+
+
+
+# Group Companies
+The Companies endpoints returns information about the workadu Companies that have been assigned with the authenticated user. The response includes the display name and other details and groups of info about each company, and lists the companies in the proper
+ display order as they are stored initial at the database. You can re-sort the results by add sorting filter at your request as [show here](#header-sorting).
+
+| Method  | Endpoint                                        | Description                           |
+|---------|-------------------------------------------------| --------------------------------------|
+|  GET    | /api/companies                                  | Get logged in user related companies  |
+|  GET    | /api/companies/{company_id},{company_id},...    | Get specific companies details        |
+
+
+
+## List all Companies [GET /api/companies/{filter%5Bcompanyid%5D,filter%5Bname%5D,filter%5Burl%5D,filter%5Bemail%5D,filter%5Balias%5D}]
+
++ Parameters
+    + filter%5Bcompanyid%5D: `14` (number,optional) - The companyid of the specific company you want. 
+    + filter%5Bname%5D: `bizz ltd` (string,optional) - Filter companies by the name of a specific company. 
+    + filter%5Burl%5D: `bizz.com` (string,optional) - Filter companies by the url of a specific company. 
+    + filter%5Bemail%5D: `info@bizz.com` (string,optional) - Filter companies by the email of a specific company. 
+    + filter%5Balias%5D: `bizz` (string,optional) - 	Filter companies by the alias of a specific company. 
+
++ Response 200
+    + Attributes
+        + `data`(Company)
+
+
+## Get specific Company [GET /api/companies/{company_id}]
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                            |
+|------------------|--------------------------------------------------------------------------------------| ---------------------------------------|
+| `400`            | `No companies could be found.`                                                       | There is no valid company id provided. |
+
++ Parameters
+    + company_id :`14` (optional, integer) - The id for the specific company.
+
++ Response 200
+    + Attributes
+        + `data`(Company)
+
+
+
+
+# Group Attributes
+
+The attributes endpoints returns information about the workadu attributes that have been assigned with the authenticated user services. The response includes the display
+ name and other details and groups of info about each attribute, and lists the attributes in the proper display order as they are stored initial at the database.
+ You can re-sort the results by add sorting filter at your request as [show here](#header-sorting).
+
+|         |                                                     |                                           |
+|---------|-----------------------------------------------------| ------------------------------------------|
+|  GET    | /api/attributes                                     | Get logged in user related attributes     |
+|  GET    | /api/attributes/{attribute_id},{attribute_id},..    | Get specific attribute details            |
+
+
+
+## List all Attributes [GET /api/attributes/{filter%5Bname%5D}]
+
++ Parameters
+    + filter%5Bname%5D: `Passengers` (string,optional) - Filter brands by the name of a specific recourse.
+
++ Response 200
+    + Attributes
+        + `data`(Attribute)
+
+## Get a specific Attribute [GET /api/attributes/{attribute_id}]
+
+
+
+**Error codes**
+
+| HTTP status      | Code                             | Description                                |
+|------------------|----------------------------------| -------------------------------------------|
+| `400`            | `No attributes could be found.`  | There is no valid attribute id provided.   |
+
++ Parameters
+    + attribute_id :`32161` (optional, integer) - The id for the specific attribute.
+
++ Response 200
+    + Attributes
+        + `data`(Attribute)
+
+# Data Structures
+
+##
+
+
+## Offer (object)
++ `offer_id`:`617` (number,required) - The id of the specific ‘m’ offer.
++ type: `20% Discount for Matiz (low season)` (string,required) - The title of the specific ‘m’ offer.
++ `old_value`:`44` (string,required) - The rate before the offer ‘m’ applies.
++ `new_value`:`35.2`  (string,required) - The rate after the offer ‘m’ applies at the specific date.
++ `offer_type`:`discount` (string,required) - The type of action that the offer ‘m’ did the specific date. There are 2 actions: extra (increase the old value), discount (Decrease the old value)
+
+## Availability (object)
++ date: `2018-08-12` (string,required) -  The date of the specific ‘n’ availability object.
++ availability: `3` (number,required) - The number of available services at the specific ‘n’ date.
++ rate: `35.2` (string,required) - The number of rate at the specific ‘n’ date.
++ offer (array[Offer]) - Array of Offers 
+
+## `Multiple_value` (object)
++ `extra_adult_value`:` ` (string,nullable)
++ `child_value`:` ` (string,nullable)
++ `infant_value`:` ` (string,nullable)
++ `extra_child_value`:` `(string,nullable)
++ `extra_infant_value`:` ` (string,nullable)
+
+## Spot (object)
++ value:`155` (string,required)
++ `multiple_values` (`Multiple_value`,required)
++ offers: `false` (boolean,required)
++ slots: `false` (boolean,required)
++ availability: `18` (number,required)
+
+## Rate (object)
++ date: `2018-07-16` (string,required)
++ weekdayname: `MON` (string,required)
++ day: `16` (number,required)
++ weekday: `0` (number,required)
++ resources: `18` (number,required)
++ availability: `18` (number,required)
++ rate: `155` (string,required)
++ spots (Spot,required)
++ `day_available_spots`: `18` (number,required)
++ `day_recources`: `18` (number,required)
+
+
+## `_rate` (object)
++ `4587` (Rate,required)
+
+## `2018-07-16` (object)
++ rates (`_rate`,required)
+
+## `_2018-07-16` (object)
++ `2018-07-16` (`2018-07-16`,required)
+
+
+
+## `_maxmin` (object)
++ max: `157` (number,required)
++ min: `157` (number,required)
+
+## `_total_price`
++ `4587`: `314` (number,required) 
+
+
+## `_unit` (object)
++ `4587`: `per day` (string,required)
+
+## Social (object)
++ social: `facebook.com` (string,required) - social platform
++ alias : `johndoe`      (string,required) - alias of the specific resource in the platform specified
+
+## Brand (object)
++ id: `32161` (number,required) - id of the specific brand.
++ name: `brand` (string,required) - name of specific brand.
++ description: `some description` (string,nullable) - description of the specific brand.
++ media: `https://secure.reservationengine.net/rest/assets/bizz/1414745610-chevolet.jpg` (array,nullable) - The fullpath of the images related to the specific brand (e.g.the logo of the brand).
+
+## `Company_service` (object)
++ id: `14` (number,nullable)  - The id of the specific company.
++ name: `bizz` (string,nullable) - The name of the specific company.
++ url: `Bizz.com` (string,nullable) - The full url of the specific company.
++ alias: `bizz` (string,nullable) - The name shotcode of the specific company.
++ email: `info@reservationengine.net` (string,nullable) - The contact email of the specific company.
++ phone: `1234567890`  (string,nullable) - The contact phone of the specific company.
++ social (array[Social],nullable) - The basic social url of the specific company.
++ vat_reg_num: `` (string,nullable) - The vat registration number of the specific company
++ country: `FRA` (string,nullable) - The international ISO 3166 (A2 or A3) code of country of the specific company.
++ address: `P.O. Box 566` (string,nullable) - The full address of the specific company.
++ city: `Paris` (string,nullable) - The city of the specific company.
++ reservation_email: `example@biz.com` (string,nullable) - The email that will be send all the bookings confirmations of the specific company. This can be empty in case company doesn’t need notificaitons.
++ currency: `$` (string,nullable) - The symbol of currency of the specific company.
++ media: `https://secure.reservationengine.net/rest/assets/bizz/1471249140-xitelogo.jpg` (array,nullable)- The fullpath of the images related to the specific company (e.g.the logo of the company).
+
+## Group (object) 
++ id: `1339` (number,nullable) - The id of the specific category.
++ name: `7 passenger` (string,nullable) - The name of the specific category.
++ description: `Explorer/Pathfinder` (string,nullable) - A more detailed description of the specific category.
+
+## Params (object)
++ rangeMax: `2` (number,nullable) - Indicates the end value of a valid values range of the specific ‘n’ extra (e.g. “1” in a range [0,1] means the true value, “10” in a range [0,10] means that 10 of that extra can be added to the booking)
++ rangeMin: `1` (number,nullable) - Indicates the start value of a valid values range of the specific ‘n’ extra (e.g. “0” in a range [0,1] means the false value, “0” in a range [0,10] means the first value of a a selectable range)
++ price: `5` (number,nullable) - Indicates the daily price of the specific ‘n’ extra.
++ fixedPrice: `3` (number,nullable) - Indicates the total price of the specific ‘n’ extra. In case this field is not empty, it overrides the daily price.
++ parent: `null (null,nullable)` - Indicates the id of another extra in case there is a grouping of them.
+
+## `Extra_short` (object)
++ id: `2593` (number,required) - The id of the specific n extra.
+
+## Extra (object)
++ id: `2593` (number,required) - The id of the specific ‘n’ extra.
++ name: `baby seat` - (string,nullable) - The name of the specific ‘n’ extra.
++ description: `Baby seat description` - (string,nullable) - A more detailed description of the specific ‘n’ extra.
++ media: `` - (string,nullable) - A full path of preview image of the specific ‘n’ extra.
++ params (Params,nullable) - Details about the pricing rules of the specific ‘n’ extra.
+
+## `Attribute_short` (object)
++ id: `2522` (number,required) - the id of the specific n attribute.
+
+## Attribute (object)
++ id: `2522` (number,required) - the id of the specific 'n' attribute.
++ name: `Passengers` (string,nullable) - The name of the specific ‘n’ attribute.
++ description: `some description` (string,nullable) - A more detailed description of the specific ‘n’ attribute.
++ value: `22` (number,nullable) - The value of the specific ‘n’ attribute.
+
+
+## `Service_rates_post_short` (object)
++ service_ids: `33663, 33433, 45444` (string,required) - The service ids to attach the rates and availability.
++ rate: `29.99` (number,required) - The rate value in account currency. eg. 29.99 means 29.99$ per day (in case price list has 'daily' type)
+
+## `Service_rates_delete` (object)
++ price_shceme_id: `336` (number,required) - The price scheme id you wish to delete.
+
+## `Service_rates_delete_2` (object)
++ service_id: `33663` (number,required) - In case is set ALL the price schemes of ALL price lists will be deleted. CAUTION you cannot undo this action.
+
+## `Service_rates_deleted` (object)
++ id: `12344` (number,required) - The Ids of the deleted price scheme.
++ deleted:  `true` (boolean,required) - Status of the delete process.
++ message:  `The resource deleted` (string,required) - Description of the process result.
+
+## `Service_rates_post` (object)
++ service_ids: `33663, 33433, 45444` (string,required) - The service ids to attach the rates and availability.
++ price_lists_ids: `21233,12333` (string,nullable) - The price lists ids to attach the rates and availability.
++ period: `Weekly or 2018-12-01,2019-04-15` (string,nullable) - The period that rates will be applied. If null then will be infinite. 
++ days: `MON, TUE, FRI` (string, nullable) - The days of week that this rates will be applied. If null the default value will be all days.
++ slots: `12:00, 13:00, 14:00` (string, nullable) - In case of Interval Price list type, you should add time slots. If null then all time slots will be added.
++ rate: `29.99` (number,required) - The rate value in account currency. eg. 29.99 means 29.99$ per day (in case price list has 'daily' type)
++ `multiple_rates`: `29.99, 23.99, 22.53, 0, 0, 0`(string, nullable) - Rates for multiple categoris like (Adults, child, infant, extra adult, extra child, extra infant)
++ availability: `2` (number,nullable) - The availability/resources that will be applied in this perios. eg. 2 means that 2 conurent resources will be available in each slot 
+
+## `Service_price_list_scheme` (object)
++ id: `12344` (number,required) - Id of the price period scheme.
++ plan:  `Weekly` (string,required) - The period plan for this scheme.
++ period:  `2018-10-01, 2018-11-10` (string,required) - The validity period of this price scheme.
+
+## `Service_scheme_post_short` (object)
++ service_id: `33663` (number,required) - The service id to attach the price list.
++ name: `Base price list` (string,required) - The base name of the price list.
++ type: `daily` (string,required) - The type of the price list (daily, interval, permile, request)
++ type_value: `30` (number,nullable) - Use only in case of Interval type. Eg. 30 are the minutes for the interval
++ unit: `per day` (string,nullable) - Use for all price list types and declares the unit for the price that will be submited
++ `price_schemes` (Service_price_list_scheme,nullable) - Array of price schemes
+
+## `Service_delete` (object)
++ id: `12344` (number,required) - Id of the service resource you want to update.
++ deleted:  `true` (boolean,required) - Status of the delete process.
++ message:  `The resource deleted` (string,required) - Description of the process result.
+
+## `Service_param_put_short` (object)
++ id: `12344` (number,required) - Id of the service resource you want to update.
+
+## `Sales_id_short` (object)
++ id: `12344` (number,required) - Id of the resource you want to delete.
+
+## Service (object)
++ id: `32161` (number,required) - id of the specific resource.
++ alias: `MATIZ` (string,required) - the alias of the specific resource. Short name of the service.
++ title: `MATIZ`  (string,required)- The title of the specific resource. Full name of the service.
++ `text_flag`: ` ` (string,nullable) - A text flag.
++ description: `some description` (string,nullable) - A more detailed description of the service.
++ includes: ` ` (string,nullable) 
++ excludes: ` ` (string,nullable)
++ pax: `1` (number,nullable)
++ `min_pax`:`1` (number,nullable)
++ type:`daily` (string,required) - Type of availability
++ media: `https://secure.reservationengine.net/rest/assets/bizz/1435697883-matiz.jpg` (array,nullable) - The fullpath of the images related to the specific service (e.g.the photo of a car).
++ company (Company_service,required) - The basic company details of the specific service. Company is the provider of the specific service.
++ group (Group,required) - The basic group details of the specific service. Group is a category of the services. Many services can be at the same group.
++ `total_availability`: `false` (boolean,required) -Indicates where there is availability for all requested dates. Without availability filters will be always false.
++ `available_spots`: `false` (boolean,required) - Indicates where there are availability spots.
++ `maxmin`: `null` (string,nullable)
++ `total_days`: `null` (string,nullable)
++ `total_price`: `false` (string,required)
++ `price_lists` (Service_scheme_post_short,nullable) - Array of price lists
++ `offers_applied`: `false` (boolean,required)
++ `availabilities_and_rates` (array,required) - Always empty when no availability filters specified.
++ extras (array[Extra],required) - The extras that are assigned to the specific service. Extras are the features that a user can add to his booking (e.g booster, gps, ski facilities, insurance e.t.c).
++ attributes (array[Attribute],required) -  The attributes that are assigned to the specific service. Attributes are the features that cannot be selected at the booking process (e.g. the color of the vehicle, cc, engine e.t.c).
++ providers (array,nullable) - Array of providers
+
+## `Service_availability` (object)
++ id: `32161` (number,required) - id of the specific resource.
++ alias: `MATIZ` (string,required) - the alias of the specific resource. Short name of the service.
++ title: `MATIZ`  (string,required)- The title of the specific resource. Full name of the service.
++ `text_flag`: ` ` (string,nullable) - A text flag.
++ description: `some description` (string,nullable) - A more detailed description of the service.
++ includes: ` ` (string,nullable) 
++ excludes: ` ` (string,nullable)
++ pax: `1` (number,nullable)
++ `min_pax`:`1` (number,nullable)
++ type: `daily` (string,required) - Type of availability
++ media: `https://secure.reservationengine.net/rest/assets/bizz/1435697883-matiz.jpg` (array,nullable) - The fullpath of the images related to the specific service (e.g.the photo of a car).
++ company (Company_service,required) - The basic company details of the specific service. Company is the provider of the specific service.
++ group (Group,required) - The basic group details of the specific service. Group is a category of the services. Many services can be at the same group.
++ `total_availability`: `true` (boolean,required) -Indicates where there is availability for all requested dates.
++ `available_spots`: `true` (boolean,required) - Indicates where there are availability spots.
++ `maxmin` (`_maxmin`,nullable)
++ `total_days`: `2` (number,nullable)
++ `total_price` (`_total_price`,required)
++ `units` (`_unit`,required)
++ `offers_applied`: `false` (boolean,required)
++ `availabilities_and_rates` (`_2018-07-16`,required) - Each object of the array describes each day of the booking availability. In case there is no availability, the array will be empty.
++ `next_available_slot`: `2018-08-06 13:00` (string,required)
++ extras (array[Extra],required) - The extras that are assigned to the specific service. Extras are the features that a user can add to his booking (e.g booster, gps, ski facilities, insurance e.t.c).
++ attributes (array[Attribute],required) -  The attributes that are assigned to the specific service. Attributes are the features that cannot be selected at the booking process (e.g. the color of the vehicle, cc, engine e.t.c).
++ providers (array,nullable) - Array of providers
+
+## `Service_param_post_short` (object)
++ name: `Toyota corolla` (string,required) - The service name for this specific resource.
++ category_id: `1234` (number,required) - The category id that this service will be attached. You can find id at Services->Service categories.
+
+## `Service_param_post` (object)
++ name: `Toyota corolla` (string,required) - The service name for this specific resource.
++ category_id: `1234` (number,required) - The category id that this service will be attached. You can find id at Services->Service categories.
++ alias: `TOYC` (string,nullable) -  A short service indentifier.
++ description: `a service description` (string,nullable) - A full service description. 
++ includes: `Text with includes` (string,nullable) -  A full description with what the service includes.
++ excludes: `Text with excludes` (string,nullable) -  A full description with what the service DOES NOT include.
++ description: `a service description` (string,nullable) - A full service description. 
++ text_flag: `New` (string,nullable) - A full service description. 
++ min_pax: `1` (number,nullable) - You can add here for how many people minimum (adults, children, infants) can get this services. 
++ pax: `4` (number,nullable) - You can add here for how many people maximum (adults, children, infants) can get this services. 
++ media: `https://app.workadu.com/assets/image1.png` (string,nullable) - Add an https url of your asset (Max image size 1.2MB). 
++ extras (array[Extra_short],required) - The extras that are assigned to the specific service. Extras are the features that a user can add to his booking (e.g booster, gps, ski facilities, insurance e.t.c).
++ attributes (array[Attribute_short],required) -  The attributes that are assigned to the specific service. Attributes are the features that cannot be selected at the booking process (e.g. the color of the vehicle, cc, engine e.t.c).
+
+
+## `Service_param_put` (object)
++ id: `12344` (number,required) - Id of the service resource you want to update.
++ name: `Toyota corolla` (string,required) - The service name for this specific resource.
++ category_id: `1234` (number,required) - The category id that this service will be attached. You can find id at Services->Service categories.
++ alias: `TOYC` (string,nullable) -  A short service indentifier.
++ description: `a service description` (string,nullable) - A full service description. 
++ includes: `Text with includes` (string,nullable) -  A full description with what the service includes.
++ excludes: `Text with excludes` (string,nullable) -  A full description with what the service DOES NOT include.
++ description: `a service description` (string,nullable) - A full service description. 
++ text_flag: `New` (string,nullable) - A full service description. 
++ min_pax: `1` (number,nullable) - You can add here for how many people minimum (adults, children, infants) can get this services. 
++ pax: `4` (number,nullable) - You can add here for how many people maximum (adults, children, infants) can get this services. 
++ media: `https://app.workadu.com/assets/image1.png` (string,nullable) - Add an https url of your asset (Max image size 1.2MB). 
++ extras (array[Extra_short],required) - The extras that are assigned to the specific service. Extras are the features that a user can add to his booking (e.g booster, gps, ski facilities, insurance e.t.c).
++ attributes (array[Attribute_short],required) -  The attributes that are assigned to the specific service. Attributes are the features that cannot be selected at the booking process (e.g. the color of the vehicle, cc, engine e.t.c).
+
+
+## `Invoice_short` (object)
++ id: `911` (number,required) - The customer id for this specific resource.
++ fullname: `David Oregon` (string,required) - The customer fullname for this specific resource.
++ email: `info@davidoregon.com` (string,optional) - The customer email for this specific resource.
+
+## `Invoice` (object)
++ id: `123212` (number,required) -  The internal id of the invoice.
++ `invoice_number`: `A-1233` (string,required) -  The fiscal invoice number.
++ `series`: `INVOICE` (string,required) -  Then documnet series (invoice, quote, expense e.t.c).
++ user (array[`user_short`],nullable) - User who's create this invoice.
++ customer (array[`Customer_short`],optional) -  The Customer details of this invoice.
++ `issue_date`: `2018-01-13` (string, optional) - The creation date of the invoice.
++ `due_date`: `2018-02-13` (string, optional) - The due date of the invoice.
++ `discount_amount`: 4 (number, optional) - The discount amount of the invoice.
++ `vat_amount`: 2 (number, optional) - The vat amount of the invoice.
++ `total_amount`: 14 (number, optional) - The total amount of the invoice.
++ `currency`: `EUR` (string, optional) - The currency of this invoice.
++ `currency_rate`: 1 (number, optional) - The currency rate of the currency in comparison with company default currency.
++ lines (array[`invoice_lines`],optional) -  The invoice lines array.
++ status: `VALID` (string, optional) - The status of the invoice (DRAFT, VALID, CANCELLED)
++ tag: `#ASS4J22` (string, optional) - A note for the specific invoice. May use booking reference number.
+
+## Series (object)
++ id: `911` (number,required) - The serie id for this specific resource.
++ title: `Invoice` (string,required) - The title of this resource.
++ last_number: 123 (number,optional) - The last number of this series.
++ type: `fiscal` (string,optional) - The type of the document (fiscal, transaction, none).
+
+##  `user_short` 
++ id: `123212` (number,required) -  The id of the user.
++ `email`: `hello@workadu.com` (string,required) - User email.
+
+## `Customer_short` (object)
++ id: `911` (number,required) - The customer id for this specific resource.
++ fullname: `David Oregon` (string,required) - The customer fullname for this specific resource.
++ email: `info@davidoregon.com` (string,optional) - The customer email for this specific resource.
+
+## `invoice_lines` (object)
++ id: `911` (number,required) - The line id for this specific resource.
++ description: `For sale` (string,required) - The description of the charged service .
++ quantity: `1` (number,optional) - The quantity of services included in that invoice.
++ `solo_amount`: `10` (number,optional) - The the amount for one service. This amount will be multiply with the quantity
++ `total_amount`: 20 (number, optional) - The total amount after multiply quantity with solo_amount.
++ `discount_percent`: 10 (number, optional) - The % discount of the total amount.
++ `vat_percent`: 0 (number, optional) - The % vat that will be applied in this line.
++ `final_amount`: 18 (number, optional) - The final amount after discount and vat.
+
+
+
+## `Customer_params_post` (object)
++ fullname: `John Doe` (string,required) -  The fullname of the specic customer. Fullname could be at ‘Firstname Lastname’ format.
++ email: `johnydoe@doe.com` (string,required) - The email address for this specific customer
++ city: `Athens` (string,nullable) -  The customer residence city.
++ address: `Patisiwn 11` (string,nullable) - The residense address of the customer. 
++ postal_code: `13211` (number,nullable) - The residense postal code of the customer. 
++ country: `Greece` (string,nullable) - The customer residence country for this specific resource.
++ mobile: `1112223334`  (number,nullable) - The customer mobile number (is used for sms communication).
++ `vat_number`: `112233` (string,nullable) - The VAT registration number for the specific customer.
++ birthdate: `1985-02-11` (string,nullable) - The birthdate of the customer. The date uses the form Y-m-d.
++ gender: `M` (string,nullable) - The gender of the specific customer. Response values are: ‘m’, ‘M’, ‘f’, ‘F’.
++ title: `Mr` (string,nullable) - The title of the specific customer. Accepted values are: ‘Miss’, ‘Ms’, ‘Mr’, ‘Sir’, ‘Mrs’, ‘Dr’.
++ social:`social=[{“social”:”facebook.com”, “alias”:”johndoe”}]` (string,nullable) - The social media aliases of the specific customer. Social media should be placed in JSON format.
++ comments: `some comments` (string,nullable) - Some comments of the specific customer.
++ companyid: `475` (number,nullable) - The company id that this specific customer is being assignet to.
+
+
+## `Customer_params_patch` (object)
++ fullname: `John Doe` (string,nullable) -  The fullname of the specic customer. Fullname could be at ‘Firstname Lastname’ format.
++ email: `johnydoe@doe.com` (string,nullable) - The email address for this specific customer
++ city: `Athens` (string,nullable) -  The customer residence city.
++ address: `Patisiwn 11` (string,nullable) - The residense address of the customer. 
++ postal_code: `13211` (number,nullable) - The residense postal code of the customer. 
++ country: `Greece` (string,nullable) - The customer residence country for this specific resource.
++ mobile: `1112223334`  (number,nullable) - The customer mobile number (is used for sms communication).
++ `vat_number`: `112233` (string,nullable) - The VAT registration number for the specific customer.
++ birthdate: `1985-02-11` (string,nullable) - The birthdate of the customer. The date uses the form Y-m-d.
++ gender: `M` (string,nullable) - The gender of the specific customer. Response values are: ‘m’, ‘M’, ‘f’, ‘F’.
++ title: `Mr` (string,nullable) - The title of the specific customer. Accepted values are: ‘Miss’, ‘Ms’, ‘Mr’, ‘Sir’, ‘Mrs’, ‘Dr’.
++ social:`social=[{“social”:”facebook.com”, “alias”:”johndoe”}]` (string,nullable) - The social media aliases of the specific customer. Social media should be placed in JSON format.
++ comments: `some comments` (string,nullable) - Some comments of the specific customer.
++ companyid: `475` (number,nullable) - The company id that this specific customer is being assignet to.
+
+
+
+## Customer (object)
++ id: `3332` (number,required) - The id of the specific resource
++ fullname: `John Doe` (string,required) -  The fullname (first name & last name) of the specific customer.
++ email: `johnydoe@doe.com` (string,nullable) - The email address for this specific resource.
++ mobile: `1112223334`  (number,nullable) - The customer mobile number (is used for sms communication).
++ country: `Greece` (string,nullable) - The customer residence country for this specific resource. 
++ city: `Athens` (string,nullable) -  The customer residence city for this specific resource.
++ address: `Patisiwn 11` (string,nullable) - The customer resident address for this specific resource.
++ postal_code: `13211` (number,nullable) - The residense postal code of the customer. 
++ `vat_number`: `112233` (string,nullable) - The VAT registration number for the specific customer.
++ birthdate: `1985-02-11` (string,nullable) - The birthdate of the customer. The date uses the form Y-m-d.
++ gender: `M` (string,nullable) - The gender of the specific customer. Response values are: ‘m’, ‘M’, ‘f’, ‘F’.
++ title: `Mr` (string,nullable) - The title of the specific customer. Accepted values are: ‘Miss’, ‘Ms’, ‘Mr’, ‘Sir’, ‘Mrs’, ‘Dr’.
++ social (array[Social],nullable) - The social media alias of the specific customer. Social media should be place in Json format.
++ comments: `some comments` (string,nullable) - Some comments of the specific customer.
++ companyid: `475` (number,required) - The company id that this specific customer is being assignet to.
++ media: `http://stage.reservationengine.net/assets/images/aueb-475/1531817042-pic2.png` (array,nullable)
+
+
+## Location (object)
++ coordinates: `(39.074208, 21.824312)` (string,optional) - The coordinates of the starting point of the specific order. The starting/ending coordinates use the form (lat,lon).
++ location_name: `Main Desk` (string,optional) -  The location name of the starting/ending point of the specific order.
++ date: `2018-07-11` - The starting date of the specific order. The starting/ending date uses the form Y-m-d.
++ time: `08:09` - The starting time of the specific order. The starting/ending time uses the form H:i.
+
+## `Payment_short` (object)
++ id: `1810` (number,required) - The id of ‘n’ payment assigned to the specific order.
++ issue_date: `2018-07-05` (string,required) - The issue date of ‘n’ payment assigned to the specific order. The date uses the form Y-m-d.
++ amount: `55` (number,required) - The amount paid of ‘n’ payment assigned to the specific order.
++ comments: `Payment for Booking #4GELNA` (string,optional) - Comments about ‘n’ payment assigned to the specific order.
+
+## Recource
++ number:`Peg-1` (string,nullable) - number for the specific recource
++ type: `` (string,nullable) - type for the specific recource
++ color: `` (string,nullable) - color for the specific recource
+
+## `Sales_params_post_short` (object) 
++ title: `30% discount` (string,required) - The title of the dynamic policy. This title will be displayed at any availability response
++ `action`: `120` (number,required) - Indicates the action that will be applied when this policy trigger. See the appendix for codes. 
++ `action_value`: `-15%` (string,required) - Indicates the value of the action that will be applied when this policy trigger.
+
+## `Sales_params_post` (object) 
++ title: `30% discount` (string,required) - The title of the dynamic policy. This title will be displayed at any availability response
++ `action`: `120` (number,required) - Indicates the action that will be applied when this policy trigger. See the appendix for codes. 
++ `action_value`: `-15%` (string,required) - Indicates the value of the action that will be applied when this policy trigger.
++ `hide`: `true` (string,optional) - Indicates if the title will be display in search results.
++ `conditions`: `140==145;141==146` (string,optional) - List of conditions and their values
++ `price_lists_ids`: `All or 33221,2223,33433` (string,optional) - List of price_list ids that this policy will be applied
++ `valid_from`: `2018-01-01` (string,required) - Indicates the from date that this policy is valid. The valid_from date will be compared with the search date. 
++ `valid_to`: `2040-01-01` (string,required) -  Indicates the ot date that this policy is valid. The valid_to date will be compared with the search date. 
+
+## Sales (object)
++ id: `1831` (number,required) - The id of the specific resource
++ title: `30% discount` (string,required) - The title of the dynamic policy. This title will be displayed at any availability response
++ `valid_from`: `2018-01-01` (string,required) - Indicates the from date that this policy is valid. The valid_from date will be compared with the search date. 
++ `valid_to`: `2030-01-01` (string,required) - Indicates the ot date that this policy is valid. The valid_to date will be compared with the search date. 
++ `action`: `Set price to a fixed amount per spot` (string,required) - Indicates the action that will be applied when this policy trigger. 
++ `action_value`: `-15%` (string,required) - Indicates the value of the action that will be applied when this policy trigger. 
++ hide: `false` (boolean,required) - Indicates if the title of this policy will be displayed. 
++ ordering: `10` (number,required) - Indicates the queue sorting of this policy. For example if this value is set to 10 and there is another policy with orderint to 5, then the 5 will be triggered first. 
++ rules (array[sales_rules],required) - Array of the conditions of this policy.
++ `price_list_ids`:  `3455, 3756` (string,required)  - List of price lists, that this service will be applied to.
+
+## `sales_rules` (object)
++ name: `120` (number, required) - The condition that should be fullfiled in order this policy to trigger. See conditions code apendix 
++ operator: `==` (string, required) - The operator that will compage the condition value. Operators are ( greater or equal(>=), greater(>), lower or equal(<=), lower(<), equal(==), not equal(!=), between(<>), not between(!<>)
++ value: `145` (number, required) - The value that should be compared. E.g. 145 indicates the id of a geographic zone
+
+
+## `sales_scope` (object)
++ `service_id`: `133445` (number, required) - The service id that has one of the following price lists attached to a policy.
++ `price_lists`: `14534, 33433` (string, required) - Price lists ids that this policy will be applied
+
+## `Sales_deleted` (object)
++ id: `12344` (number,required) - The Ids of the deleted sales policy.
++ deleted:  `true` (boolean,required) - Status of the delete process.
++ message:  `The resource deleted` (string,required) - Description of the process result.
+
+## order
++ id: `6274` (number,required) - id for the specific order
++ reference: `627401` (number,required) - reference for the specific order
++ `service_id`: `33273`
++ start (Location,nullable) - The basic starting location details of the specific order.
++ end (Location,nullable) - The basic ending location details of the specific order.
++ comment: `` (string,nullable) - The comments that user add to the specific order.
++ status: `PRE_ASSIGNED` (string,required) - The status of the specific order. Valid values for status are: “PRE_ASSIGNED”, “ASSIGNED_NOT_CONFIRMED”, “ASSIGNED_AND_AGREED”, “CHECKED_OUT”, “CHECKED_IN”, “CHECKED_IN_EARLIER”, “CANCELLED”.
++ total_cost: `55` (number,required) - The final total cost that this order was booked.
++ recource(Recource,nullable)
++ extras   (array[Extra],nullable) - The extras that are selected by the user during the booking process. Extras are the features that a user can add to his booking (e.g booster, gps, ski facilities, insurance e.t.c). The cost is included at order.total_cost
+
+
+## `_order`
++ order(order,nullable) - order object
+
+## Order (object)
++ id: `1831` (number,required) - The id of the specific resource
++ reference: `4GELNA` (string,required) - reference for the specific order
++ company_id: `475` (number,required) - The company id that this specific order is being assigned to.
++ status: `PRE_ASSIGNED` (string,required) - The status of the specific order. Valid values for status are: “PRE_ASSIGNED”, “ASSIGNED_NOT_CONFIRMED”, “ASSIGNED_AND_AGREED”, “CHECKED_OUT”, “CHECKED_IN”, “CHECKED_IN_EARLIER”, “CANCELLED”.
++ customer (Customer_short,nullable) - The basic customer details of the specific order
++ total_cost: `55` (number,required) - The final total cost that this order was booked.
++ orders (_order,nullable) - Object that contains zero or more orders
++ currency: `$` (string,nullable) - currency 
++ payments (array[Payment_short],required) - Array of payments assigned to the specific order.
+
+
+## `Order_params` (object)
++ start_coordinates: `(36.8915064, 27.2877228)` (string,required) - The start location coordinates. The coordinates use the form (lat,lon). 
++ start_location_name: `Kos town` (string,required) - The start location name.
++ start_date: `2018-07-18` (string,required) - The start date for the specific order.
++ start_time: `11:00` (string,required) - The start time for the specific order.
++ end_coordinates: `(36.8915064, 27.2877228)` (string,required) -  The end location coordinates. The coordinates use the form (lat,lon).
++ end_location_name: `Kos town` (string,required) - The end location name.
++ end_date: `2018-07-18` (string,required) - The end date for the specific order.
++ end_time: `11:59` (string,required) - The end time for the specific order.
++ service_id: `33357` (number,required) - The id of the service that will be booked. The system checks for availability. 
++ customer_id: `2111` (number,required) - The id of the customer that will be charged for the specific order.
++ selected_slots: `11:00` (string,required) - Selected slots.
++ slot_start_time: `11:00` (string,required) - Slot starting time.
++ slot_end_time: `11:59` (string,required) - Slot ending time.
+
+
+## `patch_example_customer` (object)
++ op: `replace` (string,required) - One of JSON PATCH operations (add, remove, replace, move, copy, test), based on rfc6902.
++ path: `/fullname` (string,required) - A JSON Pointer value that references the location in the target document to move the value from based on rfc6901.
++ value: `Jordan Johnson` (string,required) - The value that was changed.
+
+
+## `patch_example_order` (object)
++ op: `replace` (string,required) - One of JSON PATCH operations (add, remove, replace, move, copy, test), based on rfc6902.
++ path: `/id` (string,required) - A JSON Pointer value that references the location in the target document to move the value from based on rfc6901.
++ value: `992` (string,required) - The value that was changed.
+
+
+## `delete_example_order` (object)
++ op: `replace` (string,required) - One of JSON PATCH operations (add, remove, replace, move, copy, test), based on rfc6902.
++ path: `/status` (string,required) - A JSON Pointer value that references the location in the target document to move the value from based on rfc6901.
++ value: `CANCELLED` (string,required) - The value that was replaced.
+
+
+## Payment (object)
++ issue_date: `2016-09-14` (string,required) - The issue date of the specific resource
++ customer_id: `359` (number,required) - The id of the customer of the specific payment.
++ series:   `Cash` (string,required) - The type of payment for this specific resource.
++ `transaction_num,`: `15`  (number,required) - The unique transaction id for this specific resource.
++ amount: `80`  (number,required) - The amount of this specific resource.
++ currency: `$` (string,required) - The currency of this specific resource.
++ comments: `Payment for the Order #1015` (string,required) - The comment that will be added automaticaly for this specific payment.
++ order_id: `1015` (number,required) - The booking id that this payment is assigned to.
+
+
+## `Working_hour1`
++ day: `0` (number,required) - Day [0-6] starting from Monday.
++ start: `09:00` (string,required) - Starting hour.
++ end: `17:30` (string,required) - Ending hour.
+
+## `Working_hour2`
++ day: `1` (number,required) - Day [0-6] starting from Monday.
++ start: `09:00` (string,required) - Starting hour.
++ end: `17:30` (string,required) - Ending hour.
+
+## `Working_hour3`
++ day: `2` (number,required) - Day [0-6] starting from Monday.
++ start: `09:00` (string,required) - Starting hour.
++ end: `17:30` (string,required) - Ending hour.
+
+## `Working_hour4`
++ day: `3` (number,required) - Day [0-6] starting from Monday.
++ start: `09:00` (string,required) - Starting hour.
++ end: `17:30` (string,required) - Ending hour.
+
+## `Working_hour5`
++ day: `4` (number,required) - Day [0-6] starting from Monday.
++ start: `10:00` (string,required) - Starting hour.
++ end: `17:30` (string,required) - Ending hour.
+
+
+## `Working_hours` (array)
++ (`Working_hour1`)
++ (`Working_hour2`)
++ (`Working_hour3`)
++ (`Working_hour4`)
++ (`Working_hour5`)
+
+
+## Setting (object)
++ `working_hours`(Working_hours,required) - Company's working hours by day.
++ `work_load`: `160` (number,required) - Company's workload.
++ `time_window` `20` (number) -  Company's time window.
+
+
+## `Company` (object)
++ id: `14` (number,nullable)  - The id of the specific company.
++ name: `bizz` (string,nullable) - The name of the specific company.
++ url: `Bizz.com` (string,nullable) - The full url of the specific company.
++ alias: `bizz` (string,nullable) - The name shotcode of the specific company.
++ email: `info@reservationengine.net` (string,nullable) - The contact email of the specific company.
++ phone: `1234567890`  (string,nullable) - The contact phone of the specific company.
++ social (array[Social],nullable) - The basic social url of the specific company.
++ vat_reg_num: `EL 078839923` (string,nullable) - The vat registraion number of the specific company
++ `swift_code`: `BCINSDD23` - The swift bank code of this specific resource.
++ currency: `$` (string,nullable) - The symbol of currency of the specific company.
++ logo: ` ` (string,nullable) - Link to the company's logo.
++ settings (Setting,nullable) - Company related settings.

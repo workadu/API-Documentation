@@ -1,0 +1,26 @@
+doctype
+
+include mixins.jade
+
+html
+    head
+        meta(charset="utf-8")
+        title= 'Reservation Engine Developers'
+        link(rel="stylesheet", href="css/out.css")
+        link(rel="icon" href="http://carrental.reservationengine.net/wp-content/uploads/2014/10/favicon.png")
+        script(src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js")
+        
+    body.preload
+        a.text-muted.back-to-top(href='#top')
+            i.fa.fa-toggle-up
+            | &nbsp;Back to top
+        div(class=self.fullWidth ? 'container-fluid' : 'container')
+            .row
+                block nav
+                    +Nav(false)
+
+                .content
+                    block content
+                        +Content('primary', false)
+
+        script: include scripts.js
