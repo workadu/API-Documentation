@@ -350,7 +350,7 @@ and lists the services in the proper display order as they are stored initial at
 </tbody>
 </table>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="services-update-a-service" class="resource"><h3 class="resource-heading">Update a Service <a href="#services-update-a-service" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method put">PUT</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/services/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">Required</span><span class="tab-button">Required + Updatable fields</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">12344</span>
@@ -569,7 +569,7 @@ and lists the services in the proper display order as they are stored initial at
 </tbody>
 </table>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="services-delete-a-service" class="resource"><h3 class="resource-heading">Delete a Service <a href="#services-delete-a-service" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/services/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">Required</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">12344</span>
@@ -603,7 +603,7 @@ and lists the services in the proper display order as they are stored initial at
 </tbody>
 </table>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="services-list-services" class="resource"><h3 class="resource-heading">List Services <a href="#services-list-services" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/services</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
@@ -701,7 +701,7 @@ and lists the services in the proper display order as they are stored initial at
 </dd><dt>filter[extra_filters][category_id]</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>10</span></span><p>The category_id of a specific group of services.</p>
 </dd><dt>filter[extra_filters][radius]</dt><dd><code>String</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>R-100</span></span><p>value = -1 (default) unstricted results sorted by closest.<br>value = 1 restrinct results to search zone.<br>value = R-100 restrict resuts to 100kms from start_coordinates point.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="services-get-service-availability" class="resource"><h3 class="resource-heading">Get Service Availability <a href="#services-get-service-availability" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/services</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
@@ -832,7 +832,7 @@ and lists the services in the proper display order as they are stored initial at
 </dd><dt>filter[extra_filters][category_id]</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>10</span></span><p>The category_id of a specific group of services.</p>
 </dd><dt>filter[extra_filters][radius]</dt><dd><code>String</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>R-100</span></span><p>value = -1 (default) unstricted results sorted by closest.<br>value = 1 restrinct results to search zone.<br>value = R-100 restrict resuts to 100kms from start_coordinates point.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="services-get-specific-service" class="resource"><h3 class="resource-heading">Get Specific Service <a href="#services-get-specific-service" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/services/<span class="hljs-attribute" title="service_id">32161</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
@@ -925,7 +925,7 @@ and lists the services in the proper display order as they are stored initial at
   ]
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="services-get-specific-service-get" class="action get"><h4 class="action-heading"><div class="name">Get Specific Service</div><a href="#services-get-specific-service-get" class="method get">GET</a><code class="uri">/api/services/{service_id}</code></h4><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>service_id</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>32161</span></span><p>The companyid of the company you want services from</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="services-create-a-new-price-list" class="resource"><h3 class="resource-heading">Create a new Price List <a href="#services-create-a-new-price-list" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/services/pricelist</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">Required</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">service_id</span>": <span class="hljs-value"><span class="hljs-number">33663</span></span>,
@@ -1051,7 +1051,7 @@ and lists the services in the proper display order as they are stored initial at
 </tbody>
 </table>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="services-create-a-price-scheme" class="resource"><h3 class="resource-heading">Create a Price Scheme <a href="#services-create-a-price-scheme" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/services/rates</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">Required</span><span class="tab-button">Required + Optional</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">service_ids</span>": <span class="hljs-value"><span class="hljs-string">"33663, 33433, 45444"</span></span>,
@@ -1264,7 +1264,7 @@ and lists the services in the proper display order as they are stored initial at
 </tbody>
 </table>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="services-delete-a-price-scheme" class="resource"><h3 class="resource-heading">Delete a Price Scheme <a href="#services-delete-a-price-scheme" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/services/rates</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">Delete a scheme</span><span class="tab-button">Delete all schemes</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">price_shceme_id</span>": <span class="hljs-value"><span class="hljs-number">336</span>
@@ -1306,7 +1306,7 @@ and lists the services in the proper display order as they are stored initial at
 </tbody>
 </table>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><section id="discounts-&amp;-sales-policies" class="resource-group"><h2 class="group-heading">Discounts & Sales policies <a href="#discounts-&amp;-sales-policies" class="permalink">&para;</a></h2><p>The Sales policies resource are here to help you build dynamic pricing and offering automations to your platform. You can build discounts offers for specific service or create availability restrictions policies in specific geographical zones and many more.</p>
 <table>
@@ -1657,7 +1657,7 @@ and lists the services in the proper display order as they are stored initial at
 </tbody>
 </table>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="discounts-&amp;-sales-policies-delete-a-sales-policy" class="resource"><h3 class="resource-heading">Delete a Sales Policy <a href="#discounts-&amp;-sales-policies-delete-a-sales-policy" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/sales</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">Required</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">12344</span>
@@ -1686,7 +1686,7 @@ and lists the services in the proper display order as they are stored initial at
 </tbody>
 </table>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><section id="orders" class="resource-group"><h2 class="group-heading">Orders <a href="#orders" class="permalink">&para;</a></h2><p>The Orders endpoints returns information about the workadu Orders (Bookings) that have been made by the authenticated user. The response includes the display name and other
 details and groups of info about each order, and lists the orders in the proper display order as they are stored initial at the database. You can re-sort the results by add
@@ -1838,7 +1838,7 @@ sorting filter at your request as <a href="#header-sorting">show here</a>.</p>
 </tbody>
 </table>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="orders-get-all-orders" class="resource"><h3 class="resource-heading">Get all Orders <a href="#orders-get-all-orders" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/orders/</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
@@ -1922,7 +1922,7 @@ sorting filter at your request as <a href="#header-sorting">show here</a>.</p>
 </dd><dt>filter[end_date]</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>2018-08-31</span></span><p>Filter orders by checking the ending date of each order. Operators may be applied here.</p>
 </dd><dt>filter[end_time]</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>18:00</span></span><p>Filter orders by checking the ending time of each order. Operators may be applied here.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="orders-get-specific-order" class="resource"><h3 class="resource-heading">Get Specific Order <a href="#orders-get-specific-order" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/orders/<span class="hljs-attribute" title="booking_id">1831</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
@@ -1992,7 +1992,7 @@ sorting filter at your request as <a href="#header-sorting">show here</a>.</p>
   ]
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="orders-get-specific-order-get" class="action get"><h4 class="action-heading"><div class="name">Get Specific Order</div><a href="#orders-get-specific-order-get" class="method get">GET</a><code class="uri">/api/orders/{booking_id}</code></h4><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>booking_id</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1831</span></span><p>you can specify more booking_id separated by comma <code>,</code></p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="orders-update-an-order" class="resource"><h3 class="resource-heading">Update an Order <a href="#orders-update-an-order" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method patch">PATCH</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/orders/<span class="hljs-attribute" title="booking_id">1831</span></span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">992</span>
@@ -2027,7 +2027,7 @@ sorting filter at your request as <a href="#header-sorting">show here</a>.</p>
 </table>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>booking_id</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1831</span></span><p>the id of the specific order</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="orders-delete-an-order" class="resource"><h3 class="resource-heading">Delete an Order <a href="#orders-delete-an-order" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method delete">DELETE</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/orders/<span class="hljs-attribute" title="booking_id">32161</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
@@ -2060,7 +2060,7 @@ sorting filter at your request as <a href="#header-sorting">show here</a>.</p>
 </table>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>booking_id</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>32161</span></span><p>the id of the specific order.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><section id="customers" class="resource-group"><h2 class="group-heading">Customers <a href="#customers" class="permalink">&para;</a></h2><p>The Customers endpoints returns information about the workadu Customers that have been made by the authenticated user. In case user is has a “companyadmin” role, then the results contain all the customers that belong at user company. The response includes the display name and other details and groups of info about each customer, and lists the customers in the proper display order as they are stored initial at the database.
 You can re-sort the results by add sorting filter at your request as <a href="#header-sorting">show here</a>.</p>
@@ -2106,9 +2106,10 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
   "<span class="hljs-attribute">vat_number</span>": <span class="hljs-value"><span class="hljs-string">"112233"</span></span>,
   "<span class="hljs-attribute">birthdate</span>": <span class="hljs-value"><span class="hljs-string">"1985-02-11"</span></span>,
   "<span class="hljs-attribute">gender</span>": <span class="hljs-value"><span class="hljs-string">"M"</span></span>,
-  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Mr"</span></span>,
   "<span class="hljs-attribute">social</span>": <span class="hljs-value"><span class="hljs-string">"social=[{“social”:”facebook.com”, “alias”:”johndoe”}]"</span></span>,
-  "<span class="hljs-attribute">comments</span>": <span class="hljs-value"><span class="hljs-string">"some comments"</span></span>,
+  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Example company name"</span></span>,
+  "<span class="hljs-attribute">tax_office</span>": <span class="hljs-value"><span class="hljs-string">"ATHENS TAX OFFICE"</span></span>,
+  "<span class="hljs-attribute">business_type</span>": <span class="hljs-value"><span class="hljs-string">"Lawyer"</span></span>,
   "<span class="hljs-attribute">companyid</span>": <span class="hljs-value"><span class="hljs-number">475</span>
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
@@ -2123,14 +2124,15 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
     "<span class="hljs-attribute">vat_number</span>": <span class="hljs-value"><span class="hljs-string">"112233"</span></span>,
     "<span class="hljs-attribute">birthdate</span>": <span class="hljs-value"><span class="hljs-string">"1985-02-11"</span></span>,
     "<span class="hljs-attribute">gender</span>": <span class="hljs-value"><span class="hljs-string">"M"</span></span>,
-    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Mr"</span></span>,
     "<span class="hljs-attribute">social</span>": <span class="hljs-value">[
       {
         "<span class="hljs-attribute">social</span>": <span class="hljs-value"><span class="hljs-string">"facebook.com"</span></span>,
         "<span class="hljs-attribute">alias</span>": <span class="hljs-value"><span class="hljs-string">"johndoe"</span>
       </span>}
     ]</span>,
-    "<span class="hljs-attribute">comments</span>": <span class="hljs-value"><span class="hljs-string">"some comments"</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Example company name"</span></span>,
+    "<span class="hljs-attribute">tax_office</span>": <span class="hljs-value"><span class="hljs-string">"ATHENS TAX OFFICE"</span></span>,
+    "<span class="hljs-attribute">business_type</span>": <span class="hljs-value"><span class="hljs-string">"Lawyer"</span></span>,
     "<span class="hljs-attribute">companyid</span>": <span class="hljs-value"><span class="hljs-number">475</span></span>,
     "<span class="hljs-attribute">media</span>": <span class="hljs-value">[
       <span class="hljs-string">"http://stage.reservationengine.net/assets/images/aueb-475/1531817042-pic2.png"</span>
@@ -2159,7 +2161,7 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
 </tbody>
 </table>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="customers-list-all-customers" class="resource"><h3 class="resource-heading">List all Customers <a href="#customers-list-all-customers" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/customers/</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
@@ -2174,14 +2176,15 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
     "<span class="hljs-attribute">vat_number</span>": <span class="hljs-value"><span class="hljs-string">"112233"</span></span>,
     "<span class="hljs-attribute">birthdate</span>": <span class="hljs-value"><span class="hljs-string">"1985-02-11"</span></span>,
     "<span class="hljs-attribute">gender</span>": <span class="hljs-value"><span class="hljs-string">"M"</span></span>,
-    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Mr"</span></span>,
     "<span class="hljs-attribute">social</span>": <span class="hljs-value">[
       {
         "<span class="hljs-attribute">social</span>": <span class="hljs-value"><span class="hljs-string">"facebook.com"</span></span>,
         "<span class="hljs-attribute">alias</span>": <span class="hljs-value"><span class="hljs-string">"johndoe"</span>
       </span>}
     ]</span>,
-    "<span class="hljs-attribute">comments</span>": <span class="hljs-value"><span class="hljs-string">"some comments"</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Example company name"</span></span>,
+    "<span class="hljs-attribute">tax_office</span>": <span class="hljs-value"><span class="hljs-string">"ATHENS TAX OFFICE"</span></span>,
+    "<span class="hljs-attribute">business_type</span>": <span class="hljs-value"><span class="hljs-string">"Lawyer"</span></span>,
     "<span class="hljs-attribute">companyid</span>": <span class="hljs-value"><span class="hljs-number">475</span></span>,
     "<span class="hljs-attribute">media</span>": <span class="hljs-value">[
       <span class="hljs-string">"http://stage.reservationengine.net/assets/images/aueb-475/1531817042-pic2.png"</span>
@@ -2195,7 +2198,7 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
 </dd><dt>filter[postal_code]</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>N1 7GU</span></span><p>The city of customer(s) you want details from.</p>
 </dd><dt>filter[company_id]</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>14</span></span><p>The company id of customer(s) you want details from.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="customers-get-a-specific-customer" class="resource"><h3 class="resource-heading">Get a specific Customer <a href="#customers-get-a-specific-customer" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/customers/<span class="hljs-attribute" title="customer_id">3332</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
@@ -2210,14 +2213,15 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
     "<span class="hljs-attribute">vat_number</span>": <span class="hljs-value"><span class="hljs-string">"112233"</span></span>,
     "<span class="hljs-attribute">birthdate</span>": <span class="hljs-value"><span class="hljs-string">"1985-02-11"</span></span>,
     "<span class="hljs-attribute">gender</span>": <span class="hljs-value"><span class="hljs-string">"M"</span></span>,
-    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Mr"</span></span>,
     "<span class="hljs-attribute">social</span>": <span class="hljs-value">[
       {
         "<span class="hljs-attribute">social</span>": <span class="hljs-value"><span class="hljs-string">"facebook.com"</span></span>,
         "<span class="hljs-attribute">alias</span>": <span class="hljs-value"><span class="hljs-string">"johndoe"</span>
       </span>}
     ]</span>,
-    "<span class="hljs-attribute">comments</span>": <span class="hljs-value"><span class="hljs-string">"some comments"</span></span>,
+    "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Example company name"</span></span>,
+    "<span class="hljs-attribute">tax_office</span>": <span class="hljs-value"><span class="hljs-string">"ATHENS TAX OFFICE"</span></span>,
+    "<span class="hljs-attribute">business_type</span>": <span class="hljs-value"><span class="hljs-string">"Lawyer"</span></span>,
     "<span class="hljs-attribute">companyid</span>": <span class="hljs-value"><span class="hljs-number">475</span></span>,
     "<span class="hljs-attribute">media</span>": <span class="hljs-value">[
       <span class="hljs-string">"http://stage.reservationengine.net/assets/images/aueb-475/1531817042-pic2.png"</span>
@@ -2225,7 +2229,7 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="customers-get-a-specific-customer-get" class="action get"><h4 class="action-heading"><div class="name">Get a specific Customer</div><a href="#customers-get-a-specific-customer-get" class="method get">GET</a><code class="uri">/api/customers/{customer_id}</code></h4><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>customer_id</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>3332</span></span><p>The id for the specific customer.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="customers-update-a-customer" class="resource"><h3 class="resource-heading">Update a Customer <a href="#customers-update-a-customer" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method patch">PATCH</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/customers/<span class="hljs-attribute" title="customer_id">32161</span></span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">example 1</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">fullname</span>": <span class="hljs-value"><span class="hljs-string">"John Doe"</span></span>,
@@ -2238,9 +2242,10 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
   "<span class="hljs-attribute">vat_number</span>": <span class="hljs-value"><span class="hljs-string">"112233"</span></span>,
   "<span class="hljs-attribute">birthdate</span>": <span class="hljs-value"><span class="hljs-string">"1985-02-11"</span></span>,
   "<span class="hljs-attribute">gender</span>": <span class="hljs-value"><span class="hljs-string">"M"</span></span>,
-  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Mr"</span></span>,
   "<span class="hljs-attribute">social</span>": <span class="hljs-value"><span class="hljs-string">"social=[{“social”:”facebook.com”, “alias”:”johndoe”}]"</span></span>,
-  "<span class="hljs-attribute">comments</span>": <span class="hljs-value"><span class="hljs-string">"some comments"</span></span>,
+  "<span class="hljs-attribute">title</span>": <span class="hljs-value"><span class="hljs-string">"Example company name"</span></span>,
+  "<span class="hljs-attribute">tax_office</span>": <span class="hljs-value"><span class="hljs-string">"ATHENS TAX OFFICE"</span></span>,
+  "<span class="hljs-attribute">business_type</span>": <span class="hljs-value"><span class="hljs-string">"Lawyer"</span></span>,
   "<span class="hljs-attribute">companyid</span>": <span class="hljs-value"><span class="hljs-number">475</span>
 </span>}</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
@@ -2272,7 +2277,7 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
 </table>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>customer_id</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>32161</span></span><p>The id for the specific customer.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><section id="invoices" class="resource-group"><h2 class="group-heading">Invoices <a href="#invoices" class="permalink">&para;</a></h2><p>The Invoices/documents resource return information about workadu invoices or any other document type. Invoices can be automatically or manualy generated by user or API.</p>
 <table>
@@ -2358,13 +2363,13 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
     "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"VALID"</span></span>,
     "<span class="hljs-attribute">tag</span>": <span class="hljs-value"><span class="hljs-string">"#ASS4J22"</span>
   </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https:<span class="hljs-comment">//app.workadu.com/api/invoices/1234 \ </span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https://app.workadu.com/api/invoices/<span class="hljs-number">1234</span> \ 
 -H <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
 -u wk_abcd123123abcd1234: \
--d customer_id = <span class="hljs-number">1234</span> \
--d series_id = <span class="hljs-number">2100</span> \
--d issue_date_from = <span class="hljs-number">2019</span>-<span class="hljs-number">01</span>-<span class="hljs-number">01</span> \
--d issue_date_to = <span class="hljs-number">2019</span>-<span class="hljs-number">03</span>-<span class="hljs-number">01</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
+<span class="hljs-operator">-d</span> customer_id = <span class="hljs-number">1234</span> \
+<span class="hljs-operator">-d</span> series_id = <span class="hljs-number">2100</span> \
+<span class="hljs-operator">-d</span> issue_date_from = <span class="hljs-number">2019</span>-<span class="hljs-number">01</span>-<span class="hljs-number">01</span> \
+<span class="hljs-operator">-d</span> issue_date_to = <span class="hljs-number">2019</span>-<span class="hljs-number">03</span>-<span class="hljs-number">01</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">123212</span></span>,
     "<span class="hljs-attribute">invoice_number</span>": <span class="hljs-value"><span class="hljs-string">"A-1233"</span></span>,
@@ -2410,12 +2415,12 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
 </dd><dt>issue_date_from</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>2018-01-13</span></span><p>The issue date you want to get invoice from.</p>
 </dd><dt>issue_date_to</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>2018-01-22</span></span><p>The issue date you want to get invoice to.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
---></div></div><hr class="split"><div class="middle"><div id="invoices-create-a-new-invoice" class="resource"><h3 class="resource-heading">Create a new Invoice <a href="#invoices-create-a-new-invoice" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/invoices/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">curl</span><span class="tab-button">curl + optional</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https:<span class="hljs-comment">//app.workadu.com/api/services \ </span>
+--></div></div><hr class="split"><div class="middle"><div id="invoices-create-a-new-invoice" class="resource"><h3 class="resource-heading">Create a new Invoice <a href="#invoices-create-a-new-invoice" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/invoices/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">curl</span><span class="tab-button">curl + optional</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https://app.workadu.com/api/services \ 
 -u wk_abcd123123abcd1234: \
--d customer_id = <span class="hljs-number">1234</span> \
--d series_id = <span class="hljs-number">2100</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
+<span class="hljs-operator">-d</span> customer_id = <span class="hljs-number">1234</span> \
+<span class="hljs-operator">-d</span> series_id = <span class="hljs-number">2100</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">123212</span></span>,
     "<span class="hljs-attribute">invoice_number</span>": <span class="hljs-value"><span class="hljs-string">"A-1233"</span></span>,
@@ -2455,14 +2460,14 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
     "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"VALID"</span></span>,
     "<span class="hljs-attribute">tag</span>": <span class="hljs-value"><span class="hljs-string">"#ASS4J22"</span>
   </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https:<span class="hljs-comment">//app.workadu.com/api/services \ </span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https://app.workadu.com/api/services \ 
 -u wk_abcd123123abcd1234: \
--d customer_id = <span class="hljs-number">1234</span> \
--d series_id = <span class="hljs-number">2100</span> \
--d discount_percent = <span class="hljs-number">10</span> \ 
--d vat_percent = <span class="hljs-number">19</span> \
--d currency = <span class="hljs-string">"EUR"</span> \
--d tag = <span class="hljs-string">"#2AMSJ72"</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
+<span class="hljs-operator">-d</span> customer_id = <span class="hljs-number">1234</span> \
+<span class="hljs-operator">-d</span> series_id = <span class="hljs-number">2100</span> \
+<span class="hljs-operator">-d</span> discount_percent = <span class="hljs-number">10</span> \ 
+<span class="hljs-operator">-d</span> vat_percent = <span class="hljs-number">19</span> \
+<span class="hljs-operator">-d</span> currency = <span class="hljs-string">"EUR"</span> \
+<span class="hljs-operator">-d</span> tag = <span class="hljs-string">"#2AMSJ72"</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">123212</span></span>,
     "<span class="hljs-attribute">invoice_number</span>": <span class="hljs-value"><span class="hljs-string">"A-1233"</span></span>,
@@ -2526,7 +2531,7 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
 </dd><dt>vat_percent</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>19</span></span><p>A vat percent of this specific invoice. In case of not set company vat percent will be used.</p>
 </dd><dt>currency</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>EUR</span></span><p>The currency of this specific invoice. In case of not set company currency will be used.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="invoices-create-a-new-invoice-line" class="resource"><h3 class="resource-heading">Create a new Invoice line <a href="#invoices-create-a-new-invoice-line" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/invoiceline/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">Required</span><span class="tab-button">Required + optional</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">invoice_id</span>": <span class="hljs-value"><span class="hljs-number">1231</span></span>,
@@ -2642,7 +2647,7 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
 </tbody>
 </table>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="invoices-publish-and-sent-a-draft-invoice-line" class="resource"><h3 class="resource-heading">Publish and sent a draft Invoice line <a href="#invoices-publish-and-sent-a-draft-invoice-line" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/invoices/publish</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">Required</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">invoice_id</span>": <span class="hljs-value"><span class="hljs-number">1231</span></span>,
@@ -2711,7 +2716,7 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
 </tbody>
 </table>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="invoices-list-company-series" class="resource"><h3 class="resource-heading">List company Series <a href="#invoices-list-company-series" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/series/series_id</span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
@@ -2722,7 +2727,7 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="invoices-list-company-series-get" class="action get"><h4 class="action-heading"><div class="name">List company Series</div><a href="#invoices-list-company-series-get" class="method get">GET</a><code class="uri">/api/series/series_id</code></h4><p>Seies are the documents type. For example series can be Invoice, Expense, Quote or payment types like cash, credit card, deposit</p>
 <!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="invoices-publish-a-draft-invoice" class="resource"><h3 class="resource-heading">Publish a draft Invoice <a href="#invoices-publish-a-draft-invoice" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/publish/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">curl</span><span class="tab-button">curl + optional</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https:<span class="hljs-comment">//app.workadu.com/api/services \ </span>
 -u wk_abcd123123abcd1234: \
@@ -2766,10 +2771,10 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
     "<span class="hljs-attribute">status</span>": <span class="hljs-value"><span class="hljs-string">"VALID"</span></span>,
     "<span class="hljs-attribute">tag</span>": <span class="hljs-value"><span class="hljs-string">"#ASS4J22"</span>
   </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https:<span class="hljs-comment">//app.workadu.com/api/services \ </span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https://app.workadu.com/api/services \ 
 -u wk_abcd123123abcd1234: \
--d invoice_id = <span class="hljs-number">1234</span> \
--d send = <span class="hljs-literal">true</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
+<span class="hljs-operator">-d</span> invoice_id = <span class="hljs-number">1234</span> \
+<span class="hljs-operator">-d</span> send = <span class="hljs-literal">true</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">123212</span></span>,
     "<span class="hljs-attribute">invoice_number</span>": <span class="hljs-value"><span class="hljs-string">"A-1233"</span></span>,
@@ -2830,7 +2835,7 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>invoice_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1231</span></span><p>The invoice id of the specific resource.</p>
 </dd><dt>send</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>true</span></span><p>If this is set to true then the invoice will be published and send to customer. If not the end point will only publish the invoice.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><section id="payments" class="resource-group"><h2 class="group-heading">Payments <a href="#payments" class="permalink">&para;</a></h2><p>The payments has only one POST endpoint. You can always add new payments. If you like to discard a payment you have to add a new one with minus amount.
 You cannot delete or modify or get details for a payment. as <a href="#header-sorting">show here</a>.</p>
@@ -2878,13 +2883,13 @@ You cannot delete or modify or get details for a payment. as <a href="#header-so
     "<span class="hljs-attribute">comments</span>": <span class="hljs-value"><span class="hljs-string">"Payment for the Order #1015"</span></span>,
     "<span class="hljs-attribute">order_id</span>": <span class="hljs-value"><span class="hljs-number">1015</span>
   </span>}
-</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https:<span class="hljs-comment">//app.workadu.com/api/payments/1234 \ </span>
+</span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https://app.workadu.com/api/payments/<span class="hljs-number">1234</span> \ 
 -H <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
 -u wk_abcd123123abcd1234: \
--d customer_id = <span class="hljs-number">1234</span> \
--d series_id = <span class="hljs-number">2100</span> \
--d issue_date_from = <span class="hljs-number">2019</span>-<span class="hljs-number">01</span>-<span class="hljs-number">01</span> \
--d issue_date_to = <span class="hljs-number">2019</span>-<span class="hljs-number">03</span>-<span class="hljs-number">01</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
+<span class="hljs-operator">-d</span> customer_id = <span class="hljs-number">1234</span> \
+<span class="hljs-operator">-d</span> series_id = <span class="hljs-number">2100</span> \
+<span class="hljs-operator">-d</span> issue_date_from = <span class="hljs-number">2019</span>-<span class="hljs-number">01</span>-<span class="hljs-number">01</span> \
+<span class="hljs-operator">-d</span> issue_date_to = <span class="hljs-number">2019</span>-<span class="hljs-number">03</span>-<span class="hljs-number">01</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">issue_date</span>": <span class="hljs-value"><span class="hljs-string">"2016-09-14"</span></span>,
     "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value"><span class="hljs-number">359</span></span>,
@@ -2902,12 +2907,12 @@ You cannot delete or modify or get details for a payment. as <a href="#header-so
 </dd><dt>issue_date_from</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>2018-01-13</span></span><p>The issue date you want to get invoice from.</p>
 </dd><dt>issue_date_to</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>2018-01-22</span></span><p>The issue date you want to get invoice to.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
---></div></div><hr class="split"><div class="middle"><div id="payments-add-a-new-payment-for-invoices" class="resource"><h3 class="resource-heading">Add a new Payment for Invoices <a href="#payments-add-a-new-payment-for-invoices" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/payments/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">curl with Invoices</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https:<span class="hljs-comment">//app.workadu.com/api/services \ </span>
+--></div></div><hr class="split"><div class="middle"><div id="payments-add-a-new-payment-for-invoices" class="resource"><h3 class="resource-heading">Add a new Payment for Invoices <a href="#payments-add-a-new-payment-for-invoices" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/payments/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">curl with Invoices</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https://app.workadu.com/api/services \ 
 -u wk_abcd123123abcd1234: \
--d invoice_ids = <span class="hljs-number">1234</span>, <span class="hljs-number">1234</span> \
--d deposit = <span class="hljs-number">100</span>%</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
+<span class="hljs-operator">-d</span> invoice_ids = <span class="hljs-number">1234</span>, <span class="hljs-number">1234</span> \
+<span class="hljs-operator">-d</span> deposit = <span class="hljs-number">100</span>%</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">issue_date</span>": <span class="hljs-value"><span class="hljs-string">"2016-09-14"</span></span>,
     "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value"><span class="hljs-number">359</span></span>,
@@ -2946,12 +2951,12 @@ You cannot delete or modify or get details for a payment. as <a href="#header-so
 </dd><dt>series</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>122</span></span><p>The series of payment (e.g cash or credit card) for this payment. If none it will take the first payment type, usually CASH.</p>
 </dd><dt>comment</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>Payment for anything</span></span><p>The comment that we want to add at the payment.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
---></div></div><hr class="split"><div class="middle"><div id="payments-add-a-new-payment-for-an-order-or-booking" class="resource"><h3 class="resource-heading">Add a new Payment for an Order or Booking <a href="#payments-add-a-new-payment-for-an-order-or-booking" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/payments/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">curl with Order or Booking</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https:<span class="hljs-comment">//app.workadu.com/api/services \ </span>
+--></div></div><hr class="split"><div class="middle"><div id="payments-add-a-new-payment-for-an-order-or-booking" class="resource"><h3 class="resource-heading">Add a new Payment for an Order or Booking <a href="#payments-add-a-new-payment-for-an-order-or-booking" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/payments/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">curl with Order or Booking</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https://app.workadu.com/api/services \ 
 -u wk_abcd123123abcd1234: \
--d order_id = <span class="hljs-number">1234</span> \
--d deposit = <span class="hljs-number">30</span>%</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
+<span class="hljs-operator">-d</span> order_id = <span class="hljs-number">1234</span> \
+<span class="hljs-operator">-d</span> deposit = <span class="hljs-number">30</span>%</code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">issue_date</span>": <span class="hljs-value"><span class="hljs-string">"2016-09-14"</span></span>,
     "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value"><span class="hljs-number">359</span></span>,
@@ -2990,14 +2995,14 @@ You cannot delete or modify or get details for a payment. as <a href="#header-so
 </dd><dt>series</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>122</span></span><p>The series of payment (e.g cash or credit card) for this payment. If none it will take the first payment type, usually CASH.</p>
 </dd><dt>comment</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>Payment for anything</span></span><p>The comment that we want to add at the payment.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
---></div></div><hr class="split"><div class="middle"><div id="payments-add-a-general-payment-for-a-customer" class="resource"><h3 class="resource-heading">Add a general Payment for a Customer <a href="#payments-add-a-general-payment-for-a-customer" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/payments/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">curl with Customer</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https:<span class="hljs-comment">//app.workadu.com/api/services \ </span>
+--></div></div><hr class="split"><div class="middle"><div id="payments-add-a-general-payment-for-a-customer" class="resource"><h3 class="resource-heading">Add a general Payment for a Customer <a href="#payments-add-a-general-payment-for-a-customer" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/payments/</span></div><div class="tabs"><div class="example-names"><span>Requests</span><span class="tab-button">curl with Customer</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>curl https://app.workadu.com/api/services \ 
 -u wk_abcd123123abcd1234: \
--d customer_id = <span class="hljs-number">1234</span> \
--d deposit = <span class="hljs-number">100</span>
--d comment = hello
--d series = <span class="hljs-number">122</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
+<span class="hljs-operator">-d</span> customer_id = <span class="hljs-number">1234</span> \
+<span class="hljs-operator">-d</span> deposit = <span class="hljs-number">100</span>
+<span class="hljs-operator">-d</span> comment = hello
+<span class="hljs-operator">-d</span> series = <span class="hljs-number">122</span></code></pre><div style="height: 1px;"></div></div></div><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
     "<span class="hljs-attribute">issue_date</span>": <span class="hljs-value"><span class="hljs-string">"2016-09-14"</span></span>,
     "<span class="hljs-attribute">customer_id</span>": <span class="hljs-value"><span class="hljs-number">359</span></span>,
@@ -3036,7 +3041,7 @@ You cannot delete or modify or get details for a payment. as <a href="#header-so
 </dd><dt>series</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>122</span></span><p>The series of payment (e.g cash or credit card) for this payment. If none it will take the first payment type, usually CASH.</p>
 </dd><dt>comment</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>Payment for anything</span></span><p>The comment that we want to add at the payment.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><section id="companies" class="resource-group"><h2 class="group-heading">Companies <a href="#companies" class="permalink">&para;</a></h2><p>The Companies endpoints returns information about the workadu Companies that have been assigned with the authenticated user. The response includes the display name and other details and groups of info about each company, and lists the companies in the proper
 display order as they are stored initial at the database. You can re-sort the results by add sorting filter at your request as <a href="#header-sorting">show here</a>.</p>
@@ -3117,7 +3122,7 @@ display order as they are stored initial at the database. You can re-sort the re
 </dd><dt>filter[email]</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>info@bizz.com</span></span><p>Filter companies by the email of a specific company.</p>
 </dd><dt>filter[alias]</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>bizz</span></span><p>Filter companies by the alias of a specific company.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="companies-get-specific-company" class="resource"><h3 class="resource-heading">Get specific Company <a href="#companies-get-specific-company" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/companies/<span class="hljs-attribute" title="company_id">14</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
@@ -3188,7 +3193,7 @@ display order as they are stored initial at the database. You can re-sort the re
 </table>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>company_id</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>14</span></span><p>The id for the specific company.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><section id="attributes" class="resource-group"><h2 class="group-heading">Attributes <a href="#attributes" class="permalink">&para;</a></h2><p>The attributes endpoints returns information about the workadu attributes that have been assigned with the authenticated user services. The response includes the display
 name and other details and groups of info about each attribute, and lists the attributes in the proper display order as they are stored initial at the database.
@@ -3223,7 +3228,7 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
   </span>}
 </span>}</code></pre><div style="height: 1px;"></div></div></div></div></div></div></div><div class="middle"><div id="attributes-list-all-attributes-get" class="action get"><h4 class="action-heading"><div class="name">List all Attributes</div><a href="#attributes-list-all-attributes-get" class="method get">GET</a><code class="uri">/api/attributes/</code></h4><div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>filter[name]</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>Passengers</span></span><p>Filter brands by the name of a specific recourse.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div></div><hr class="split"><div class="middle"><div id="attributes-get-a-specific-attribute" class="resource"><h3 class="resource-heading">Get a specific Attribute <a href="#attributes-get-a-specific-attribute" class="permalink">&para;</a></h3></div></div><div class="right"><div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span class="hostname">https://app.workadu.com</span>/api/attributes/<span class="hljs-attribute" title="attribute_id">32161</span></span></div><div class="tabs"><div class="tabs"><div class="example-names"><span>Responses</span><span class="tab-button">200</span></div><div class="tab"><div><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
@@ -3251,9 +3256,9 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
 </table>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>attribute_id</dt><dd><code>integer</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>32161</span></span><p>The id for the specific attribute.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
-  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml'])
+  //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
---></div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 30 May 2019</p></div></div></div></div><script>/* eslint-env browser */
+--></div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 19 May 2020</p></div></div></div></div><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 

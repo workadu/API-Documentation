@@ -1373,9 +1373,10 @@ The attributes endpoints returns information about the workadu attributes that h
 + `vat_number`: `112233` (string,nullable) - The VAT registration number for the specific customer.
 + birthdate: `1985-02-11` (string,nullable) - The birthdate of the customer. The date uses the form Y-m-d.
 + gender: `M` (string,nullable) - The gender of the specific customer. Response values are: ‘m’, ‘M’, ‘f’, ‘F’.
-+ title: `Mr` (string,nullable) - The title of the specific customer. Accepted values are: ‘Miss’, ‘Ms’, ‘Mr’, ‘Sir’, ‘Mrs’, ‘Dr’.
 + social:`social=[{“social”:”facebook.com”, “alias”:”johndoe”}]` (string,nullable) - The social media aliases of the specific customer. Social media should be placed in JSON format.
-+ comments: `some comments` (string,nullable) - Some comments of the specific customer.
++ title: `Example company name` (string,nullable) - The distinctive title of customer or company name.
++ tax_office: `ATHENS TAX OFFICE` (string,nullable) - The Tax office to which the customer belongs.
++ business_type : `Lawyer` (string,nullable) - The customer's proffesion.
 + companyid: `475` (number,nullable) - The company id that this specific customer is being assignet to.
 
 
@@ -1390,9 +1391,10 @@ The attributes endpoints returns information about the workadu attributes that h
 + `vat_number`: `112233` (string,nullable) - The VAT registration number for the specific customer.
 + birthdate: `1985-02-11` (string,nullable) - The birthdate of the customer. The date uses the form Y-m-d.
 + gender: `M` (string,nullable) - The gender of the specific customer. Response values are: ‘m’, ‘M’, ‘f’, ‘F’.
-+ title: `Mr` (string,nullable) - The title of the specific customer. Accepted values are: ‘Miss’, ‘Ms’, ‘Mr’, ‘Sir’, ‘Mrs’, ‘Dr’.
 + social:`social=[{“social”:”facebook.com”, “alias”:”johndoe”}]` (string,nullable) - The social media aliases of the specific customer. Social media should be placed in JSON format.
-+ comments: `some comments` (string,nullable) - Some comments of the specific customer.
++ title: `Example company name` (string,nullable) - The distinctive title of customer or company name.
++ tax_office: `ATHENS TAX OFFICE` (string,nullable) - The Tax office to which the customer belongs.
++ business_type : `Lawyer` (string,nullable) - The customer's proffesion.
 + companyid: `475` (number,nullable) - The company id that this specific customer is being assignet to.
 
 
@@ -1409,9 +1411,10 @@ The attributes endpoints returns information about the workadu attributes that h
 + `vat_number`: `112233` (string,nullable) - The VAT registration number for the specific customer.
 + birthdate: `1985-02-11` (string,nullable) - The birthdate of the customer. The date uses the form Y-m-d.
 + gender: `M` (string,nullable) - The gender of the specific customer. Response values are: ‘m’, ‘M’, ‘f’, ‘F’.
-+ title: `Mr` (string,nullable) - The title of the specific customer. Accepted values are: ‘Miss’, ‘Ms’, ‘Mr’, ‘Sir’, ‘Mrs’, ‘Dr’.
 + social (array[Social],nullable) - The social media alias of the specific customer. Social media should be place in Json format.
-+ comments: `some comments` (string,nullable) - Some comments of the specific customer.
++ title: `Example company name` (string,nullable) - The distinctive title of customer or company name.
++ tax_office: `ATHENS TAX OFFICE` (string,nullable) - The Tax office to which the customer belongs.
++ business_type : `Lawyer` (string,nullable) - The customer's proffesion.
 + companyid: `475` (number,required) - The company id that this specific customer is being assignet to.
 + media: `http://stage.reservationengine.net/assets/images/aueb-475/1531817042-pic2.png` (array,nullable)
 
@@ -1446,7 +1449,7 @@ The attributes endpoints returns information about the workadu attributes that h
 + `conditions`: `140==145;141==146` (string,optional) - List of conditions and their values
 + `price_lists_ids`: `All or 33221,2223,33433` (string,optional) - List of price_list ids that this policy will be applied
 + `valid_from`: `2018-01-01` (string,required) - Indicates the from date that this policy is valid. The valid_from date will be compared with the search date. 
-+ `valid_to`: `2040-01-01` (string,required) -  Indicates the ot date that this policy is valid. The valid_to date will be compared with the search date. 
++ `valid_to`: `2040-01-01` (string,required) -  Indicates the ot date that this policy is valid. The valid_to date will be compared with the search date.
 
 ## Sales (object)
 + id: `1831` (number,required) - The id of the specific resource
