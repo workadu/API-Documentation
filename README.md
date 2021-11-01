@@ -1,18 +1,29 @@
-# Install npm dependencies
+![alt text](https://workadu.com/assets/images/web/1578728897-workadu.png)
+
+## Workadu | Your Business Playground
+
+Workadu.com is the leading online management software that helps you set up your business on the cloud. Build a professional website with our easy website builder, promote your services, and offer online bookings with our booking engine. 
+
+
+## Install npm dependencies
 ```cmd
 npm install
 ```
 
-# Build documentation html
+## Build documentation html
 ```cmd
 npm run dev
 ```
 
-# Builder documentation and watch for changes
+## Builder documentation and watch for changes
 ```cmd
 npm run watch
 ```
 
-# Επειδή αυτόματα κάνει cache js/css, δεν ξαναφορτώνονται οι αλλαγές σε καινουριο compile
-# Για να μην κανει cache θελει environment variable NOCACHE=1
-# https://github.com/danielgtaylor/aglio/issues/148
+
+The aglio library caches js and css files automatically, so changes to them may not be visible in the final html.
+To disable caching you can set the following env variable
+```cmd
+NOCACHE=1
+```
+For more info check this issue: https://github.com/danielgtaylor/aglio/issues/148
