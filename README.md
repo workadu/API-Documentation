@@ -1,6 +1,6 @@
-# install aglio https://github.com/danielgtaylor/aglio
+# Install npm dependencies
 
-npm install -g aglio
+npm install
 
 # Εντολή για compile του .apib 
 

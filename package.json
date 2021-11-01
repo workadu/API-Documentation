@@ -1,0 +1,14 @@
+{
+  "name": "workadu-api-documentation",
+  "version": "1.0.0",
+  "description": "Workadu api documentation",
+  "main": "index.html",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "aglio": "^2.3.0"
+  }
+}
