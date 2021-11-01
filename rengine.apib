@@ -37,7 +37,7 @@ Authorization uses the -u flag to pass basic auth credentials. Adding a colon af
 
 
 ### Authentication with username & password (Deprecated)
-Altenatice you can use Basic Authorization with user name and password. 
+Alternatively you can use Basic Authorization with user name and password.
 
 ```
 curl https://app.workadu.com/api/services -u $USERNAME:$PASSWORD
@@ -117,7 +117,7 @@ All GET Request endpoints can be filtered by multiple keys as query parameters a
 ```
 
 Multiple filters are implemented using “&”. In many cases instead of ‘=’ you can replace it with specific operators that will be inticated a each end point.
- A sapmle call will look like so.
+ A sample call will look like so.
  
  ```
 /api/services/?filter[$RESPONSE_KEY][$OPERATOR]$VALUE
@@ -209,7 +209,7 @@ BETA - Update service object information.
 
 
 # Delete a Service [DELETE /api/services/]
-BETA - Delete service object information and its relevates price catalogs and price schemes. 
+BETA - Delete service object information and its related price catalogs and price schemes.
 
 **Error codes**
 
@@ -363,7 +363,7 @@ The Sales policies resource are here to help you build dynamic pricing and offer
 
 
 
-**Action field short codes apendix**
+**Action field short codes appendix**
 | Field   | CODE                                       | Description                                                                                                                    |
 |---------|--------------------------------------------| -------------------------------------------------------------------------------------------------------------------------------|
 |  action | 120                                        | Set price to a fixed amount per spot                                                                                           |
@@ -424,7 +424,18 @@ The Sales policies resource are here to help you build dynamic pricing and offer
 ## Create new Sales Policy [POST /api/sales]
 [BETA] When you create a sales policy you must specify at least one service (or price list) as scope to be applied. 
 
-<aside class="note">A sales policy need all of the 4 elementes to fullfiled in order to trigger. <strong>1. The action</strong> -> <strong>2. The rules/conditions </strong> -> <strong>3. The scope (services to be applied) </strong> -> <strong>4. The validity period </strong></aside>
+<aside class="note">A sales policy needs all of the 4 elements to be fulfilled in order to trigger.
+<strong>
+<ol>
+    <li>The action</li>
+    <li>The rules/conditions</li>
+    <li>The scope (services to be applied)</li>
+    <li>The validity period</li>
+</ol>
+</strong>
+</aside>
+
+
 
 **Error codes**
 
@@ -798,7 +809,7 @@ This endpoint Publish a draft invoice and give the next available invoice number
 
 
 ## List company Series [GET /api/series/series_id]
-Seies are the documents type. For example series can be Invoice, Expense, Quote or payment types like cash, credit card, deposit 
+Seies are the documents type. For example series can be Invoice, Expense, Quote or payment types like cash, credit card, deposit
 
 + Response 200
     + Attributes

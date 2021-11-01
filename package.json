@@ -3,12 +3,19 @@
   "version": "1.0.0",
   "description": "Workadu api documentation",
   "main": "index.html",
+  "watch": {
+    "dev": "rengine.apib"
+  },
   "scripts": {
+    "watch": "npm-watch",
+    "dev": "cross-env NOCACHE=1 aglio --theme-template templates/triple.jade -i rengine.apib -o index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "aglio": "^2.3.0"
+    "aglio": "^2.3.0",
+    "cross-env": "^7.0.3",
+    "npm-watch": "^0.11.0"
   }
 }
