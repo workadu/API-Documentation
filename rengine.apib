@@ -733,9 +733,10 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
 + Parameters 
     + `customer_id` :`1231` (number,required) - The customer id of the specific payment. if not status parameter is set the invoice will be set up as a draft invoice.
     + `series_id` :`1231` (number,required) - The series id of the document.
-    + `discount_percent`  : 10 (number, optinal) - A discount percent for the all invoice lines
-    + `vat_percent`  : 19 (number, optinal) - A vat percent of this specific invoice. In case of not set company vat percent will be used.
-    + `currency`  :  `EUR` (string, optinal) - The currency of this specific invoice. In case of not set company currency will be used.
+    + `discount_percent`  : 10 (number, optional) - A discount percent for the all invoice lines
+    + `vat_percent`  : 19 (number, optional) - A vat percent of this specific invoice. In case of not set company vat percent will be used.
+    + `currency`  :  `EUR` (string, optional) - The currency of this specific invoice. In case of not set company currency will be used.
+    + `payment_type`  :  1222 (number, optional) - The series of the payment type of the invoice. This is required when the invoice is for digital tax.
 
 
 + Request curl 
@@ -752,6 +753,7 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
     -d discount_percent = 10 \ 
     -d vat_percent = 19 \
     -d currency = "EUR" \
+    -d payment_type = 1222 \
     -d tag = "#2AMSJ72"
 
 
@@ -900,7 +902,7 @@ Pay an invoice or invoices should concern the same customer. This payment end po
 
 
 + Parameters 
-    + `invoice_ids` :`1231, 1334, 14455` (string,required) - The invoice_ids this payment will be related with. It works optinaly with deposit parameter & series parameter is optional. 
+    + `invoice_ids` :`1231, 1334, 14455` (string,required) - The invoice_ids this payment will be related with. It works optionaly with deposit parameter & series parameter is optional. 
     + `deposit`  :  `157.22 or 30%` (string, optional) - If this is set to % (works in order_id, booking_id, invoice_ids) then it calulates at deposit amount the % of the total order or booking or invoices amount. If it set to amount mode then this specific amount will be added as payment 
     + `series`  :  `122` (number, optional) - The series of payment (e.g cash or credit card) for this payment. If none it will take the first payment type, usually CASH.
     + `comment`  :  `Payment for anything` (string, optional) - The comment that we want to add at the payment.
