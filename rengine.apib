@@ -806,7 +806,7 @@ This endpoint Publish a draft invoice and give the next available invoice number
     + Attributes
         + `invoice_id` :`1231` (number,required) - The customer id of the specific payment. if not status parameter is set the invoice will be set up as a draft invoice.
         + `send` :`true` (boolean,required) - True if you want to send the invoice to user
-
+        + `invoice_num` : `1` (number,optional) - Set invoice number. Must be unique for the invoice's series. Available only when the document type is set to manual
 + Response 200
     + Attributes
         + `data` (Invoice)
