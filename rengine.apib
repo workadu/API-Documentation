@@ -685,7 +685,6 @@ The Invoices/documents resource return information about workadu invoices or any
 |  GET    | /api/invoices/{invoice_id}{invoice_id},...      | Get invoices       |
 |  POST   | /api/invoices/                                  | Add a new Invoice |
 |  POST   | /api/invoiceline/                               | Add a new invoice line  |
-|  POST   | /api/invoices/publish                           | Publish and send a draft invoice  |
 |  GET    | /api/series/{series_id}{series_id},...          | Get company series  |
 |  POST   | /api/invoices/publish                           | Publish a Draft invoice and optionaly send it to email| 
 
@@ -733,6 +732,7 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
 + Parameters 
     + `customer_id` :`1231` (number,required) - The customer id of the specific payment. if not status parameter is set the invoice will be set up as a draft invoice.
     + `series_id` :`1231` (number,required) - The series id of the document.
+    + `invoice_num` : `1` (number,optional) - Invoice number
     + `discount_percent`  : 10 (number, optional) - A discount percent for the all invoice lines
     + `vat_percent`  : 19 (number, optional) - A vat percent of this specific invoice. In case of not set company vat percent will be used.
     + `currency`  :  `EUR` (string, optional) - The currency of this specific invoice. In case of not set company currency will be used.
@@ -757,8 +757,6 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
     -d currency = "EUR" \
     -d payment_type = 1222 \
     -d tag = "#2AMSJ72"
-
-
 
 + Response 200
     + Attributes
@@ -792,26 +790,6 @@ This endpoint create an invoice item line to be added to a draft invoice.
     + Attributes
         + `data` (Invoice)
 
-## Publish and sent a draft Invoice line [POST /api/invoices/publish]
-This endpoint Publish a draft invoice and give the next available invoice number based on its series. If send is true invoice will be send to customer as email attachment.
-
-**Error codes**
-
-| HTTP status      | Code                                                                                 | Description                                                                                                                                         |
-|------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `400`            | `The invoice is not in Draft mode`                                           | Please check the invoice status then |
-| `400`            | `The invoice is not valid or exist`                                           | The invoice_id does not exist |
-
-+ Request Required
-    + Attributes
-        + `invoice_id` :`1231` (number,required) - The customer id of the specific payment. if not status parameter is set the invoice will be set up as a draft invoice.
-        + `send` :`true` (boolean,required) - True if you want to send the invoice to user
-        + `invoice_num` : `1` (number,optional) - Set invoice number. Must be unique for the invoice's series. Available only when the document type is set to manual
-+ Response 200
-    + Attributes
-        + `data` (Invoice)
-
-
 ## List company Series [GET /api/series/series_id]
 Seies are the documents type. For example series can be Invoice, Expense, Quote or payment types like cash, credit card, deposit
 
@@ -820,19 +798,24 @@ Seies are the documents type. For example series can be Invoice, Expense, Quote 
         + `data`(Series)
 
 ## Publish a draft Invoice [POST /api/invoices/publish/]
-This endpoint publish an allready created invoice, and optionaly send it to customer as PDF through email using the relative email template.
+This endpoint publish an already created invoice, and optionally send it to customer as PDF through email using the relative email template.
 
 **Error codes**
 
 | HTTP status      | Code                                                                                 | Description                                                                                                                                         |
 |------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `400`            | `You didn’t specify a correct invoice ID.`                                           | Please provide a valid invoice_id as a POST parameter |
-
+| `400`            | `You didn't specify a correct invoice ID.`                                           | Please provide a valid invoice_id as a POST parameter |
+| `400`            | `The invoice is already published with the same number!`                             | Please provide a unique invoice number                |
 
 + Parameters 
     + `invoice_id` :`1231` (number,required) - The invoice id of the specific resource.
     + `send`  :  `true` (boolean, optional) - If this is set to true then the invoice will be published and send to customer. If not the end point will only publish the invoice.
 
+
++ Request Required
+    + Attributes
+        + `invoice_id` :`1231` (number,required) - The customer id of the specific payment. if not status parameter is set the invoice will be set up as a draft invoice.
+        + `send` :`true` (boolean,required) - True if you want to send the invoice to user
 
 + Request curl 
     curl https://app.workadu.com/api/services \ 
