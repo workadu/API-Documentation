@@ -832,7 +832,155 @@ This endpoint publish an already created invoice, and optionally send it to cust
 + Response 200
     + Attributes
         + `data` (Invoice)
+## List an invoices withholdings [GET /api/invoices/{invoiceId}/withholdings]
+This endpoint lists all withholdings for the given invoice
 
++ Parameters
+    + invoiceId (integer,required) - Invoice's id
+
+
++ Response 200
+    + Attributes
+      + `data`: (array[Withholding])
+
++ Response 404
+    + body
+    {
+        "message": "No query results for model [Invoice] 1",
+        "status_code": 404
+    }
+
+## Get a specific withholding [GET /api/invoices/{invoiceId}/withholdings/{withholdingId}]
+This endpoint lists all withholdings for the given invoice
+
++ Parameters
+    + invoiceId (integer,required) - Invoice's id
+    + withholdingId (integer,required) - Withholdings's id
+
++ Response 200
+    + Attributes
+      + `data`: (Withholding)
+
++ Response 404
+    + body
+    {
+        "message": "No query results for model [Invoice] 1",
+        "status_code": 404
+    }
+
++ Response 404
+    + body
+    {
+        "message": "No query results for model [Withholding] 1",
+        "status_code": 404
+    }
+
+
+## Create an invoice withholding [POST /api/invoices/{invoiceId}/withholdings]
+This creates an invoice withholding
+
++ Parameters
+    + invoiceId (string,required) - Invoice to add the withholding to
+    + `label` :`Example withholding` (string,required) - Short description for the withholding.
+    + `type` : `percent|flat` (string,required) - Withholding type. Accepts percent (1 to 100) or flat
+    + `percentage_value` : `30` (numeric,optional) - Percentage value of the withholding, required when type is set to "percent"
+    + `flat_value` : `10` (numeric,optional) - Flat value of the withholding, required when type is set to "flat"
+    + `underlying_value` : `100` (numeric,required) - Underlying value of the withholding
+    + `aade_tax_type_id` : `5` (integer,required) - Aade tax type
+    + `aade_tax_category_id` : '1' (integer,required) - Aade tax category id, required when aade_tax_type_id is different than 5
+  
++ Request
+    + Attributes
+        + `label` :`Example withholding`
+        + `type` : `percent`
+        + `percentage_value` : `30`
+        + `flat_value` : `45`
+        + `underlying_value` : `150`
+        + `aade_tax_type_id` : `5`
+        + `aade_tax_category_id` : `1`
+
++ Response 200
+    + Attributes
+        + `data` (Withholding)
+
+
+
++ Response 404
+    + body
+    {
+        "message": "No query results for model [Invoice] 1",
+        "status_code": 404
+    }
+
++ Response 422
+    + body
+        {
+            "message": "The given data was invalid.",
+            "errors": {
+                "label": [
+                    "The label field is required."
+                ],
+                "type": [
+                    "The type field is required."
+                ],
+                "underlying_value": [
+                    "The underlying value field is required."
+                ],
+                "aade_tax_type_id": [
+                    "The aade tax type id field is required."
+                ]
+            },
+            "status_code": 422
+        }
+
+## Update a withholding [PUT /api/invoices/{invoiceId}/withholdings/{withholdingId}]
+This endpoint is used to update a withholding for the given invoice
+You need to send only the parameters that need to be updated
+
++ Parameters
+    + invoiceId (string,required) - Invoice to add the withholding to
+    + withholdingId (integer,required) - Withholdings's id
+    + `label` :`Example withholding` (string,optional) - Short description for the withholding.
+    + `type` : `percent|flat` (string,optional) - Withholding type. Accepts percent (1 to 100) or flat
+    + `percentage_value` : `30` (numeric,optional) - Percentage value of the withholding, required when type is set to "percent"
+    + `flat_value` : `10` (numeric,optional) - Flat value of the withholding, required when type is set to "flat"
+    + `underlying_value` : `100` (numeric,optional) - Underlying value of the withholding
+    + `aade_tax_type_id` : `5` (integer,optional) - Aade tax type
+    + `aade_tax_category_id` : '1' (integer,optional) - Aade tax category id, required when aade_tax_type_id is different than 5
+
++ Request
+    + Attributes
+        + `label` :`new label`
+
++ Response 200
+    + Attributes
+      + `data`: (Withholding_new)
+
+
+## Delete a withholding [DELETE /api/invoices/{invoiceId}/withholdings/{withholdingId}]
+This endpoint deletes a withholding for the given invoice
+
++ Parameters
+    + invoiceId (integer,required) - Invoice's id
+    + withholdingId (integer,required) - Withholdings's id
+
++ Response 200
+    + Attributes
+      + `data`: (Withholding)
+
++ Response 404
+    + body
+    {
+        "message": "No query results for model [Invoice] 1",
+        "status_code": 404
+    }
+
++ Response 404
+    + body
+    {
+        "message": "No query results for model [Withholding] 1",
+        "status_code": 404
+    }
 
 
 # Group Payments
@@ -852,7 +1000,7 @@ Get all company payments or filter them optionaly with parameters.
 + Parameters
     + `customer_id`: `12443` (number,optional) - The id of the customer. 
     + `series_id`: `1233` (number,optional) - The document series_id you want to get . 
-    + status: `valid` (string,optional) - The invoice status (valid, draft, cancelled). 
+    + `status` : `valid` (string,optional) - The invoice status (valid, draft, cancelled).
     + `issue_date_from`: `2018-01-13` (string,optional) - The issue date you want to get invoice from. 
     + `issue_date_to`: `2018-01-22` (string,optional) - The issue date you want to get invoice to. 
 
@@ -1334,6 +1482,31 @@ The attributes endpoints returns information about the workadu attributes that h
 + lines (array[`invoice_lines`],optional) -  The invoice lines array.
 + status: `VALID` (string, optional) - The status of the invoice (DRAFT, VALID, CANCELLED)
 + tag: `#ASS4J22` (string, optional) - A note for the specific invoice. May use booking reference number.
+
+## `Withholding` (object)
++ id: `1` (number)
++ invoice_id: `5` (number)
++ label: `Example withholding label`
++ type : `flat`
++ percentage_value : `30` (number)
++ flat_value : `45` (number)
++ underlying_value : `150` (number)
++ aade_tax_type_id : 5 (number)
++ created_at : `2022-01-25 21:21:53`
++ updated_at : `2022-01-25 21:21:53`
+
+## `Withholding_new` (object)
++ id: `1` (number)
++ invoice_id: `5` (number)
++ label: `new label`
++ type : `flat`
++ percentage_value : `30` (number)
++ flat_value : `45` (number)
++ underlying_value : `150` (number)
++ aade_tax_type_id : 5 (number)
++ created_at : `2022-01-25 21:21:53`
++ updated_at : `2022-01-25 21:21:53`
+
 
 ## Series (object)
 + id: `911` (number,required) - The serie id for this specific resource.
