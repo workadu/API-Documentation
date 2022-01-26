@@ -876,18 +876,18 @@ This endpoint lists all withholdings for the given invoice
     }
 
 
-## Create an invoice withholding [POST /api/invoices/{invoiceId}/withholdings]
-This creates an invoice withholding
+## Create a withholding [POST /api/invoices/{invoiceId}/withholdings]
+This creates a withholding for the given invoice
 
 + Parameters
     + invoiceId (string,required) - Invoice to add the withholding to
     + `label` :`Example withholding` (string,required) - Short description for the withholding.
-    + `type` : `percent|flat` (string,required) - Withholding type. Accepts percent (1 to 100) or flat
+    + `type` : `percent` (string,required) - Withholding type. Accepts percent (1 to 100) or flat
     + `percentage_value` : `30` (numeric,optional) - Percentage value of the withholding, required when type is set to "percent"
     + `flat_value` : `10` (numeric,optional) - Flat value of the withholding, required when type is set to "flat"
     + `underlying_value` : `100` (numeric,required) - Underlying value of the withholding
-    + `aade_tax_type_id` : `5` (integer,required) - Aade tax type
-    + `aade_tax_category_id` : '1' (integer,required) - Aade tax category id, required when aade_tax_type_id is different than 5
+    + `aade_tax_type_id` : `5` (integer,required) - Aade tax type. For the available tax types see [Get aade tax types endproint](#invoices-get-aade-tax-types)
+    + `aade_tax_category_id` : '1' (integer,required) - Aade tax category id, required when aade_tax_type_id is different than 5. For available aade tax categories see [Get aade tax categories endproint](#invoices-get-aade-tax-categories)
   
 + Request
     + Attributes
@@ -945,9 +945,9 @@ You need to send only the parameters that need to be updated
     + `percentage_value` : `30` (numeric,optional) - Percentage value of the withholding, required when type is set to "percent"
     + `flat_value` : `10` (numeric,optional) - Flat value of the withholding, required when type is set to "flat"
     + `underlying_value` : `100` (numeric,optional) - Underlying value of the withholding
-    + `aade_tax_type_id` : `5` (integer,optional) - Aade tax type
-    + `aade_tax_category_id` : '1' (integer,optional) - Aade tax category id, required when aade_tax_type_id is different than 5
-
+    + `aade_tax_type_id` : `5` (integer,required) - Aade tax type. For the available tax types see [Get aade tax types endproint](#invoices-get-aade-tax-types)
+    + `aade_tax_category_id` : '1' (integer,required) - Aade tax category id, required when aade_tax_type_id is different than 5. For available aade tax categories see [Get aade tax categories endproint](#invoices-get-aade-tax-categories)
+  
 + Request
     + Attributes
         + `label` :`new label`
@@ -983,9 +983,217 @@ This endpoint deletes a withholding for the given invoice
     }
 
 
+
+## Get aade tax types [GET /api/withholdings/aade-tax-types]
+List all aade withholding types
+
++ Response 200
+    + body
+{
+    "data": [
+        {
+            "id": "1",
+            "name": "Παρακρατούμενος Φόρος"
+        },
+        {
+            "id": "2",
+            "name": "Τέλη"
+        },
+        {
+            "id": "3",
+            "name": "Λοιποί Φόροι"
+        },
+        {
+            "id": "4",
+            "name": "Χαρτόσημο "
+        },
+        {
+            "id": "5",
+            "name": "Κρατήσεις"
+        }
+    ]
+}
+
+## Get aade tax categories [GET /api/withholdings/aade-tax-categories]
+List all aade withholding categories
+
++ Parameters
+    + `tax_type_id`: `1` (number,optional) - Get categories for a specific tax_type_id.
+
++ Response 200
+    + body
+{
+    "data": [
+        {
+            "id": 1,
+            "name": "Περιπτ. β’- Τόκοι - 15%"
+        },
+        {
+            "id": 2,
+            "name": "Περιπτ. γ’ - Δικαιώματα - 20%"
+        },
+        {
+            "id": 3,
+            "name": "Περιπτ. δ’ - Αμοιβές Συμβουλών Διοίκησης - 20%"
+        },
+        {
+            "id": 4,
+            "name": "Περιπτ. δ’ - Τεχνικά Έργα - 3%"
+        },
+        {
+            "id": 5,
+            "name": "Υγρά καύσιμα και προϊόντα καπνοβιομηχανίας 1%"
+        },
+        {
+            "id": 6,
+            "name": "Λοιπά Αγαθά 4%"
+        },
+        {
+            "id": 7,
+            "name": "Παροχή Υπηρεσιών 8%"
+        },
+        {
+            "id": 8,
+            "name": "Προκαταβλητέος Φόρος Αρχιτεκτόνων και Μηχανικών επί Συμβατικών Αμοιβών, για Εκπόνηση Μελετών και Σχεδίων 4%"
+        },
+        {
+            "id": 9,
+            "name": "Προκαταβλητέος Φόρος Αρχιτεκτόνων και Μηχανικών επί Συμβατικών Αμοιβών, που αφορούν οποιασδήποτε άλλης φύσης έργα 10%"
+        },
+        {
+            "id": 10,
+            "name": "Προκαταβλητέος Φόρος στις Αμοιβές Δικηγόρων 15%"
+        },
+        {
+            "id": 11,
+            "name": "Παρακράτηση Φόρου Μισθωτών Υπηρεσιών παρ. 1 αρ. 15 ν. 4172/2013"
+        },
+        {
+            "id": 12,
+            "name": "Παρακράτηση Φόρου Μισθωτών Υπηρεσιών παρ. 2 αρ. 15 ν. 4172/2013 - Αξιωματικών Εμπορικού Ναυτικού"
+        },
+        {
+            "id": 13,
+            "name": "Παρακράτηση Φόρου Μισθωτών Υπηρεσιών παρ. 2 αρ. 15 ν. 4172/2013 - Κατώτερο Πλήρωμα Εμπορικού Ναυτικού"
+        },
+        {
+            "id": 14,
+            "name": "Παρακράτηση Ειδικής Εισφοράς Αλληλεγγύης"
+        },
+        {
+            "id": 15,
+            "name": "Παρακράτηση Φόρου Αποζημίωσης λόγω Διακοπής Σχέσης Εργασίας παρ. 3 αρ. 15 ν. 4172/2013"
+        },
+        {
+            "id": 16,
+            "name": "α1) ασφάλιστρα κλάδου πυρός 20%"
+        },
+        {
+            "id": 17,
+            "name": "α2) ασφάλιστρα κλάδου πυρός 20%"
+        },
+        {
+            "id": 18,
+            "name": "β) ασφάλιστρα κλάδου ζωής 4%"
+        },
+        {
+            "id": 19,
+            "name": "γ) ασφάλιστρα λοιπών κλάδων 15%"
+        },
+        {
+            "id": 20,
+            "name": "δ) απαλλασσόμενα φόρου ασφαλίστρων 0%."
+        },
+        {
+            "id": 21,
+            "name": "Ξενοδοχεία 1-2 αστέρων 0,50 €"
+        },
+        {
+            "id": 22,
+            "name": "Ξενοδοχεία 3 αστέρων 1,50 €"
+        },
+        {
+            "id": 23,
+            "name": "Ξενοδοχεία 4 αστέρων 3,00 €"
+        },
+        {
+            "id": 24,
+            "name": "Ξενοδοχεία 4 αστέρων 4,00 €"
+        },
+        {
+            "id": 25,
+            "name": "Ενοικιαζόμενα - επιπλωμένα δωμάτια - διαμερίσματα 0,50 €"
+        },
+        {
+            "id": 26,
+            "name": "Ειδικός Φόρος στις διαφημίσεις που προβάλλονται από την τηλεόραση (ΕΦΤΔ) 5%"
+        },
+        {
+            "id": 27,
+            "name": "3.1 Φόρος πολυτελείας 10% επί της φορολογητέας αξίας για τα ενδοκοινοτικώς αποκτούμενα και εισαγόμενα από τρίτες χώρες 10%"
+        },
+        {
+            "id": 28,
+            "name": "3.2 Φόρος πολυτελείας 10% επί της τιμής πώλησης προ Φ.Π.Α. για τα εγχωρίως παραγόμενα είδη 10%"
+        },
+        {
+            "id": 29,
+            "name": "Δικαίωμα του Δημοσίου στα εισιτήρια των καζίνο (80% επί του εισιτηρίου)"
+        },
+        {
+            "id": 30,
+            "name": "Συντελεστής 1,2 %"
+        },
+        {
+            "id": 31,
+            "name": "Συντελεστής 2,4 %"
+        },
+        {
+            "id": 32,
+            "name": "Συντελεστής 3,6 %"
+        },
+        {
+            "id": 33,
+            "name": "Για μηνιαίο λογαριασμό μέχρι και 50 ευρώ 12%"
+        },
+        {
+            "id": 34,
+            "name": "Για μηνιαίο λογαριασμό από 50,01 μέχρι και 100 ευρώ 15%"
+        },
+        {
+            "id": 35,
+            "name": "Για μηνιαίο λογαριασμό από 100,01 μέχρι και 150 ευρώ 18%"
+        },
+        {
+            "id": 36,
+            "name": "Για μηνιαίο λογαριασμό από 150,01 ευρώ και άνω 20%"
+        },
+        {
+            "id": 37,
+            "name": "Τέλος καρτοκινητής επί της αξίας του χρόνου ομιλίας (12%)"
+        },
+        {
+            "id": 38,
+            "name": "Τέλος στη συνδρομητική τηλεόραση 10%"
+        },
+        {
+            "id": 39,
+            "name": "Τέλος συνδρομητών σταθερής τηλεφωνίας 5%"
+        },
+        {
+            "id": 40,
+            "name": "Περιβαλλοντικό Τέλος & πλαστικής σακούλας ν. 2339/2001 αρ. 6α 0,07 ευρώ ανά τεμάχιο"
+        },
+        {
+            "id": 41,
+            "name": "Εισφορά δακοκτονίας 2%"
+        }
+    ]
+}
+
 # Group Payments
 The payments has only one POST endpoint. You can always add new payments. If you like to discard a payment you have to add a new one with minus amount.
-You cannot delete or modify or get details for a payment. as [show here](#header-sorting).
+You cannot delete or modify or get details for a payment. as [shown here](#header-sorting).
 
 |  Method | Endpoint                                        |  Description       |
 |---------|-------------------------------------------------|--------------------|
