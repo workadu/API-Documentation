@@ -890,7 +890,7 @@ This creates a withholding for the given invoice
     + `type` : `percent` (string,required) - Withholding type. Accepts percent (1 to 100) or flat
     + `percentage_value` : `30` (numeric,optional) - Percentage value of the withholding, required when type is set to "percent"
     + `flat_value` : `10` (numeric,optional) - Flat value of the withholding, required when type is set to "flat"
-    + `underlying_value` : `100` (numeric,required) - Underlying value of the withholding
+    + `underlying_value` : `100` (numeric,optional) - Underlying value of the withholding. If not set the amount of the invoice will be used by default.
     + `aade_tax_type_id` : `5` (integer,required) - Aade tax type. For the available tax types see [Get aade tax types endproint](#invoices-get-aade-tax-types)
     + `aade_tax_category_id` : '1' (integer,required) - Aade tax category id, required when aade_tax_type_id is different than 5. For available aade tax categories see [Get aade tax categories endproint](#invoices-get-aade-tax-categories)
   
