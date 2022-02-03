@@ -689,6 +689,7 @@ hit the endpoint [POST /api/invoices/publish] in order to send it again to mydat
 |---------|-------------------------------------------------|--------------------|
 |  GET    | /api/invoices/{invoice_id}{invoice_id},...      | Get invoices       |
 |  POST   | /api/invoices/                                  | Add a new Invoice |
+|  POST   | /api/invoices/update                            | Update an Invoice |
 |  POST   | /api/invoiceline/                               | Add a new invoice line  |
 |  GET    | /api/series/{series_id}{series_id},...          | Get company series  |
 |  POST   | /api/invoices/publish                           | Publish a Draft invoice and optionaly send it to email| 
@@ -735,7 +736,7 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
 
 
 + Parameters 
-    + `customer_id` :`1231` (number,required) - The customer id of the specific payment. if not status parameter is set the invoice will be set up as a draft invoice.
+    + `customer_id` :`1231` (number,required) - The customer id of the specific invoice. if not status parameter is set the invoice will be set up as a draft invoice.
     + `series_id` :`1231` (number,required) - The series id of the document.
     + `invoice_num` : `1` (number,optional) - Invoice number
     + `discount_percent`  : 10 (number, optional) - A discount percent for the all invoice lines
@@ -747,13 +748,13 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
 
 
 + Request curl 
-    curl https://app.workadu.com/api/services \ 
+    curl https://app.workadu.com/api/invoices \ 
     -u wk_abcd123123abcd1234: \
     -d customer_id = 1234 \
     -d series_id = 2100 
 
 + Request curl + optional 
-    curl https://app.workadu.com/api/services \ 
+    curl https://app.workadu.com/api/invoices \ 
     -u wk_abcd123123abcd1234: \
     -d customer_id = 1234 \
     -d series_id = 2100 \
@@ -766,6 +767,50 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
 + Response 200
     + Attributes
         + `data` (Invoice)
+
+
+## Update an  Invoice [POST /api/invoices/update]
+This endpoint update an invoice, for its basic info.
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                                                                                                                                         |
+|------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `400`            | `You didn’t specify a correct invoice ID.`                                           | Please provide a valid invoice_id as a POST parameter |
+
+
++ Parameters 
+     + `invoice_id` :`1231` (number,required) - The invoice id of the specific invoice.
+    + `customer_id` :`1231` (number,required) - The customer id of the specific invoice.
+    + `series_id` :`1231` (number,required) - The series id of the document.
+    + `invoice_num` : `1` (number,optional) - Invoice number
+    + `payment_type`  :  1222 (number, optional) - The series of the payment type of the invoice. This is required when the invoice is for digital tax.
+    + `tag`  :  'Expense' (string, optional) - The tag of this specific invoice. 
+    + `notes`:  'footer notes' (string, optional) - Add footer notes as text to the invoice. 
+    
+
+
++ Request curl 
+    curl https://app.workadu.com/api/invoice/update \ 
+    -u wk_abcd123123abcd1234: \
+    -d invoice_id = 1234 \
+    -d payment_type = 2100 
+
++ Request curl + optional 
+    curl https://app.workadu.com/api/invoice/update \ 
+    -u wk_abcd123123abcd1234: \
+    -d invoice_id = 1234 \
+    -d customer_id = 1234 \
+    -d series_id = 2100 \
+    -d payment_type = 1222 \
+    -d tag = "#2AMSJ72" \
+    -d notes = "Some notes"
+
++ Response 200
+    + Attributes
+        + `data` (Invoice)
+
+
 
 ## Create a new Invoice line [POST /api/invoiceline/]
 This endpoint create an invoice item line to be added to a draft invoice.
