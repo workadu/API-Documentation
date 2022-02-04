@@ -776,12 +776,11 @@ This endpoint update an invoice, for its basic info.
 
 | HTTP status      | Code                                                                                 | Description                                                                                                                                         |
 |------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `422`            | `Validation erros`                                                     | Please provide a valid invoice_id as a PUT parameter |
+| `400`            | `Validation erros`                                                     | Please provide a valid invoice_id as a PUT parameter |
 
 
 + Parameters 
     + `customer_id` :`1231` (number,required) - The customer id of the specific invoice.
-    + `series_id` :`1231` (number,required) - The series id of the document.
     + `invoice_num` : `1` (number,optional) - Invoice number
     + `payment_type`  :  1222 (number, optional) - The series of the payment type of the invoice. This is required when the invoice is for digital tax.
     + `tag`  :  'Expense' (string, optional) - The tag of this specific invoice. 
@@ -790,15 +789,14 @@ This endpoint update an invoice, for its basic info.
 
 
 + Request curl 
-    curl https://app.workadu.com/api/invoice/update \ 
+    curl https://app.workadu.com/api/invoice/12321\ 
     -u wk_abcd123123abcd1234: \
     -d payment_type = 2100 
 
 + Request curl + optional 
-    curl https://app.workadu.com/api/invoice/update \ 
+    curl https://app.workadu.com/api/invoice/123123 \ 
     -u wk_abcd123123abcd1234: \
     -d customer_id = 1234 \
-    -d series_id = 2100 \
     -d payment_type = 1222 \
     -d tag = "#2AMSJ72" \
     -d notes = "Some notes"
