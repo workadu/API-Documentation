@@ -723,6 +723,11 @@ hit the endpoint [POST /api/invoices/publish] in order to send it again to mydat
     + Attributes
         + `data`(Invoice)
 
++ Response 200 
+    + Integrated with aade
+    + Attributes
+        + `data`(Invoice_with_aade)
+
 
 ## Create a new Invoice [POST /api/invoices/]
 This endpoint create an invoice (draft if status is not defined), for a given customer.
@@ -731,7 +736,7 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
 
 | HTTP status      | Code                                                                                 | Description                                                                                                                                         |
 |------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
-| `400`            | `You didn’t specify a correct customer ID.`                                           | Please provide a valid customer_id as a POST parameter |
+| `400`              `You didn’t specify a correct customer ID.`                                           | Please provide a valid customer_id as a POST parameter |
 | `400`            | `You didn’t specify a correct series ID.`                                             | Please provide a valid series_id as a POST parameter |
 
 
@@ -1736,6 +1741,16 @@ The attributes endpoints returns information about the workadu attributes that h
 + lines (array[`invoice_lines`],optional) -  The invoice lines array.
 + status: `VALID` (string, optional) - The status of the invoice (DRAFT, VALID, CANCELLED)
 + tag: `#ASS4J22` (string, optional) - A note for the specific invoice. May use booking reference number.
+
+
+## `Aade_short` (object)
++ id: `5` (number)
++ mark: `400023432432` (number)
++ uid: `F123LKAD81ABJALBADAF` (string)
++ should_resend : `true` (boolean)
+
+## `Invoice_with_aade` (Invoice)
++ aade: (array[`Aade_short`])
 
 ## `Withholding` (object)
 + id: `1` (number)
