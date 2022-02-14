@@ -703,6 +703,7 @@ hit the endpoint [POST /api/invoices/publish] in order to send it again to mydat
     + status: `valid` (string,optional) - The invoice status (valid, draft, cancelled). 
     + `issue_date_from`: `2018-01-13` (string,optional) - The issue date you want to get invoice from. 
     + `issue_date_to`: `2018-01-22` (string,optional) - The issue date you want to get invoice to. 
+    + `aade_should_resend`: 1 (number,optional) - Fetch invoices that should resend to mydata.
 
 + Request curl 
     curl https://app.workadu.com/api/invoices \ 
