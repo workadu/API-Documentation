@@ -2423,7 +2423,7 @@ hit the endpoint [POST /api/invoices/publish] in order to send it again to mydat
         "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
         "<span class="hljs-attribute">mark</span>": <span class="hljs-value"><span class="hljs-number">400023432432</span></span>,
         "<span class="hljs-attribute">uid</span>": <span class="hljs-value"><span class="hljs-string">"F123LKAD81ABJALBADAF"</span></span>,
-        "<span class="hljs-attribute">should_resend</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+        "<span class="hljs-attribute">should_send</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
       </span>}
     ]
   </span>}
@@ -2520,7 +2520,7 @@ hit the endpoint [POST /api/invoices/publish] in order to send it again to mydat
         "<span class="hljs-attribute">id</span>": <span class="hljs-value"><span class="hljs-number">5</span></span>,
         "<span class="hljs-attribute">mark</span>": <span class="hljs-value"><span class="hljs-number">400023432432</span></span>,
         "<span class="hljs-attribute">uid</span>": <span class="hljs-value"><span class="hljs-string">"F123LKAD81ABJALBADAF"</span></span>,
-        "<span class="hljs-attribute">should_resend</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
+        "<span class="hljs-attribute">should_send</span>": <span class="hljs-value"><span class="hljs-literal">true</span>
       </span>}
     ]
   </span>}
@@ -2529,7 +2529,7 @@ hit the endpoint [POST /api/invoices/publish] in order to send it again to mydat
 </dd><dt>status</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>valid</span></span><p>The invoice status (valid, draft, cancelled).</p>
 </dd><dt>issue_date_from</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>2018-01-13</span></span><p>The issue date you want to get invoice from.</p>
 </dd><dt>issue_date_to</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>2018-01-22</span></span><p>The issue date you want to get invoice to.</p>
-</dd><dt>aade_should_resend</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Fetch invoices that should resend to mydata.</p>
+</dd><dt>aade_should_send</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>Fetch invoices that should send to mydata.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
   //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
@@ -3050,7 +3050,8 @@ hit the endpoint [POST /api/invoices/publish] in order to send it again to mydat
 </tbody>
 </table>
 <div class="title"><strong>URI Parameters</strong><div class="collapse-button show"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><dl class="inner"><dt>invoice_id</dt><dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1231</span></span><p>The invoice id of the specific resource.</p>
-</dd><dt>send</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>true</span></span><p>If this is set to true then the invoice will be published and send to customer. If not the end point will only publish the invoice.</p>
+</dd><dt>send</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>true</span></span><p>If this is set to <code>true</code> then the invoice will be published and send to customer. If not the end point will only publish the invoice.</p>
+</dd><dt>aade_send</dt><dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>true</span></span><p>Send invoice to mydata. If set to <code>true</code> invoice will always be send. If set to <code>false</code> the invoice will never send. If the parameter is not set at all the invoice will be send depending on the <code>auto_send</code> setting in the invoice’s series.</p>
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
   //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
@@ -3829,7 +3830,7 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
 </dd></dl></div><!--if action.schema.length--><!--    h5 Schema//   pre: code
   //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
---></div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 04 Feb 2022</p></div></div></div></div><script>/* eslint-env browser */
+--></div></div><hr class="split"><div class="middle"><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 15 Feb 2022</p></div></div></div></div><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 

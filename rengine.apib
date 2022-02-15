@@ -703,7 +703,7 @@ hit the endpoint [POST /api/invoices/publish] in order to send it again to mydat
     + status: `valid` (string,optional) - The invoice status (valid, draft, cancelled). 
     + `issue_date_from`: `2018-01-13` (string,optional) - The issue date you want to get invoice from. 
     + `issue_date_to`: `2018-01-22` (string,optional) - The issue date you want to get invoice to. 
-    + `aade_should_resend`: 1 (number,optional) - Fetch invoices that should resend to mydata.
+    + `aade_should_send`: 1 (number,optional) - Fetch invoices that should send to mydata.
 
 + Request curl 
     curl https://app.workadu.com/api/invoices \ 
@@ -860,7 +860,8 @@ This endpoint publish an already created invoice, and optionally send it to cust
 
 + Parameters 
     + `invoice_id` :`1231` (number,required) - The invoice id of the specific resource.
-    + `send`  :  `true` (boolean, optional) - If this is set to true then the invoice will be published and send to customer. If not the end point will only publish the invoice.
+    + `send`  :  `true` (boolean, optional) - If this is set to `true` then the invoice will be published and send to customer. If not the end point will only publish the invoice.
+    + `aade_send`  :  `true` (boolean, optional) - Send invoice to mydata. If set to `true` invoice will always be send. If set to `false` the invoice will never send. If the parameter is not set at all the invoice will be send depending on the `auto_send` setting in the invoice's series.
 
 
 + Request Required
@@ -1747,7 +1748,7 @@ The attributes endpoints returns information about the workadu attributes that h
 + id: `5` (number)
 + mark: `400023432432` (number)
 + uid: `F123LKAD81ABJALBADAF` (string)
-+ should_resend : `true` (boolean)
++ should_send : `true` (boolean)
 
 ## `Invoice_with_aade` (Invoice)
 + aade: (array[`Aade_short`])
