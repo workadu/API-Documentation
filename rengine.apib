@@ -750,6 +750,13 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
     + `currency`  :  `EUR` (string, optional) - The currency of this specific invoice. In case of not set company currency will be used.
     + `payment_type`  :  1222 (number, optional) - The series of the payment type of the invoice. This is required when the invoice is for digital tax.
     + `tag`  :  'Expense' (string, optional) - The tag of this specific invoice. 
+    + `recipient_id`  :  `1231` (string, optional) - The customer id acting as the recipient of the specific invoice. If not set, the customer will be automatically selected. Used in delivery notes.
+    + `sender_id`  :  `1231` (string, optional) - The customer id acting as the sender of the specific invoice. If not set, the company will be automatically selected. Used in delivery notes.
+    + `transporter_id`  :  `1231` (string, optional) - The customer id acting as the transporter of the specific invoice. If not set, the suggested transported if the selected series will be selected. Required in delivery notes. 
+    + `recipient_third_id`  :  `1231` (string, optional) - The customer id acting as the recipient third party of the specific invoice. Used in cases of third party invoilved in the invoice. Used in delivery notes.
+    + `sender_third_id`  :  `1231` (string, optional) - The customer id acting as the sender third party of the specific invoice. Used in cases of third party invoilved in the invoice. Used in delivery notes.
+    + `move_purpose`  :  `1` (number, optional) - The move purpose of the invoice (see table 1). If not set, "1: sale" will be automatically selected. Used in delivery notes.
+    + `other_move_purpose`  :  `1231` (string, optional) - Other move purpose of the invoice. Required if move_purpose = 19 (Other Reason of Movement).
     
 
 
@@ -822,6 +829,17 @@ This endpoint create an invoice item line to be added to a draft invoice.
 |------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
 | `400`            | `The invoice is not in Draft mode`                                           | Please check the invoice status then |
 | `400`            | `The invoice is not valid or exist`                                           | The invoice_id does not exist |
+
+
++ Parameters 
+    + `invoice_id` :`1231` (number,required) - The invoice id of the draft invoice.
+    + `description` :`lorem ipsum` (string,optional) - The description of this specific invoice line.
+    + `amount` : `20.00` (float,required) - Price of the item of this specific invoice line. (net or gross determined by includes_vat field of the invoice).
+    + `quantity`  : `10` (float, required) - Quantity of this specific invoice line.
+    + `line_discount`  : `20.00` (float, optional) - A discount percentage of this specific invoice line.
+    + `vat_percent`  : `24.00` (float, optional - The vat percentage of this specific invoice line.
+    + `aade_measurement_code`  :  `1` (number, optional) - The measurement code of this specific invoice line (see table 2). Required in delivery notes.
+
 
 + Request Required
     + Attributes
@@ -1456,6 +1474,55 @@ The attributes endpoints returns information about the workadu attributes that h
 + Response 200
     + Attributes
         + `data`(Attribute)
+
+
+
+# Group Tables
+
+Tabes referenced throuh the endpoints 
+
+
+Table 1: Move purpose
+
+| Code | Description                              |
+|------|------------------------------------------|
+| 1    | Sale                                     |
+| 2    | Sale on Behalf of Third Parties          |
+| 3    | Sampling                                 |
+| 4    | Exhibition                               |
+| 5    | Return                                   |
+| 6    | Custody                                  |
+| 7    | Processing/Assembly                      |
+| 8    | Transfer Between Entity Facilities       |
+| 9    | Purchase                                 |
+| 10   | Supply to Ships and Aircrafts            |
+| 11   | Free Disposal                            |
+| 12   | Warranty                                 |
+| 13   | Loan for Use                             |
+| 14   | Storage by Third Parties                 |
+| 15   | Return from Custody                      |
+| 16   | Recycling                                |
+| 17   | Destruction of Useless Material          |
+| 18   | Asset Transfer (Internal Movement)       |
+| 19   | Other Reason of Movement                 |
+
+
+
+Table 2: Aade measurement codes
+
+| Code | Description                  |
+|------|------------------------------|
+| 1    | Pieces                       |
+| 2    | Kilograms                    |
+| 3    | Liters                       |
+| 4    | Meters                       |
+| 5    | Square Meters                |
+| 6    | Cubic Meters                 |
+| 7    | Pieces_Other Cases           |
+
+
+
+
 
 # Data Structures
 
