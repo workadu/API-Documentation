@@ -8097,6 +8097,10 @@ hit the endpoint [POST /api/invoices/publish] in order to send it again to mydat
 </dd><dt>sender_third_id</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1231</span></span><p>The customer id acting as the sender third party of the specific invoice. Used in cases of third party invoilved in the invoice. Used in delivery notes.</p>
 </dd><dt>move_purpose</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>The move purpose of the invoice (see table 1). If not set, “1: sale” will be automatically selected. Used in delivery notes.</p>
 </dd><dt>other_move_purpose</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1231</span></span><p>Other move purpose of the invoice. Required if move_purpose = 19 (Other Reason of Movement).</p>
+</dd><dt>state_budget</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>State budget available options: 1, 2, 3. Required in B2G cases.</p>
+</dd><dt>contract_reference</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1231</span></span><p>Contract reference. Required in B2G cases.</p>
+</dd><dt>contract_reference_code</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1231</span></span><p>Contract reference code. Required in B2G cases.</p>
+</dd><dt>assigning_authority_code</dt><dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>0000.E00000.0000</span></span><p>Assigning authority code. Required in B2G cases.</p>
 </dd></dl></div><div class="title"><strong>Request&nbsp;&nbsp;<code>curl</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>curl https:<span class="hljs-comment">//app.workadu.com/api/invoices \ </span>
 -u wk_abcd123123abcd1234: \
 -d customer_id = <span class="hljs-number">1234</span> \
@@ -8560,7 +8564,9 @@ hit the endpoint [POST /api/invoices/publish] in order to send it again to mydat
 </dd><dt>amount</dt><dd><code>float</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>20.00</span></span><p>Price of the item of this specific invoice line. (net or gross determined by includes_vat field of the invoice).</p>
 </dd><dt>quantity</dt><dd><code>float</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>10</span></span><p>Quantity of this specific invoice line.</p>
 </dd><dt>line_discount</dt><dd><code>float</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>20.00</span></span><p>A discount percentage of this specific invoice line.</p>
-</dd><dt>vat_percent</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>24.00</span></span></dd><dt>aade_measurement_code</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>The measurement code of this specific invoice line (see table 2). Required in delivery notes.</p>
+</dd><dt>vat_percent</dt><dd><code>string</code>&nbsp;<span class="required">(required)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>24.00</span></span></dd><dt>aade_measurement_code</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>The aade measurement code of this specific invoice line (see table 2). Required in delivery notes.</p>
+</dd><dt>measurement_code</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>The european measurement code of this specific invoice line (see table 2). Required in B2G cases.</p>
+</dd><dt>cpv_code</dt><dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span><p>The cpv code of this specific invoice line (see table 2). Required in B2G cases.</p>
 </dd></dl></div><div class="title"><strong>Request&nbsp;&nbsp;<code>Required</code></strong><div class="collapse-button"><span class="close">Hide</span><span class="open">Show</span></div></div><div class="collapse-content"><div class="inner"><h5>Body</h5><pre><code>{
   "<span class="hljs-attribute">invoice_id</span>": <span class="hljs-value"><span class="hljs-number">1231</span></span>,
   "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"2 days charge"</span></span>,
@@ -10769,7 +10775,7 @@ You can re-sort the results by add sorting filter at your request as <a href="#h
 </tr>
 </tbody>
 </table>
-</section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 05 Dec 2024</p><script>/* eslint-env browser */
+</section></div></div></div><p style="text-align: center;" class="text-muted">Generated by&nbsp;<a href="https://github.com/danielgtaylor/aglio" class="aglio">aglio</a>&nbsp;on 13 Dec 2024</p><script>/* eslint-env browser */
 /* eslint quotes: [2, "single"] */
 'use strict';
 
