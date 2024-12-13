@@ -757,6 +757,10 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
     + `sender_third_id`  :  `1231` (string, optional) - The customer id acting as the sender third party of the specific invoice. Used in cases of third party invoilved in the invoice. Used in delivery notes.
     + `move_purpose`  :  `1` (number, optional) - The move purpose of the invoice (see table 1). If not set, "1: sale" will be automatically selected. Used in delivery notes.
     + `other_move_purpose`  :  `1231` (string, optional) - Other move purpose of the invoice. Required if move_purpose = 19 (Other Reason of Movement).
+    + `state_budget`  :  `1` (number, optional) - State budget available options: 1, 2, 3. Required in B2G cases.
+    + `contract_reference`  :  `1231` (string, optional) - Contract reference. Required in B2G cases.
+    + `contract_reference_code`  :  `1231` (string, optional) - Contract reference code. Required in B2G cases.
+    + `assigning_authority_code`  :  `0000.E00000.0000` (string, optional) - Assigning authority code. Required in B2G cases.
     
 
 
@@ -838,7 +842,9 @@ This endpoint create an invoice item line to be added to a draft invoice.
     + `quantity`  : `10` (float, required) - Quantity of this specific invoice line.
     + `line_discount`  : `20.00` (float, optional) - A discount percentage of this specific invoice line.
     + `vat_percent`  : `24.00` (float, optional - The vat percentage of this specific invoice line.
-    + `aade_measurement_code`  :  `1` (number, optional) - The measurement code of this specific invoice line (see table 2). Required in delivery notes.
+    + `aade_measurement_code`  :  `1` (number, optional) - The aade measurement code of this specific invoice line (see table 2). Required in delivery notes.
+    + `measurement_code`  :  `1` (number, optional) - The european measurement code of this specific invoice line (see table 2). Required in B2G cases.
+    + `cpv_code`  :  `1` (number, optional) - The cpv code of this specific invoice line (see table 2). Required in B2G cases.
 
 
 + Request Required
