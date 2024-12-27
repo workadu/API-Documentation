@@ -168,7 +168,7 @@
         }
         
         body {
-            color: #d4d9dd;
+            color: rgb(201, 206, 216);
             background: rgb(13, 8, 32);
             font: 400 13.5px / 26px 'Roboto', Helvetica, sans-serif
         }
