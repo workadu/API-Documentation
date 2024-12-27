@@ -168,8 +168,8 @@
         }
         
         body {
-            color: #4c555a;
-            background: white;
+            color: #d4d9dd;
+            background: rgb(13, 8, 32);
             font: 400 13.5px / 26px 'Roboto', Helvetica, sans-serif
         }
         
@@ -316,8 +316,8 @@
         }
         
         code {
-            color: #444;
-            background-color: #eff2f3;
+            /*color: #444;
+            background-color: #eff2f3;*/
             font-family: bt_mono,'Courier New',monospace;
             font-weight: 400;
             padding: .2em .4em;
@@ -339,13 +339,13 @@
         }
         
         table tr:nth-child(2n) {
-            background-color: #fafafa
+            background-color: rgb(25, 21, 51);
         }
         
         table th,
         table td {
             padding: 6px 12px;
-            border: 1px solid #e6e6e6
+            border: 1px solid #424242;
         }
         
         table th{
@@ -486,9 +486,9 @@
         nav ul a {
             display: block;
             font-size: 13.4px;
-            color: rgba(39, 39, 39, 0.7);
+            color: #d4d9dd;
             padding: 8px 12px;
-            //border-top: 1px solid #d9d9d9;
+/*            //border-top: 1px solid #d9d9d9;*/
             border-left: 2px solid transparent;
             overflow: hidden;
             text-overflow: ellipsis;
@@ -662,7 +662,8 @@
         
         .container-fluid.triple nav {
             width: 16.5%;
-            padding-right: 1px
+            padding-right: 1px;
+             background-color: rgb(13, 8, 32) !important;
         }
         
         .container-fluid.triple .row .content {
@@ -709,7 +710,7 @@
         }
         
         .right pre {
-            background-color: #1d1f21;
+            background-color: rgb(25, 21, 51);
             border: 1px solid #1d1f21
         }
         
@@ -792,7 +793,7 @@
         }
         
         .right .example-names {
-            background-color: #444
+            background-color:rgb(25, 21, 51);
         }
         
         .right .example-names .tab-button {
@@ -812,8 +813,8 @@
             bottom: 0;
             width: 16.5%;
             padding-right: 14.4px;
-            background-color: #fbfbfb;
-            border-right: 1px solid #f0f0f0;
+            background-color: rgb(13, 8, 32);
+/*            border-right: 1px solid rgb(13, 8, 32);*/
             z-index: -1
         }
         
@@ -823,7 +824,7 @@
             top: -12px;
             bottom: -12px;
             width: 48.6%;
-            background-color: #2d3134;
+             background-color: rgb(13, 8, 32);
             z-index: -1
         }
         
@@ -895,8 +896,8 @@
         .resource-group {
             padding: 12px;
             margin-bottom: 1px;
-            background-color: none;
-            //border: 1px solid #d9d9d9;
+/*            background-color: none;*/
+/*            border: 1px solid #d9d9d9;*/
             
 		
         }
@@ -1004,8 +1005,8 @@
         }
         
         .action h4.action-heading code {
-            color: #444;
-            background-color: #f5f5f5;
+            color: #fff;
+            background-color: rgb(25, 21, 51);
             border-color: #cfcfcf;
             font-weight: normal;
             word-break: break-all;
@@ -1024,7 +1025,7 @@
         }
         
         .action.get {
-            border-color:  #e6e6e6
+/*            border-color:  #e6e6e6*/
         }
         
         .action.get h4.action-heading {
@@ -1034,7 +1035,7 @@
         }
         
         .action.head {
-            border-color:  #e6e6e6
+/*            border-color:  #e6e6e6*/
         }
         
         .action.head h4.action-heading {
@@ -1044,7 +1045,7 @@
         }
         
         .action.options {
-            border-color: #bce8f1
+/*            border-color: #bce8f1*/
         }
         
         .action.options h4.action-heading {
@@ -1054,7 +1055,7 @@
         }
         
         .action.post {
-            border-color:  #e6e6e6
+/*            border-color:  #e6e6e6*/
         }
         
         .action.post h4.action-heading {
@@ -1064,7 +1065,7 @@
         }
         
         .action.put {
-            border-color:  #e6e6e6
+/*            border-color:  #e6e6e6*/
         }
         
         .action.put h4.action-heading {
@@ -1074,7 +1075,7 @@
         }
         
         .action.patch {
-            border-color:  #e6e6e6
+/*            border-color:  #e6e6e6*/
         }
         
         .action.patch h4.action-heading {
@@ -1084,7 +1085,7 @@
         }
         
         .action.delete {
-            border-color:  #e6e6e6
+/*            border-color:  #e6e6e6*/
         }
         
         .action.delete h4.action-heading {
