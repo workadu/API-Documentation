@@ -9227,15 +9227,81 @@
                 <div class="tabs">
                     <div class="example-names" style="display:flex; flex-wrap:wrap; gap:8px; padding:10px; background:#1b1b33; border-radius:8px;">
                         <span>Requests</span>
+                        <span class="tab-button">Close already correlated movement</span>
                         <span class="tab-button">Close with reason</span>
                         <span class="tab-button">Close with invoice</span>
                         <span class="tab-button">Close with AADE invoice</span>
                         <span class="tab-button">Close with FIM</span>
-                        <span class="tab-button">Close with create invoice</span>
+                        <span class="tab-button">Close by creating a new invoice</span>
                     </div>
 
 
+                    <div class="tab">
+                        <div>
+                            <div class="inner"><h5>Body</h5>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/503/close</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span></code></pre>
 
+                            </div>
+                        </div>
+
+                        <div class="tabs">
+                            <div class="example-names">
+                                <span>Responses</span>
+                                <span class="tab-button">200 (closed already correlated)</span>
+                            </div>
+
+                            <div class="tab">
+                                <div>
+                                    <div class="inner"><h5>Body</h5>
+                                        <pre><code>{
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">503</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">150</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">45</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Daily rental closed with invoice."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"55.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"rental"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"rental"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">place_from</span>": <span class="hljs-string">"ATH Airport"</span>,
+    "<span class="hljs-attribute">place_to</span>": <span class="hljs-string">"Athens Center"</span>,
+    "<span class="hljs-attribute">invoice_id</span>": <span class="hljs-number">231</span>,
+    "<span class="hljs-attribute">aade_invoice_id</span>": <span class="hljs-number">532</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T08:10:00+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 08:10:00"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-string">"2025-10-14 18:20:00"</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">2</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"completed"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">445500</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-number">445501</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">778899</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">150</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"IKX1234"</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-string">""</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">45</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"Jane Smith"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"jane@example.com"</span>
+    }</span>
+  }</span>
+}</code></pre>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
 
@@ -9595,6 +9661,11 @@
                         <strong>Exactly one</strong> of these options must be provided:
                         <code>reason_non_issue</code>, <code>create_invoice</code>, <code>invoice_id</code>,
                         <code>aade_invoice_id</code> or FIM fields.</p>
+
+                    <p>
+                        When a movement is <strong> already correlated</strong>, the API does not require any correlation parameters. You can close the movement using a simple request:
+                        curl https://app.workadu.com/api/asset-movements/503/close
+                    </p>
 
                     <p>If the movement is already closed (has <code>updated_dcl_id</code>), the call returns a 200 status with a
                         message and the current movement payload without re-sending anything to DCL.</p>
