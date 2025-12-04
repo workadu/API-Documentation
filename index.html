@@ -8130,9 +8130,10 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234:</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span></code></pre>
+
                             </div>
                         </div>
 
@@ -8149,85 +8150,90 @@
 
                                         <!-- FULL REALISTIC MOVEMENT OBJECT -->
                                         <pre><code>{
-  "data": [
-    {
-      "id": 501,
-      "asset_id": 130,
-      "customer_id": 22,
-      "branch_id": null,
-      "branch": null,
-      "comments": "Customer requested expedited handling.",
-      "agreed_price": "85.00",
-      "movement_type": "garage",
-      "provided_service_category_id": 1,
-      "provided_service_category": "work_with_parts",
-      "provided_service_category_other": null,
-      "fim_number": "A12345",
-      "fim_AA": "884411",
-      "fim_issue_date": "2025-10-14",
-      "fim_issue_time": "10:32:00",
-      "created_at": "2025-10-14T10:41:46+03:00",
-      "submit_date": "2025-10-14",
-      "completion_date": null,
-      "status": 1,
-      "status_label": "sent",
-      "dcl_id": 112,
-      "updated_dcl_id": null,
-      "correlate_id": 550,
-      "cancel_id": null,
-      "asset": {
-        "id": 130,
-        "vehicle_registration_number": "ABC1234",
-        "foreign_vehicle_registration_number": null
-      },
-      "customer": {
-        "id": 22,
-        "fullname": "John Doe",
-        "email": "john@example.com"
-      }
-    },
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
+    <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">501</span>,
+      "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">130</span>,
+      "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">22</span>,
+      "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Customer requested expedited handling."</span>,
+      "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"85.00"</span>,
+      "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"garage"</span>,
+      "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"work_with_parts"</span>,
+      "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">fim_number</span>": <span class="hljs-string">"A12345"</span>,
+      "<span class="hljs-attribute">fim_AA</span>": <span class="hljs-string">"884411"</span>,
+      "<span class="hljs-attribute">fim_issue_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+      "<span class="hljs-attribute">fim_issue_time</span>": <span class="hljs-string">"10:32:00"</span>,
+      "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T10:41:46+03:00"</span>,
+      "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+      "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">status</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"sent"</span>,
+      "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">112</span>,
+      "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">550</span>,
+      "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
 
-    {
-      "id": 502,
-      "asset_id": 140,
-      "customer_id": null,
-      "branch_id": 3,
-      "branch": "BR-003",
-      "comments": null,
-      "agreed_price": "12.00",
-      "movement_type": "rental",
-      "provided_service_category_id": 7,
-      "provided_service_category": "pricelist_service",
-      "provided_service_category_other": null,
-      "place_from": null,
-      "place_to": null,
-      "invoice_id" : 231
-      "created_at": "2025-10-14T09:20:11+03:00",
-      "submit_date": "2025-10-14",
-      "completion_date": "2025-10-14",
-      "status": 2,
-      "status_label": "completed",
-      "dcl_id": null,
-      "updated_dcl_id": 552,
-      "correlate_id": 551,
-      "cancel_id": null,
-      "asset": {
-        "id": 140,
-        "vehicle_registration_number": null,
-        "foreign_vehicle_registration_number": "ZZ-8891"
-      }
-    }
-  ],
-  "meta": {
-    "pagination": {
-      "total": 2,
-      "count": 2,
-      "per_page": 20,
-      "current_page": 1,
-      "total_pages": 1
-    }
-  }
+      "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-number">130</span>,
+        "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"ABC1234"</span>,
+        "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-literal">""</span>
+      }</span>,
+
+      "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-number">22</span>,
+        "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"John Doe"</span>,
+        "<span class="hljs-attribute">email</span>": <span class="hljs-string">"john@example.com"</span>
+      }</span>
+    }</span>,
+
+    <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">502</span>,
+      "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">140</span>,
+      "<span class="hljs-attribute">customer_id</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">branch_id</span>": <span class="hljs-number">3</span>,
+      "<span class="hljs-attribute">branch</span>": <span class="hljs-string">"BR-003"</span>,
+      "<span class="hljs-attribute">comments</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"12.00"</span>,
+      "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"rental"</span>,
+      "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"rental"</span>,
+      "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">place_from</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">place_to</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">invoice_id</span>": <span class="hljs-number">231</span>,
+      "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T09:20:11+03:00"</span>,
+      "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+      "<span class="hljs-attribute">completion_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+      "<span class="hljs-attribute">status</span>": <span class="hljs-number">2</span>,
+      "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"completed"</span>,
+      "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-literal">550</span>,
+      "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-number">552</span>,
+      "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">551</span>,
+      "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+      "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-number">140</span>,
+        "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-literal">""</span>,
+        "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-string">"ZZ-8891"</span>
+      }</span>
+    }</span>
+  ]</span>,
+
+  "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">pagination</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">total</span>": <span class="hljs-number">2</span>,
+      "<span class="hljs-attribute">count</span>": <span class="hljs-number">2</span>,
+      "<span class="hljs-attribute">per_page</span>": <span class="hljs-number">20</span>,
+      "<span class="hljs-attribute">current_page</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">total_pages</span>": <span class="hljs-number">1</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -8238,9 +8244,10 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl "https://app.workadu.com/api/asset-movements?search=ABC&amp;status=sent&amp;usage_status=in&amp;page=1" \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234:</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">"https://app.workadu.com/api/asset-movements?search=ABC&amp;status=sent&amp;usage_status=in&amp;page=1"</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span></code></pre>
+
                             </div>
                         </div>
 
@@ -8255,47 +8262,53 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": [
-    {
-      "id": 501,
-      "asset_id": 130,
-      "customer_id": null,
-      "branch_id": null,
-      "branch": null,
-      "comments": "Customer requested expedited handling.",
-      "agreed_price": "85.00",
-      "movement_type": "garage",
-      "provided_service_category_id": 1,
-      "provided_service_category": "work_with_parts",
-      "provided_service_category_other": null,
-      "fim_number": "A12345",
-      "fim_AA": "884411",
-      "fim_issue_date": "2025-10-14",
-      "fim_issue_time": "10:32:00",
-      "created_at": "2025-10-14T10:41:46+03:00",
-      "submit_date": "2025-10-14",
-      "completion_date": null,
-      "status": 1,
-      "status_label": "sent",
-      "dcl_id": 112,
-      "correlate_id": 550,
-      "asset": {
-        "id": 130,
-        "vehicle_registration_number": "ABC1234",
-        "foreign_vehicle_registration_number": ""
-      }
-    }
-  ],
-  "meta": {
-    "pagination": {
-      "total": 1,
-      "count": 1,
-      "per_page": 20,
-      "current_page": 1,
-      "total_pages": 1
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
+    <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">501</span>,
+      "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">130</span>,
+      "<span class="hljs-attribute">customer_id</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Customer requested expedited handling."</span>,
+      "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"85.00"</span>,
+      "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"garage"</span>,
+      "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"work_with_parts"</span>,
+      "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">fim_number</span>": <span class="hljs-string">"A12345"</span>,
+      "<span class="hljs-attribute">fim_AA</span>": <span class="hljs-string">"884411"</span>,
+      "<span class="hljs-attribute">fim_issue_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+      "<span class="hljs-attribute">fim_issue_time</span>": <span class="hljs-string">"10:32:00"</span>,
+      "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T10:41:46+03:00"</span>,
+      "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+      "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">status</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"sent"</span>,
+      "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">112</span>,
+      "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-number">null</span>,
+      "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">550</span>,
+      "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-number">null</span>,
+
+
+      "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-number">130</span>,
+        "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"ABC1234"</span>,
+        "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-string">""</span>
+      }</span>
+    }</span>
+  ]</span>,
+
+  "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">pagination</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">total</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">count</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">per_page</span>": <span class="hljs-number">20</span>,
+      "<span class="hljs-attribute">current_page</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">total_pages</span>": <span class="hljs-number">1</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -8326,17 +8339,30 @@
                                 <p>Filter movements belonging to a specific asset.</p>
                             </dd>
 
-                            <dt>movement_kind</dt>
-                            <dd><code>string</code> (optional)
-                                <span class="text-muted example"><strong>Allowed:</strong> rental, garage, parking</span>
-                            </dd>
+                            <div style="margin-bottom: 1rem;">
+                                <dt style="display:block; margin-bottom:4px;">movement_kind</dt>
+                                <dd style="display:block; margin-left:0;">
+                                    <code>string</code> (optional)
+                                    <span class="text-muted example">
+            <strong>Allowed:</strong> rental, garage, parking
+        </span>
+                                </dd>
+                            </div>
 
-                            <dt>usage_status</dt>
-                            <dd><code>string</code> (optional)
-                                <span class="text-muted example"><strong>Values:</strong> in, out</span>
-                                <p><strong>in</strong> = movement is active (no completion date, not cancelled).<br>
-                                    <strong>out</strong> = completed or cancelled.</p>
-                            </dd>
+                            <div style="margin-bottom: 1rem;">
+                                <dt style="display:block; margin-bottom:4px;">usage_status</dt>
+                                <dd style="display:block; margin-left:0;">
+                                    <code>string</code> (optional)
+                                    <span class="text-muted example">
+            <strong>Allowed:</strong> in, out
+        </span>
+                                    <p style="margin:6px 0 0 0;">
+                                        <strong>in</strong> = movement is active (no completion date, not cancelled).<br>
+                                        <strong>out</strong> = completed or cancelled.
+                                    </p>
+                                </dd>
+                            </div>
+
 
                             <dt>status</dt>
                             <dd><code>string</code> (optional)
@@ -8414,9 +8440,10 @@
                     <!-- SINGLE MOVEMENT REQUEST -->
                     <div class="tab">
                         <div class="inner"><h5>Body</h5>
-                            <pre><code>curl https://app.workadu.com/api/asset-movements/501 \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234:</code></pre>
+                            <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/501</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span></code></pre>
+
                         </div>
 
                         <div class="tabs">
@@ -8429,42 +8456,53 @@
                                 <div class="inner"><h5>Body</h5>
 
                                     <pre><code>{
-  "data": {
-    "id": 501,
-    "asset_id": 130,
-    "customer_id": 22,
-    "branch_id": null,
-    "branch": null,
-    "comments": "Customer requested expedited handling.",
-    "agreed_price": "85.00",
-    "movement_type": "garage",
-    "provided_service_category_id": 1,
-    "provided_service_category": "work_with_parts",
-    "provided_service_category_other": null,
-    "invoice_id": 330,
-    "aade_invoice_id": 91,
-    "created_at": "2025-10-14T10:41:46+03:00",
-    "submit_date": "2025-10-14",
-    "completion_date": null,
-    "status": 1,
-    "status_label": "sent",
-    "dcl_id": 112,
-    "updated_dcl_id": null,
-    "correlate_id": null,
-    "cancel_id": null,
-    "asset": {
-      "id": 130,
-      "vehicle_registration_number": "ABC1234",
-      "foreign_vehicle_registration_number": null
-    },
-    "customer": {
-      "id": 22,
-      "fullname": "John Doe",
-      "email": "john@example.com"
-    }
-  }
-}</code></pre>
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">501</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">130</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">22</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Customer requested expedited handling."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"85.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"garage"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"work_with_parts"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">invoice_id</span>": <span class="hljs-number">330</span>,
+    "<span class="hljs-attribute">aade_invoice_id</span>": <span class="hljs-number">91</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T10:41:46+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"sent"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">112</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">113</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
 
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">130</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"ABC1234"</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-literal">""</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">22</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"John Doe"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"john@example.com"</span>
+    }</span>
+  }</span>,
+
+  "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">pagination</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">total</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">count</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">per_page</span>": <span class="hljs-number">20</span>,
+      "<span class="hljs-attribute">current_page</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">total_pages</span>": <span class="hljs-number">1</span>
+    }</span>
+  }</span>
+}</code></pre>
                                 </div>
                             </div>
                         </div>
@@ -8473,9 +8511,10 @@
                     <!-- MULTIPLE MOVEMENTS REQUEST -->
                     <div class="tab">
                         <div class="inner"><h5>Body</h5>
-                            <pre><code>curl https://app.workadu.com/api/asset-movements/501,502 \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234:</code></pre>
+                            <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/501,502</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span></code></pre>
+
                         </div>
 
                         <div class="tabs">
@@ -8484,65 +8523,76 @@
                             <div class="tab">
                                 <div class="inner"><h5>Body</h5>
                                     <pre><code>{
-  "data": [
-    {
-      "id": 501,
-      "asset_id": 130,
-      "customer_id": 22,
-      "branch_id": null,
-      "branch": null,
-      "comments": "Customer requested expedited handling.",
-      "agreed_price": "85.00",
-      "movement_type": "garage",
-      "provided_service_category_id": 1,
-      "provided_service_category": "work_with_parts",
-      "provided_service_category_other": null,
-      "created_at": "2025-10-14T10:41:46+03:00",
-      "submit_date": "2025-10-14",
-      "completion_date": null,
-      "status": 1,
-      "status_label": "sent",
-      "dcl_id": 112,
-      "updated_dcl_id": null,
-      "correlate_id": 550,
-      "cancel_id": null,
-      "asset": {
-        "id": 130,
-        "vehicle_registration_number": "ABC1234",
-        "foreign_vehicle_registration_number": null
-      }
-    },
-    {
-      "id": 502,
-      "asset_id": 140,
-      "customer_id": null,
-      "branch_id": 3,
-      "branch": "BR-003",
-      "comments": null,
-      "agreed_price": "12.00",
-      "movement_type": "rental",
-      "provided_service_category_id": 7,
-      "provided_service_category": "pricelist_service",
-      "provided_service_category_other": null,
-      "place_from": null,
-      "place_to": null,
-      "invoice_id": 231,
-      "created_at": "2025-10-14T09:20:11+03:00",
-      "submit_date": "2025-10-14",
-      "completion_date": "2025-10-14",
-      "status": 2,
-      "status_label": "completed",
-      "dcl_id": null,
-      "updated_dcl_id": 552,
-      "correlate_id": 551,
-      "cancel_id": null,
-      "asset": {
-        "id": 140,
-        "vehicle_registration_number": null,
-        "foreign_vehicle_registration_number": "ZZ-8891"
-      }
-    }
-  ]
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">[
+    <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">501</span>,
+      "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">130</span>,
+      "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">22</span>,
+      "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Customer requested expedited handling."</span>,
+      "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"85.00"</span>,
+      "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"garage"</span>,
+      "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"work_with_parts"</span>,
+      "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T10:41:46+03:00"</span>,
+      "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+      "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">status</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"sent"</span>,
+      "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">112</span>,
+      "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-number">130</span>,
+        "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"ABC1234"</span>,
+        "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-string">""</span>
+      }</span>
+    }</span>,
+
+    <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">502</span>,
+      "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">140</span>,
+      "<span class="hljs-attribute">customer_id</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">branch_id</span>": <span class="hljs-number">3</span>,
+      "<span class="hljs-attribute">branch</span>": <span class="hljs-string">"BR-003"</span>,
+      "<span class="hljs-attribute">comments</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"12.00"</span>,
+      "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"rental"</span>,
+      "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"rental"</span>,
+      "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">place_from</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">place_to</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">invoice_id</span>": <span class="hljs-number">231</span>,
+      "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T09:20:11+03:00"</span>,
+      "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+      "<span class="hljs-attribute">completion_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+      "<span class="hljs-attribute">status</span>": <span class="hljs-number">2</span>,
+      "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"completed"</span>,
+      "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">550</span>,
+      "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-number">552</span>,
+      "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">551</span>,
+      "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+        "<span class="hljs-attribute">id</span>": <span class="hljs-number">140</span>,
+        "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">""</span>,
+        "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-string">"ZZ-8891"</span>
+      }</span>
+    }</span>
+  ]</span>,
+
+  "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">pagination</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">total</span>": <span class="hljs-number">2</span>,
+      "<span class="hljs-attribute">count</span>": <span class="hljs-number">2</span>,
+      "<span class="hljs-attribute">per_page</span>": <span class="hljs-number">20</span>,
+      "<span class="hljs-attribute">current_page</span>": <span class="hljs-number">1</span>,
+      "<span class="hljs-attribute">total_pages</span>": <span class="hljs-number">1</span>
+    }</span>
+  }</span>
 }</code></pre>
                                 </div>
                             </div>
@@ -8598,17 +8648,18 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements \
--u wk_abcd123123abcd1234: \
--H "Accept: application/vnd.rengine.v2+json" \
--d asset_id=130 \
--d customer_id=22 \
--d movement_type=rental \
--d provided_service_category=1 \
--d agreed_price=85.00 \
--d comments="Customer requested expedited handling." \
--d place_from="Athens HQ" \
--d place_to="Customer address"</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">asset_id=130</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">customer_id=22</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">movement_type=rental</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">provided_service_category=1</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">agreed_price=85.00</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">comments="Customer requested expedited handling."</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">place_from="Athens HQ"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">place_to="Customer address"</span></code></pre>
+
                             </div>
                         </div>
                         <div class="tabs">
@@ -8620,41 +8671,44 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": {
-    "id": 701,
-    "asset_id": 130,
-    "customer_id": 22,
-    "branch_id": null,
-    "branch": null,
-    "comments": "Customer requested expedited handling.",
-    "agreed_price": "85.00",
-    "movement_type": "rental",
-    "provided_service_category_id": 1,
-    "provided_service_category": "rental",
-    "provided_service_category_other": null,
-    "place_from": "Athens HQ",
-    "place_to": "Customer address",
-    "created_at": "2025-10-14T10:41:46+03:00",
-    "submit_date": "2025-10-14 10:41:46",
-    "completion_date": null,
-    "status": 1,
-    "status_label": "sent",
-    "dcl_id": 3001,
-    "updated_dcl_id": null,
-    "correlate_id": null,
-    "cancel_id": null,
-    "asset": {
-      "id": 130,
-      "vehicle_registration_number": "ABC1234",
-      "foreign_vehicle_registration_number": null
-    },
-    "customer": {
-      "id": 22,
-      "fullname": "John Doe",
-      "email": "john@example.com"
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">701</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">130</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">22</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Customer requested expedited handling."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"85.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"rental"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"rental"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">place_from</span>": <span class="hljs-string">"Athens HQ"</span>,
+    "<span class="hljs-attribute">place_to</span>": <span class="hljs-string">"Customer address"</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T10:41:46+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 10:41:46"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"sent"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">3001</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">130</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"ABC1234"</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-literal">""</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">22</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"John Doe"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"john@example.com"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -8665,23 +8719,24 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements \
--u wk_abcd123123abcd1234: \
--H "Accept: application/vnd.rengine.v2+json" \
--d movement_type=rental \
--d provided_service_category=1 \
--d vehicle_registration_number=IKX1234 \
--d agreed_price=45.00 \
--d comments="Short-term rental." \
--d place_from="Athens HQ" \
--d place_to="Airport" \
--d fullname="Jane Smith" \
--d email="jane.smith@example.com" \
--d mobile="+3069XXXXXXXX" \
--d country="Greece" \
--d city="Athens" \
--d address="Some Street 10" \
--d postal_code="11145"</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">movement_type=rental</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">provided_service_category=1</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">vehicle_registration_number=IKX1234</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">agreed_price=45.00</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">comments="Short-term rental."</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">place_from="Athens HQ"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">place_to="Airport"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">fullname="Jane Smith"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">email="jane.smith@example.com"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">mobile="+3069XXXXXXXX"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">country="Greece"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">city="Athens"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">address="Some Street 10"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">postal_code="11145"</span></code></pre>
+
                             </div>
                         </div>
                         <div class="tabs">
@@ -8693,41 +8748,44 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": {
-    "id": 702,
-    "asset_id": 145,
-    "customer_id": 35,
-    "branch_id": null,
-    "branch": null,
-    "comments": "Short-term rental.",
-    "agreed_price": "45.00",
-    "movement_type": "rental",
-    "provided_service_category_id": 1,
-    "provided_service_category": "rental",
-    "provided_service_category_other": null,
-    "place_from": "Athens HQ",
-    "place_to": "Airport",
-    "created_at": "2025-10-14T11:05:10+03:00",
-    "submit_date": "2025-10-14 11:05:10",
-    "completion_date": null,
-    "status": 1,
-    "status_label": "sent",
-    "dcl_id": 3002,
-    "updated_dcl_id": null,
-    "correlate_id": null,
-    "cancel_id": null,
-    "asset": {
-      "id": 145,
-      "vehicle_registration_number": "IKX1234",
-      "foreign_vehicle_registration_number": ""
-    },
-    "customer": {
-      "id": 35,
-      "fullname": "Jane Smith",
-      "email": "jane.smith@example.com"
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">702</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">145</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">35</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Short-term rental."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"45.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"rental"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"rental"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">place_from</span>": <span class="hljs-string">"Athens HQ"</span>,
+    "<span class="hljs-attribute">place_to</span>": <span class="hljs-string">"Airport"</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T11:05:10+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 11:05:10"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"sent"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">3002</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">145</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"IKX1234"</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-string">""</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">35</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"Jane Smith"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"jane.smith@example.com"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -8976,10 +9034,11 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl -X POST "https://app.workadu.com/api/asset-movements/501/resend" \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234:
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> <span class="hljs-string">"https://app.workadu.com/api/asset-movements/501/resend"</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span>
 </code></pre>
+
                             </div>
                         </div>
 
@@ -8998,40 +9057,43 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "message": "The movement has already been sent.",
-  "vehicle_movement": {
-    "id": 501,
-    "asset_id": 130,
-    "customer_id": 22,
-    "branch_id": null,
-    "branch": null,
-    "comments": "Customer requested expedited handling.",
-    "agreed_price": "85.00",
-    "movement_type": "garage",
-    "provided_service_category_id": 1,
-    "provided_service_category": "work_with_parts",
-    "provided_service_category_other": null,
-    "created_at": "2025-10-14T10:41:46+03:00",
-    "submit_date": "2025-10-14",
-    "completion_date": null,
-    "status": 1,
-    "status_label": "sent",
-    "dcl_id": 112,
-    "updated_dcl_id": null,
-    "correlate_id": null,
-    "cancel_id": null,
-    "asset": {
-      "id": 130,
-      "vehicle_registration_number": "ABC1234",
-      "foreign_vehicle_registration_number": null
-    },
-    "customer": {
-      "id": 22,
-      "fullname": "John Doe",
-      "email": "john@example.com"
-    }
-  }
+  "<span class="hljs-attribute">message</span>": <span class="hljs-string">"The movement has already been sent."</span>,
+  "<span class="hljs-attribute">vehicle_movement</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">501</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">130</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">22</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Customer requested expedited handling."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"85.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"garage"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"work_with_parts"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T10:41:46+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"sent"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">112</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">130</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"ABC1234"</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-literal">""</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">22</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"John Doe"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"john@example.com"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -9041,34 +9103,36 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": {
-    "id": 502,
-    "asset_id": 140,
-    "customer_id": null,
-    "branch_id": 3,
-    "branch": "BR-003",
-    "comments": "Retry request after network failure.",
-    "agreed_price": "12.00",
-    "movement_type": "parking",
-    "provided_service_category_id": 7,
-    "provided_service_category": "pricelist_service",
-    "provided_service_category_other": null,
-    "created_at": "2025-11-01T09:12:00+03:00",
-    "submit_date": "2025-11-01",
-    "completion_date": null,
-    "status": 1,
-    "status_label": "sent",
-    "dcl_id": 4499,
-    "updated_dcl_id": null,
-    "correlate_id": null,
-    "cancel_id": null,
-    "asset": {
-      "id": 140,
-      "vehicle_registration_number": null,
-      "foreign_vehicle_registration_number": "ZZ-7781"
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">502</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">140</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-number">3</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-string">"BR-003"</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Retry request after network failure."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"12.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"parking"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">7</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"pricelist_service"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-11-01T09:12:00+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-11-01"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"sent"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">4499</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">140</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-literal">null</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-string">"ZZ-7781"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -9078,8 +9142,9 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "error": "Movement could not be resent: DCL communication failure"
+  "<span class="hljs-attribute">error</span>": <span class="hljs-string">"Movement could not be resent: DCL communication failure"</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -9089,8 +9154,9 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "error": "Asset movement not found."
+  "<span class="hljs-attribute">error</span>": <span class="hljs-string">"Asset movement not found."</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -9177,11 +9243,12 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements/502/close \
--X POST \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234: \
--d reason_non_issue=1</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/502/close</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">reason_non_issue=1</span></code></pre>
+
                             </div>
                         </div>
 
@@ -9195,36 +9262,38 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": {
-    "id": 502,
-    "asset_id": 140,
-    "customer_id": null,
-    "branch_id": 3,
-    "branch": "BR-003",
-    "comments": "Short parking stay, free of charge.",
-    "agreed_price": "0.00",
-    "movement_type": "parking",
-    "provided_service_category_id": 4,
-    "provided_service_category": "free_service",
-    "provided_service_category_other": null,
-    "reason_non_issue": 1,
-    "reason": "free_service",
-    "created_at": "2025-10-14T09:20:11+03:00",
-    "submit_date": "2025-10-14 09:20:11",
-    "completion_date": "2025-10-14 09:45:00",
-    "status": 2,
-    "status_label": "completed",
-    "dcl_id": 223300,
-    "updated_dcl_id": 223301,
-    "correlate_id": null,
-    "cancel_id": null,
-    "asset": {
-      "id": 140,
-      "vehicle_registration_number": null,
-      "foreign_vehicle_registration_number": "ZZ-8891"
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">502</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">140</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-number">3</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-string">"BR-003"</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Short parking stay, free of charge."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"0.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"parking"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">4</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"free_service"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">reason_non_issue</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">reason</span>": <span class="hljs-string">"free_service"</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T09:20:11+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 09:20:11"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-string">"2025-10-14 09:45:00"</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">2</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"completed"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">223300</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-number">223301</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">140</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-literal">""</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-string">"ZZ-8891"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -9235,11 +9304,12 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements/503/close \
--X POST \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234: \
--d invoice_id=231</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/503/close</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">invoice_id=231</span></code></pre>
+
                             </div>
                         </div>
 
@@ -9253,43 +9323,46 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": {
-    "id": 503,
-    "asset_id": 150,
-    "customer_id": 45,
-    "branch_id": null,
-    "branch": null,
-    "comments": "Daily rental closed with invoice.",
-    "agreed_price": "55.00",
-    "movement_type": "rental",
-    "provided_service_category_id": 1,
-    "provided_service_category": "rental",
-    "provided_service_category_other": null,
-    "place_from": "ATH Airport",
-    "place_to": "Athens Center",
-    "invoice_id": 231,
-    "aade_invoice_id": 532,
-    "created_at": "2025-10-14T08:10:00+03:00",
-    "submit_date": "2025-10-14 08:10:00",
-    "completion_date": "2025-10-14 18:20:00",
-    "status": 2,
-    "status_label": "completed",
-    "dcl_id": 445500,
-    "updated_dcl_id": 445501,
-    "correlate_id": 778899,
-    "cancel_id": null,
-    "asset": {
-      "id": 150,
-      "vehicle_registration_number": "IKX1234",
-      "foreign_vehicle_registration_number": null
-    },
-    "customer": {
-      "id": 45,
-      "fullname": "Jane Smith",
-      "email": "jane@example.com"
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">503</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">150</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">45</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Daily rental closed with invoice."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"55.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"rental"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"rental"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">place_from</span>": <span class="hljs-string">"ATH Airport"</span>,
+    "<span class="hljs-attribute">place_to</span>": <span class="hljs-string">"Athens Center"</span>,
+    "<span class="hljs-attribute">invoice_id</span>": <span class="hljs-number">231</span>,
+    "<span class="hljs-attribute">aade_invoice_id</span>": <span class="hljs-number">532</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T08:10:00+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 08:10:00"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-string">"2025-10-14 18:20:00"</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">2</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"completed"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">445500</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-number">445501</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">778899</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">150</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"IKX1234"</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-string">""</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">45</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"Jane Smith"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"jane@example.com"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -9300,11 +9373,12 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements/504/close \
--X POST \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234: \
--d aade_invoice_id=9876</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/504/close</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">aade_invoice_id=9876</span></code></pre>
+
                             </div>
                         </div>
 
@@ -9318,40 +9392,43 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": {
-    "id": 504,
-    "asset_id": 160,
-    "customer_id": 60,
-    "branch_id": 2,
-    "branch": "BR-002",
-    "comments": "Garage repair completed, AADE invoice used.",
-    "agreed_price": "210.00",
-    "movement_type": "garage",
-    "provided_service_category_id": 2,
-    "provided_service_category": "work_with_customer_parts",
-    "provided_service_category_other": null,
-    "aade_invoice_id": 9876,
-    "created_at": "2025-10-14T07:00:00+03:00",
-    "submit_date": "2025-10-14 07:00:00",
-    "completion_date": "2025-10-14 15:30:00",
-    "status": 2,
-    "status_label": "completed",
-    "dcl_id": 556600,
-    "updated_dcl_id": 556601,
-    "correlate_id": 99002,
-    "cancel_id": null,
-    "asset": {
-      "id": 160,
-      "vehicle_registration_number": "KYZ4321",
-      "foreign_vehicle_registration_number": null
-    },
-    "customer": {
-      "id": 60,
-      "fullname": "ACME LTD",
-      "email": "info@acme.test"
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">504</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">160</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">60</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-number">2</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-string">"BR-002"</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Garage repair completed, AADE invoice used."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"210.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"garage"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">2</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"work_with_customer_parts"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">aade_invoice_id</span>": <span class="hljs-number">9876</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T07:00:00+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 07:00:00"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-string">"2025-10-14 15:30:00"</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">2</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"completed"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">556600</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-number">556601</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">99002</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">160</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"KYZ4321"</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-literal">""</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">60</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"ACME LTD"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"info@acme.test"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -9362,14 +9439,15 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements/505/close \
--X POST \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234: \
--d fim_number=AA123456 \
--d fim_AA=998877 \
--d fim_issue_date=2025-10-14 \
--d fim_issue_time=10:45:00</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/505/close</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">fim_number=AA123456</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">fim_AA=998877</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">fim_issue_date=2025-10-14</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">fim_issue_time=10:45:00</span></code></pre>
+
                             </div>
                         </div>
 
@@ -9383,43 +9461,46 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": {
-    "id": 505,
-    "asset_id": 170,
-    "customer_id": 70,
-    "branch_id": null,
-    "branch": null,
-    "comments": "Parking ticket issued via FIM.",
-    "agreed_price": "12.00",
-    "movement_type": "parking",
-    "provided_service_category_id": 7,
-    "provided_service_category": "pricelist_service",
-    "provided_service_category_other": null,
-    "fim_number": "AA123456",
-    "fim_AA": "998877",
-    "fim_issue_date": "2025-10-14",
-    "fim_issue_time": "10:45:00",
-    "created_at": "2025-10-14T10:10:00+03:00",
-    "submit_date": "2025-10-14 10:10:00",
-    "completion_date": "2025-10-14 10:50:00",
-    "status": 2,
-    "status_label": "completed",
-    "dcl_id": 667700,
-    "updated_dcl_id": 667701,
-    "correlate_id": 99003,
-    "cancel_id": null,
-    "asset": {
-      "id": 170,
-      "vehicle_registration_number": null,
-      "foreign_vehicle_registration_number": "DE-AB1234"
-    },
-    "customer": {
-      "id": 70,
-      "fullname": "Parking Customer",
-      "email": "customer@example.com"
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">505</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">170</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">70</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Parking ticket issued via FIM."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"12.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"parking"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">7</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"pricelist_service"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">fim_number</span>": <span class="hljs-string">"AA123456"</span>,
+    "<span class="hljs-attribute">fim_AA</span>": <span class="hljs-string">"998877"</span>,
+    "<span class="hljs-attribute">fim_issue_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+    "<span class="hljs-attribute">fim_issue_time</span>": <span class="hljs-string">"10:45:00"</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T10:10:00+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 10:10:00"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-string">"2025-10-14 10:50:00"</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">2</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"completed"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">667700</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-number">667701</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">99003</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">170</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-literal">""</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-string">"DE-AB1234"</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">70</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"Parking Customer"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"customer@example.com"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -9430,15 +9511,16 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements/506/close \
--X POST \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234: \
--d create_invoice=1 \
--d series_id=12 \
--d payment_type=1 \
--d fullname="New Customer" \
--d email="new.customer@example.com"</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/506/close</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">create_invoice=1</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">series_id=12</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">payment_type=1</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">fullname="New Customer"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">email="new.customer@example.com"</span></code></pre>
+
                             </div>
                         </div>
 
@@ -9452,41 +9534,44 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": {
-    "id": 506,
-    "asset_id": 180,
-    "customer_id": 88,
-    "branch_id": 4,
-    "branch": "BR-004",
-    "comments": "Garage work, invoice created by API.",
-    "agreed_price": "95.00",
-    "movement_type": "garage",
-    "provided_service_category_id": 1,
-    "provided_service_category": "work_with_parts",
-    "provided_service_category_other": null,
-    "invoice_id": 345,
-    "aade_invoice_id": 12345,
-    "created_at": "2025-10-14T11:00:00+03:00",
-    "submit_date": "2025-10-14 11:00:00",
-    "completion_date": "2025-10-14 13:30:00",
-    "status": 2,
-    "status_label": "completed",
-    "dcl_id": 778800,
-    "updated_dcl_id": 778801,
-    "correlate_id": 99004,
-    "cancel_id": null,
-    "asset": {
-      "id": 180,
-      "vehicle_registration_number": "XYZ9999",
-      "foreign_vehicle_registration_number": null
-    },
-    "customer": {
-      "id": 88,
-      "fullname": "New Customer",
-      "email": "new.customer@example.com"
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">506</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">180</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">88</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-number">4</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-string">"BR-004"</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Garage work, invoice created by API."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"95.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"garage"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"work_with_parts"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">invoice_id</span>": <span class="hljs-number">345</span>,
+    "<span class="hljs-attribute">aade_invoice_id</span>": <span class="hljs-number">12345</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T11:00:00+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 11:00:00"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-string">"2025-10-14 13:30:00"</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">2</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"completed"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">778800</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-number">778801</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">99004</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">180</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"XYZ9999"</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-literal">""</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">88</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"New Customer"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"new.customer@example.com"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -9710,11 +9795,12 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements/702/correlate \
--X POST \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234: \
--d invoice_id=231</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/702/correlate</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">invoice_id=231</span></code></pre>
+
                             </div>
                         </div>
 
@@ -9728,43 +9814,46 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": {
-    "id": 702,
-    "asset_id": 150,
-    "customer_id": 45,
-    "branch_id": null,
-    "branch": null,
-    "comments": "Daily rental correlated with invoice.",
-    "agreed_price": "55.00",
-    "movement_type": "rental",
-    "provided_service_category_id": 1,
-    "provided_service_category": "rental",
-    "provided_service_category_other": null,
-    "place_from": "ATH Airport",
-    "place_to": "Athens Center",
-    "invoice_id": 231,
-    "aade_invoice_id": 532,
-    "created_at": "2025-10-14T08:10:00+03:00",
-    "submit_date": "2025-10-14 08:10:00",
-    "completion_date": null,
-    "status": 1,
-    "status_label": "sent",
-    "dcl_id": 445500,
-    "updated_dcl_id": null,
-    "correlate_id": 778899,
-    "cancel_id": null,
-    "asset": {
-      "id": 150,
-      "vehicle_registration_number": "IKX1234",
-      "foreign_vehicle_registration_number": null
-    },
-    "customer": {
-      "id": 45,
-      "fullname": "Jane Smith",
-      "email": "jane@example.com"
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">702</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">150</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">45</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Daily rental correlated with invoice."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"55.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"rental"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"rental"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">place_from</span>": <span class="hljs-string">"ATH Airport"</span>,
+    "<span class="hljs-attribute">place_to</span>": <span class="hljs-string">"Athens Center"</span>,
+    "<span class="hljs-attribute">invoice_id</span>": <span class="hljs-number">231</span>,
+    "<span class="hljs-attribute">aade_invoice_id</span>": <span class="hljs-number">532</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T08:10:00+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 08:10:00"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"sent"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">445500</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">778899</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">150</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"IKX1234"</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-literal">""</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">45</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"Jane Smith"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"jane@example.com"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -9775,11 +9864,12 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements/703/correlate \
--X POST \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234: \
--d aade_invoice_id=9876</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/703/correlate</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">aade_invoice_id=9876</span></code></pre>
+
                             </div>
                         </div>
 
@@ -9793,40 +9883,43 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": {
-    "id": 703,
-    "asset_id": 160,
-    "customer_id": 60,
-    "branch_id": 2,
-    "branch": "BR-002",
-    "comments": "Garage repair correlated using AADE invoice.",
-    "agreed_price": "210.00",
-    "movement_type": "garage",
-    "provided_service_category_id": 2,
-    "provided_service_category": "work_with_customer_parts",
-    "provided_service_category_other": null,
-    "aade_invoice_id": 9876,
-    "created_at": "2025-10-14T07:00:00+03:00",
-    "submit_date": "2025-10-14 07:00:00",
-    "completion_date": null,
-    "status": 1,
-    "status_label": "sent",
-    "dcl_id": 556600,
-    "updated_dcl_id": null,
-    "correlate_id": 99002,
-    "cancel_id": null,
-    "asset": {
-      "id": 160,
-      "vehicle_registration_number": "KYZ4321",
-      "foreign_vehicle_registration_number": null
-    },
-    "customer": {
-      "id": 60,
-      "fullname": "ACME LTD",
-      "email": "info@acme.test"
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">703</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">160</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">60</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-number">2</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-string">"BR-002"</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Garage repair correlated using AADE invoice."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"210.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"garage"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">2</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"work_with_customer_parts"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">aade_invoice_id</span>": <span class="hljs-number">9876</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T07:00:00+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 07:00:00"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"sent"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">556600</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">99002</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">160</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"KYZ4321"</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-literal">""</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">60</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"ACME LTD"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"info@acme.test"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -9837,14 +9930,15 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements/704/correlate \
--X POST \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234: \
--d fim_number=AA123456 \
--d fim_AA=998877 \
--d fim_issue_date=2025-10-14 \
--d fim_issue_time=10:45:00</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/704/correlate</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">fim_number=AA123456</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">fim_AA=998877</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">fim_issue_date=2025-10-14</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">fim_issue_time=10:45:00</span></code></pre>
+
                             </div>
                         </div>
 
@@ -9858,43 +9952,46 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": {
-    "id": 704,
-    "asset_id": 170,
-    "customer_id": 70,
-    "branch_id": null,
-    "branch": null,
-    "comments": "Parking ticket correlated via FIM.",
-    "agreed_price": "12.00",
-    "movement_type": "parking",
-    "provided_service_category_id": 7,
-    "provided_service_category": "pricelist_service",
-    "provided_service_category_other": null,
-    "fim_number": "AA123456",
-    "fim_AA": "998877",
-    "fim_issue_date": "2025-10-14",
-    "fim_issue_time": "10:45:00",
-    "created_at": "2025-10-14T10:10:00+03:00",
-    "submit_date": "2025-10-14 10:10:00",
-    "completion_date": null,
-    "status": 1,
-    "status_label": "sent",
-    "dcl_id": 667700,
-    "updated_dcl_id": null,
-    "correlate_id": 99003,
-    "cancel_id": null,
-    "asset": {
-      "id": 170,
-      "vehicle_registration_number": null,
-      "foreign_vehicle_registration_number": "DE-AB1234"
-    },
-    "customer": {
-      "id": 70,
-      "fullname": "Parking Customer",
-      "email": "customer@example.com"
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">704</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">170</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">70</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Parking ticket correlated via FIM."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"12.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"parking"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">7</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"pricelist_service"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">fim_number</span>": <span class="hljs-string">"AA123456"</span>,
+    "<span class="hljs-attribute">fim_AA</span>": <span class="hljs-string">"998877"</span>,
+    "<span class="hljs-attribute">fim_issue_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+    "<span class="hljs-attribute">fim_issue_time</span>": <span class="hljs-string">"10:45:00"</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T10:10:00+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 10:10:00"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"sent"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">667700</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">99003</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">170</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-literal">""</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-string">"DE-AB1234"</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">70</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"Parking Customer"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"customer@example.com"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -9905,15 +10002,16 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements/705/correlate \
--X POST \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234: \
--d create_invoice=1 \
--d series_id=12 \
--d payment_type=1 \
--d fullname="New Customer" \
--d email="new.customer@example.com"</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/705/correlate</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">create_invoice=1</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">series_id=12</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">payment_type=1</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">fullname="New Customer"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">email="new.customer@example.com"</span></code></pre>
+
                             </div>
                         </div>
 
@@ -9927,41 +10025,44 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "data": {
-    "id": 705,
-    "asset_id": 180,
-    "customer_id": 88,
-    "branch_id": 4,
-    "branch": "BR-004",
-    "comments": "Garage work, invoice created by API and used for correlation.",
-    "agreed_price": "95.00",
-    "movement_type": "garage",
-    "provided_service_category_id": 1,
-    "provided_service_category": "work_with_parts",
-    "provided_service_category_other": null,
-    "invoice_id": 345,
-    "aade_invoice_id": 12345,
-    "created_at": "2025-10-14T11:00:00+03:00",
-    "submit_date": "2025-10-14 11:00:00",
-    "completion_date": null,
-    "status": 1,
-    "status_label": "sent",
-    "dcl_id": 778800,
-    "updated_dcl_id": null,
-    "correlate_id": 99004,
-    "cancel_id": null,
-    "asset": {
-      "id": 180,
-      "vehicle_registration_number": "XYZ9999",
-      "foreign_vehicle_registration_number": null
-    },
-    "customer": {
-      "id": 88,
-      "fullname": "New Customer",
-      "email": "new.customer@example.com"
-    }
-  }
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">705</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">180</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">88</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-number">4</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-string">"BR-004"</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">"Garage work, invoice created by API and used for correlation."</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"95.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"garage"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"work_with_parts"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">invoice_id</span>": <span class="hljs-number">345</span>,
+    "<span class="hljs-attribute">aade_invoice_id</span>": <span class="hljs-number">12345</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T11:00:00+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 11:00:00"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"sent"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">778800</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-number">99004</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-literal">null</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">180</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"XYZ9999"</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-literal">""</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">88</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"New Customer"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"new.customer@example.com"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -10164,10 +10265,11 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements/801/cancel \
--X POST \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234:</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/801/cancel</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span></code></pre>
+
                             </div>
                         </div>
 
@@ -10181,40 +10283,43 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "message": "Movement cancelled successfully.",
-  "vehicle_movement": {
-    "id": 801,
-    "asset_id": 130,
-    "customer_id": 22,
-    "branch_id": null,
-    "branch": null,
-    "comments": "Cancellation requested by customer.",
-    "agreed_price": "85.00",
-    "movement_type": "garage",
-    "provided_service_category_id": 1,
-    "provided_service_category": "work_with_parts",
-    "provided_service_category_other": null,
-    "created_at": "2025-10-14T10:41:46+03:00",
-    "submit_date": "2025-10-14 10:41:46",
-    "completion_date": null,
-    "status": 3,
-    "status_label": "cancelled",
-    "dcl_id": 123456,
-    "updated_dcl_id": null,
-    "correlate_id": null,
-    "cancel_id": 99901,
-    "asset": {
-      "id": 130,
-      "vehicle_registration_number": "ABC1234",
-      "foreign_vehicle_registration_number": null
-    },
-    "customer": {
-      "id": 22,
-      "fullname": "John Doe",
-      "email": "john@example.com"
-    }
-  }
+  "<span class="hljs-attribute">message</span>": <span class="hljs-string">"Movement cancelled successfully."</span>,
+  "<span class="hljs-attribute">vehicle_movement</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">801</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">130</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">22</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">""</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"85.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"garage"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">1</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"work_with_parts"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T10:41:46+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 10:41:46"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">3</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"cancelled"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">123456</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-number">99901</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">130</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-string">"ABC1234"</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-literal">""</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">22</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"John Doe"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"john@example.com"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -10225,10 +10330,11 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements/802/cancel \
--X POST \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234:</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/802/cancel</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">POST</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span></code></pre>
+
                             </div>
                         </div>
 
@@ -10242,40 +10348,43 @@
                                 <div>
                                     <div class="inner"><h5>Body</h5>
                                         <pre><code>{
-  "message": "Movement already cancelled.",
-  "vehicle_movement": {
-    "id": 802,
-    "asset_id": 140,
-    "customer_id": 33,
-    "branch_id": 3,
-    "branch": "BR-003",
-    "comments": "Already cancelled earlier.",
-    "agreed_price": "12.00",
-    "movement_type": "parking",
-    "provided_service_category_id": 7,
-    "provided_service_category": "pricelist_service",
-    "provided_service_category_other": null,
-    "created_at": "2025-10-14T09:20:11+03:00",
-    "submit_date": "2025-10-14 09:20:11",
-    "completion_date": null,
-    "status": 3,
-    "status_label": "cancelled",
-    "dcl_id": 223300,
-    "updated_dcl_id": null,
-    "correlate_id": null,
-    "cancel_id": 99902,
-    "asset": {
-      "id": 140,
-      "vehicle_registration_number": null,
-      "foreign_vehicle_registration_number": "ZZ-8891"
-    },
-    "customer": {
-      "id": 33,
-      "fullname": "Parking Customer",
-      "email": "customer@example.com"
-    }
-  }
+  "<span class="hljs-attribute">message</span>": <span class="hljs-string">"Movement already cancelled."</span>,
+  "<span class="hljs-attribute">vehicle_movement</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">802</span>,
+    "<span class="hljs-attribute">asset_id</span>": <span class="hljs-number">140</span>,
+    "<span class="hljs-attribute">customer_id</span>": <span class="hljs-number">33</span>,
+    "<span class="hljs-attribute">branch_id</span>": <span class="hljs-number">3</span>,
+    "<span class="hljs-attribute">branch</span>": <span class="hljs-string">"BR-003"</span>,
+    "<span class="hljs-attribute">comments</span>": <span class="hljs-string">""</span>,
+    "<span class="hljs-attribute">agreed_price</span>": <span class="hljs-string">"12.00"</span>,
+    "<span class="hljs-attribute">movement_type</span>": <span class="hljs-string">"parking"</span>,
+    "<span class="hljs-attribute">provided_service_category_id</span>": <span class="hljs-number">7</span>,
+    "<span class="hljs-attribute">provided_service_category</span>": <span class="hljs-string">"pricelist_service"</span>,
+    "<span class="hljs-attribute">provided_service_category_other</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">created_at</span>": <span class="hljs-string">"2025-10-14T09:20:11+03:00"</span>,
+    "<span class="hljs-attribute">submit_date</span>": <span class="hljs-string">"2025-10-14 09:20:11"</span>,
+    "<span class="hljs-attribute">completion_date</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-number">3</span>,
+    "<span class="hljs-attribute">status_label</span>": <span class="hljs-string">"cancelled"</span>,
+    "<span class="hljs-attribute">dcl_id</span>": <span class="hljs-number">223300</span>,
+    "<span class="hljs-attribute">updated_dcl_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">correlate_id</span>": <span class="hljs-literal">null</span>,
+    "<span class="hljs-attribute">cancel_id</span>": <span class="hljs-number">99902</span>,
+
+    "<span class="hljs-attribute">asset</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">140</span>,
+      "<span class="hljs-attribute">vehicle_registration_number</span>": <span class="hljs-literal">""</span>,
+      "<span class="hljs-attribute">foreign_vehicle_registration_number</span>": <span class="hljs-string">"ZZ-8891"</span>
+    }</span>,
+
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">33</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"Parking Customer"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"customer@example.com"</span>
+    }</span>
+  }</span>
 }</code></pre>
+
                                     </div>
                                 </div>
                             </div>
@@ -10371,10 +10480,11 @@
                     <div class="tab">
                         <div>
                             <div class="inner"><h5>Body</h5>
-                                <pre><code>curl https://app.workadu.com/api/asset-movements/901 \
--X DELETE \
--H "Accept: application/vnd.rengine.v2+json" \
--u wk_abcd123123abcd1234:</code></pre>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/asset-movements/901</span> \
+<span class="hljs-attribute">-X</span> <span class="hljs-string">DELETE</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span></code></pre>
+
                             </div>
                         </div>
 
@@ -10386,11 +10496,10 @@
 
                             <div class="tab">
                                 <div>
-                                    <div class="inner"><h5>Body</h5>
-                                        <pre><code>{
-  "message": "Asset movement deleted."
+                                   <pre><code>{
+  "<span class="hljs-attribute">message</span>": <span class="hljs-string">"Asset movement deleted."</span>
 }</code></pre>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
