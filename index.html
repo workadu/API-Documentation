@@ -9657,18 +9657,50 @@
 
                     <p>This endpoint closes an existing Asset Movement that has already been sent to the Digital Client List (DCL).
                         It may optionally correlate the movement with an invoice (existing or newly created) or with FIM details,
-                        or it may be closed using only a <code>reason_non_issue</code>.
+                        or it may be closed using only a <code>reason_non_issue</code> (reason) of not issuing an invoice for the movement.
                         <strong>Exactly one</strong> of these options must be provided:
                         <code>reason_non_issue</code>, <code>create_invoice</code>, <code>invoice_id</code>,
                         <code>aade_invoice_id</code> or FIM fields.</p>
 
                     <p>
                         When a movement is <strong> already correlated</strong>, the API does not require any correlation parameters. You can close the movement using a simple request:
-                        curl https://app.workadu.com/api/asset-movements/503/close
+                        curl https://app.workadu.com/api/asset-movements/{id}/close
                     </p>
 
                     <p>If the movement is already closed (has <code>updated_dcl_id</code>), the call returns a 200 status with a
                         message and the current movement payload without re-sending anything to DCL.</p>
+
+                    <h3>Close Options</h3>
+
+
+                    <h4> Close Option 1</h4>
+                    <p>This option describes the workflow you follow when the invoice is created before the asset movement is closed, or when the invoice must be issued before correlation or closure happens. The flow contains four steps, and depending on your scenario you will follow either Case 1 or Case 2 at the end.<p>
+
+                    <p>  In Case 1, you first correlate the movement with the existing invoice and then close it as a separate action. </p>
+                    <p>  In Case 2, you skip the correlation step and provide the invoice directly during the close request, allowing the system to correlate and close the movement in a single operation.</p>
+
+                        <img src="images/ApiAssetMovementFlow.png"
+                             alt=""
+                             style="width: 100%; max-width: 100%; height: auto; display: block;" />
+
+                    <h4> Close Option 2</h4>
+                    <p>
+                        This option applies when the invoice is not created in advance. Instead, the invoice is generated during correlation or directly at the moment of closing the movement. The flow begins with the creation of the asset movement, and depending on your scenario you will follow either Case 1 or Case 2.
+                    </p>
+
+                    <p>
+                        In Case 1, you correlate the movement and simultaneously create a new invoice. After correlation, the movement is closed through a separate request.
+                    </p>
+
+                    <p>
+                        In Case 2, you skip the correlation step entirely and close the movement while creating the invoice in the same request. This allows the system to generate the invoice and finalize the movement in a single operation.
+                    </p>
+
+                    <p>
+                        <img src="images/ApiAssetsMovementNewInvoiceMovFlow.png"
+                             alt=""
+                             style="width: 100%; max-width: 100%; height: auto; display: block;" />
+                    </p>
 
                     <p><strong>Error codes</strong></p>
                     <table>
