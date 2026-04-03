@@ -140,6 +140,8 @@
                                 class="fa fa-arrow-down"></i></span>List withholdings</a></li>
                         <li><a href="#invoices-get-a-specific-withholding-get"><span class="badge get"><i
                                 class="fa fa-arrow-down"></i></span>Get a specific withholding</a></li>
+                        <li><a href="#invoices-create-invoice-with-lines-post"><span class="badge post"><i
+                                class="fa fa-plus"></i></span>Create Invoice with Lines</a></li>
                         <li><a href="#invoices-create-a-withholding-post"><span class="badge post"><i
                                 class="fa fa-plus"></i></span>Create a withholding</a></li>
                         <li><a href="#invoices-update-a-withholding-put"><span class="badge put"><i
@@ -4236,6 +4238,11 @@
                             <td>/api/invoices/publish</td>
                             <td>Publish a Draft invoice and optionaly send it to email</td>
                         </tr>
+                        <tr>
+                            <td>POST</td>
+                            <td>/api/invoices/create-with-lines</td>
+                            <td>Create an Invoice with customer and lines in a single request</td>
+                        </tr>
                         </tbody>
                     </table>
                 </section>
@@ -6580,6 +6587,460 @@
   //     != self.highlight(action.schema, null, ['json', 'yaml', 'xml', 'console', 'php', 'sh'])
   // div(style="height: 1px;")
 --></div>
+            </div>
+            <hr class="split">
+            <!-- Create Invoice with Lines -->
+            <div class="middle">
+                <div class="resource" id="invoices-create-invoice-with-lines"><h3 class="resource-heading">Create Invoice with Lines
+                    <a class="permalink" href="#invoices-create-invoice-with-lines">&para;</a></h3></div>
+            </div>
+            <div class="right">
+                <div class="definition"><span class="method post">POST</span>&nbsp;<span class="uri"><span
+                        class="hostname">https://app.workadu.com</span>/api/invoices/create-with-lines</span></div>
+                <div class="tabs">
+                    <div class="example-names">
+                        <span>Requests</span>
+                        <span class="tab-button">curl (existing customer)</span>
+                        <span class="tab-button">curl (inline customer + publish)</span>
+                    </div>
+
+                    <!-- REQUEST: EXISTING CUSTOMER -->
+                    <div class="tab">
+                        <div>
+                            <div class="inner"><h5>Body</h5>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/invoices/create-with-lines</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">'{
+  "customer": { "id": 101 },
+  "invoice": {
+    "series_id": 3,
+    "issue_date": "2025-10-14",
+    "notes": "Thank you for your business."
+  },
+  "lines": [
+    {
+      "description": "Consulting services",
+      "amount": 100.00,
+      "quantity": 1,
+      "vat_percent": 24
+    }
+  ]
+}'</span></code></pre>
+                            </div>
+                        </div>
+                        <div class="tabs">
+                            <div class="example-names">
+                                <span>Responses</span>
+                                <span class="tab-button">200</span>
+                            </div>
+                            <div class="tab">
+                                <div>
+                                    <div class="inner"><h5>Body</h5>
+                                        <pre><code>{
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">5001</span>,
+    "<span class="hljs-attribute">invoice_number</span>": <span class="hljs-number">12</span>,
+    "<span class="hljs-attribute">series</span>": <span class="hljs-string">"TIM"</span>,
+    "<span class="hljs-attribute">series_id</span>": <span class="hljs-number">3</span>,
+    "<span class="hljs-attribute">user</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">42</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"user@company.com"</span>
+    }</span>,
+    "<span class="hljs-attribute">customer</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">101</span>,
+      "<span class="hljs-attribute">fullname</span>": <span class="hljs-string">"John Doe"</span>,
+      "<span class="hljs-attribute">email</span>": <span class="hljs-string">"john@example.com"</span>,
+      "<span class="hljs-attribute">phone</span>": <span class="hljs-string">"6900000000"</span>
+    }</span>,
+    "<span class="hljs-attribute">issue_date</span>": <span class="hljs-string">"2025-10-14"</span>,
+    "<span class="hljs-attribute">discount_amount</span>": <span class="hljs-string">"0.00"</span>,
+    "<span class="hljs-attribute">vat_amount</span>": <span class="hljs-string">"24.00"</span>,
+    "<span class="hljs-attribute">total_amount</span>": <span class="hljs-string">"124.00"</span>,
+    "<span class="hljs-attribute">payable_amount</span>": <span class="hljs-string">"124.00"</span>,
+    "<span class="hljs-attribute">currency</span>": <span class="hljs-string">"EUR"</span>,
+    "<span class="hljs-attribute">currency_rate</span>": <span class="hljs-string">"1.0000"</span>,
+    "<span class="hljs-attribute">lines</span>": <span class="hljs-value">[
+      {
+        "<span class="hljs-attribute">id</span>": <span class="hljs-number">9001</span>,
+        "<span class="hljs-attribute">description</span>": <span class="hljs-string">"Consulting services"</span>,
+        "<span class="hljs-attribute">quantity</span>": <span class="hljs-string">"1.00"</span>,
+        "<span class="hljs-attribute">solo_amount</span>": <span class="hljs-string">"100.00"</span>,
+        "<span class="hljs-attribute">total_amount</span>": <span class="hljs-string">"100.00"</span>,
+        "<span class="hljs-attribute">discount_percent</span>": <span class="hljs-string">"0.00"</span>,
+        "<span class="hljs-attribute">vat_percent</span>": <span class="hljs-string">"24"</span>,
+        "<span class="hljs-attribute">measurement_code_id</span>": <span class="hljs-literal">null</span>,
+        "<span class="hljs-attribute">aade_measurement_code_id</span>": <span class="hljs-literal">null</span>,
+        "<span class="hljs-attribute">cpv_code_id</span>": <span class="hljs-literal">null</span>
+      }
+    ]</span>,
+    "<span class="hljs-attribute">withholdings</span>": <span class="hljs-value">[]</span>,
+    "<span class="hljs-attribute">payments_total</span>": <span class="hljs-number">0</span>,
+    "<span class="hljs-attribute">payments</span>": <span class="hljs-value">[]</span>,
+    "<span class="hljs-attribute">notes</span>": <span class="hljs-string">"Thank you for your business."</span>,
+    "<span class="hljs-attribute">tags</span>": <span class="hljs-value">[]</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-string">"DRAFT"</span>,
+    "<span class="hljs-attribute">aade</span>": <span class="hljs-literal">null</span>
+  }</span>
+}</code></pre>
+                                        <div style="height: 1px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- REQUEST: INLINE CUSTOMER + PUBLISH -->
+                    <div class="tab">
+                        <div>
+                            <div class="inner"><h5>Body</h5>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/invoices/create-with-lines</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Content-Type: application/json"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">'{
+  "customer": {
+    "fullname": "Jane Smith",
+    "email": "jane@example.com",
+    "vat_number": "123456789",
+    "mobile": "6911111111"
+  },
+  "invoice": {
+    "series_id": 3,
+    "issue_date": "2025-10-14",
+    "publish": true,
+    "aade_send": true,
+    "referrer_unique_id": "ERP-ORD-9988"
+  },
+  "lines": [
+    {
+      "description": "Product A",
+      "amount": 50.00,
+      "quantity": 2,
+      "vat_percent": 24
+    },
+    {
+      "description": "Product B",
+      "amount": 30.00,
+      "quantity": 1,
+      "vat_percent": 13
+    }
+  ]
+}'</span></code></pre>
+                            </div>
+                        </div>
+                        <div class="tabs">
+                            <div class="example-names">
+                                <span>Responses</span>
+                                <span class="tab-button">200</span>
+                                <span class="tab-button">409</span>
+                            </div>
+                            <div class="tab">
+                                <div>
+                                    <div class="inner"><h5>Body</h5>
+                                        <pre><code>{
+  "<span class="hljs-attribute">data</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">id</span>": <span class="hljs-number">5002</span>,
+    "<span class="hljs-attribute">invoice_number</span>": <span class="hljs-number">13</span>,
+    "<span class="hljs-attribute">series</span>": <span class="hljs-string">"TIM"</span>,
+    "<span class="hljs-attribute">series_id</span>": <span class="hljs-number">3</span>,
+    "<span class="hljs-attribute">status</span>": <span class="hljs-string">"VALID"</span>,
+    "<span class="hljs-attribute">aade</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">id</span>": <span class="hljs-number">77</span>,
+      "<span class="hljs-attribute">mark</span>": <span class="hljs-string">"400001234567890"</span>,
+      "<span class="hljs-attribute">uid</span>": <span class="hljs-string">"AADE-UID-EXAMPLE"</span>,
+      "<span class="hljs-attribute">qr_value</span>": <span class="hljs-string">"https://mydatapi.aade.gr/..."</span>,
+      "<span class="hljs-attribute">should_send</span>": <span class="hljs-literal">false</span>
+    }</span>
+  }</span>,
+  "<span class="hljs-attribute">meta</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">myData</span>": <span class="hljs-value">{
+      "<span class="hljs-attribute">statusCode</span>": <span class="hljs-string">"Success"</span>
+    }</span>
+  }</span>
+}</code></pre>
+                                        <div style="height: 1px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="tab">
+                                <div>
+                                    <div class="inner"><h5>Body</h5>
+                                        <pre><code>{
+  "<span class="hljs-attribute">message</span>": <span class="hljs-string">"An invoice with referrer_unique_id 'ERP-ORD-9988' already exists (id: 5002)."</span>
+}</code></pre>
+                                        <div style="height: 1px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="middle">
+                <div class="action post" id="invoices-create-invoice-with-lines-post">
+                    <h4 class="action-heading">
+                        <div class="name">Create Invoice with Lines</div>
+                        <a class="method post" href="#invoices-create-invoice-with-lines-post">POST</a>
+                        <code class="uri">/api/invoices/create-with-lines</code>
+                    </h4>
+
+                    <p>Creates an invoice together with its line items and customer in a single request. The customer can
+                        be an existing one (by <code>customer.id</code>) or created on-the-fly from inline fields. The
+                        invoice is created as a draft unless <code>invoice.publish</code> is set to <code>true</code>.</p>
+
+                    <p>To prevent duplicate invoices from retries or ERP integrations, pass a
+                        <code>referrer_unique_id</code> , the endpoint returns <code>409</code> if an invoice with that
+                        ID already exists.</p>
+
+                    <p><strong>Error codes</strong></p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>HTTP status</th>
+                            <th>Code</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><code>400</code></td>
+                            <td><code>customer is required</code></td>
+                            <td>The <code>customer</code> object was not provided.</td>
+                        </tr>
+                        <tr>
+                            <td><code>400</code></td>
+                            <td><code>series_id is required</code></td>
+                            <td>The <code>invoice.series_id</code> field was not provided.</td>
+                        </tr>
+                        <tr>
+                            <td><code>400</code></td>
+                            <td><code>lines are required</code></td>
+                            <td>The <code>lines</code> array was not provided or is empty.</td>
+                        </tr>
+                        <tr>
+                            <td><code>400</code></td>
+                            <td><code>Unknown fields</code></td>
+                            <td>One or more fields in <code>customer</code>, <code>invoice</code>, or a line object are not supported. Check the allowed fields listed in the parameters section.</td>
+                        </tr>
+                        <tr>
+                            <td><code>422</code></td>
+                            <td><code>invoice.currency validation failed</code></td>
+                            <td>The provided currency code is not a valid ISO 4217 currency code.</td>
+                        </tr>
+                        <tr>
+                            <td><code>422</code></td>
+                            <td><code>AADE submission failed</code></td>
+                            <td>The invoice was created and published, but the AADE myData submission was rejected. The response body contains the invoice data and the AADE error details under <code>meta.myData</code>.</td>
+                        </tr>
+                        <tr>
+                            <td><code>409</code></td>
+                            <td><code>Duplicate referrer_unique_id</code></td>
+                            <td>An invoice with the given <code>referrer_unique_id</code> already exists. The response body contains the existing invoice id.</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="title"><strong>Body Parameters</strong>
+                        <div class="collapse-button show">
+                            <span class="close">Hide</span><span class="open">Show</span>
+                        </div>
+                    </div>
+                    <div class="collapse-content">
+                        <dl class="inner">
+
+                            <h3><dt colspan="2"><strong>customer</strong> <code>object</code> (required)</dt></h3>
+
+                            <dt>customer.id</dt>
+                            <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>ID of an existing customer. When provided, all other <code>customer</code> fields are ignored.</p>
+                            </dd>
+
+                            <dt>customer.fullname</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Customer full name. Required when creating a new customer (i.e. no <code>customer.id</code>).</p>
+                            </dd>
+
+                            <dt>customer.email</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Customer email address.</p>
+                            </dd>
+
+                            <dt>customer.mobile</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Customer mobile phone number.</p>
+                            </dd>
+
+                            <dt>customer.vat_number</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Customer VAT number.</p>
+                            </dd>
+
+                            <dt>customer.code</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Custom reference code for the customer. If a customer with this code already exists in your account, that customer is used instead of creating a new one.</p>
+                            </dd>
+
+                            <dt>customer.country</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>ISO 3-letter country code (e.g. <code>GRC</code>).</p>
+                            </dd>
+
+                            <dt>customer.city</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Customer city.</p>
+                            </dd>
+
+                            <dt>customer.address</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Customer street address.</p>
+                            </dd>
+
+                            <dt>customer.postal_code</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Customer postal / ZIP code.</p>
+                            </dd>
+
+                            <dt>customer.tax_office</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Customer tax office.</p>
+                            </dd>
+
+                            <dt>customer.business_type</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Customer business type or occupation.</p>
+                            </dd>
+
+                            <h3><dt colspan="2"><strong>invoice</strong> <code>object</code> (required)</dt></h3>
+
+                            <dt>invoice.series_id</dt>
+                            <dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;
+                                <p>The ID of the invoice series to use. Use <code>GET /api/series</code> to list available series.</p>
+                            </dd>
+
+                            <dt>invoice.issue_date</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <span class="text-muted example"><strong>Example:&nbsp;</strong><span>2025-10-14</span></span>
+                                <p>Issue date in <code>YYYY-MM-DD</code> format. Defaults to today.</p>
+                            </dd>
+
+                            <dt>invoice.due_date</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Due date in <code>YYYY-MM-DD</code> format.</p>
+                            </dd>
+
+                            <dt>invoice.currency</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <span class="text-muted example"><strong>Example:&nbsp;</strong><span>USD</span></span>
+                                <p>ISO 4217 currency code. Must be a supported currency. Defaults to the account's default currency.</p>
+                            </dd>
+
+                            <dt>invoice.currency_rate</dt>
+                            <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Exchange rate relative to the account's default currency.</p>
+                            </dd>
+
+                            <dt>invoice.notes</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Free-text notes printed on the invoice.</p>
+                            </dd>
+
+                            <dt>invoice.discount_percent</dt>
+                            <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Global discount percentage applied to the invoice total.</p>
+                            </dd>
+
+                            <dt>invoice.publish</dt>
+                            <dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Set to <code>true</code> to publish the invoice immediately after creation.</p>
+                            </dd>
+
+                            <dt>invoice.aade_send</dt>
+                            <dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Set to <code>true</code> to submit the invoice to AADE myData when publishing. Only relevant when <code>publish</code> is <code>true</code>.</p>
+                            </dd>
+
+                            <dt>invoice.send</dt>
+                            <dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Set to <code>true</code> to email the invoice to the customer after publishing.</p>
+                            </dd>
+
+                            <dt>invoice.referrer_unique_id</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <span class="text-muted example"><strong>Example:&nbsp;</strong><span>ERP-ORD-9988</span></span>
+                                <p>Idempotency key from your system. If an invoice with this ID already exists, the request returns <code>409</code> with the existing invoice id instead of creating a duplicate.</p>
+                            </dd>
+
+                            <dt>invoice.payment_type</dt>
+                            <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Payment method identifier.</p>
+                            </dd>
+
+                            <dt>invoice.related_invoice_id</dt>
+                            <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>ID of a related invoice (e.g. for credit notes).</p>
+                            </dd>
+
+                            <dt>invoice.branch_id</dt>
+                            <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Branch where the invoice is issued.</p>
+                            </dd>
+
+                            <h3><dt colspan="2"><strong>lines</strong> <code>array</code> (required)</dt></h3>
+
+                            <dt>lines[].description</dt>
+                            <dd><code>string</code>&nbsp;<span>(required)</span>&nbsp;
+                                <p>Line item description.</p>
+                            </dd>
+
+                            <dt>lines[].amount</dt>
+                            <dd><code>number</code>&nbsp;<span>(required)</span>&nbsp;
+                                <span class="text-muted example"><strong>Example:&nbsp;</strong><span>100.00</span></span>
+                                <p>Unit price of the line item.</p>
+                            </dd>
+
+                            <dt>lines[].quantity</dt>
+                            <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Quantity. Defaults to 1.</p>
+                            </dd>
+
+                            <dt>lines[].vat_percent</dt>
+                            <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <span class="text-muted example"><strong>Example:&nbsp;</strong><span>24</span></span>
+                                <p>VAT percentage to apply to this line.</p>
+                            </dd>
+
+                            <dt>lines[].line_discount</dt>
+                            <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Discount percentage for this line.</p>
+                            </dd>
+
+                            <dt>lines[].unit</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Unit of measurement label.</p>
+                            </dd>
+
+                            <dt>lines[].measurement_code</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>Workadu measurement code identifier.</p>
+                            </dd>
+
+                            <dt>lines[].aade_measurement_code</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>AADE measurement code identifier.</p>
+                            </dd>
+
+                            <dt>lines[].cpv_code</dt>
+                            <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>CPV code for public procurement invoices.</p>
+                            </dd>
+
+                        </dl>
+                    </div>
+                </div>
             </div>
             <hr class="split">
             <div class="middle">
