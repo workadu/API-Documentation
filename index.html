@@ -130,6 +130,8 @@
                                 class="fa fa-plus"></i></span>Create a new Invoice</a></li>
                         <li><a href="#invoices-create-invoice-with-lines-post"><span class="badge post"><i
                                 class="fa fa-plus"></i></span>Create Invoice with Lines</a></li>
+                        <li><a href="#invoices-get-invoice-pdf-get"><span class="badge get"><i
+                                class="fa fa-arrow-down"></i></span>Get Invoice PDF</a></li>
                         <li><a href="#invoices-update-an-invoice-put"><span class="badge put"><i
                                 class="fa fa-pencil"></i></span>Update an Invoice</a></li>
                         <li><a href="#invoices-create-a-new-invoice-line-post"><span class="badge post"><i
@@ -4243,6 +4245,11 @@
                             <td>/api/invoices/create-with-lines</td>
                             <td>Create an Invoice with customer and lines in a single request</td>
                         </tr>
+                        <tr>
+                            <td>GET</td>
+                            <td>/api/invoices/pdf/</td>
+                            <td>Get invoice PDF</td>
+                        </tr>
                         </tbody>
                     </table>
                 </section>
@@ -6017,6 +6024,116 @@
                                 <p>CPV code for public procurement invoices.</p>
                             </dd>
 
+                        </dl>
+                    </div>
+                </div>
+            </div>
+
+            <hr class="split">
+            <!-- Get Invoice PDF -->
+            <div class="middle">
+                <div class="resource" id="invoices-get-invoice-pdf"><h3 class="resource-heading">Get Invoice PDF
+                    <a class="permalink" href="#invoices-get-invoice-pdf">&para;</a></h3></div>
+            </div>
+            <div class="right">
+                <div class="definition"><span class="method get">GET</span>&nbsp;<span class="uri"><span
+                        class="hostname">https://app.workadu.com</span>/api/invoices/pdf/</span></div>
+                <div class="tabs">
+                    <div class="example-names"><span>Requests</span><span class="tab-button">curl</span><span
+                            class="tab-button">curl + download</span></div>
+                    <div class="tab">
+                        <div>
+                            <div class="inner"><h5>Body</h5>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/invoices/pdf/</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">invoice_id = 1234</span></code></pre>
+                                <div style="height: 1px;"></div>
+                            </div>
+                        </div>
+                        <div>
+                            <div class="inner"><h5>Body</h5>
+                                <pre><code><span class="hljs-built_in">curl</span> <span class="hljs-string">https://app.workadu.com/api/invoices/pdf/</span> \
+<span class="hljs-attribute">-u</span> <span class="hljs-string">wk_abcd123123abcd1234:</span> \
+<span class="hljs-attribute">-H</span> <span class="hljs-string">"Accept: application/vnd.rengine.v2+json"</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">invoice_id = 1234</span> \
+<span class="hljs-attribute">-d</span> <span class="hljs-string">download = true</span></code></pre>
+                                <div style="height: 1px;"></div>
+                            </div>
+                        </div>
+                        <div class="tabs">
+                            <div class="example-names"><span>Responses</span><span class="tab-button">200</span></div>
+                            <div class="tab">
+                                <div>
+                                    <div class="inner"><h5>Headers</h5>
+                                        <pre><code>Content-Type: application/pdf
+Content-Disposition: inline; filename="INV-123.pdf"</code></pre>
+                                        <div style="height: 1px;"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="middle">
+                <div class="action get" id="invoices-get-invoice-pdf-get">
+                    <h4 class="action-heading">
+                        <div class="name">Get Invoice PDF</div>
+                        <a class="method get" href="#invoices-get-invoice-pdf-get">GET</a>
+                        <code class="uri">/api/invoices/pdf/</code>
+                    </h4>
+
+                    <p>This endpoint returns the PDF representation of an invoice.</p>
+
+                    <p>When <code>download</code> is <code>false</code> (default), the response is returned with
+                        <code>Content-Disposition: inline; filename="..."</code> so it can be displayed in the browser.
+                        When <code>download</code> is <code>true</code>, the response is returned with
+                        <code>Content-Disposition: attachment; filename="..."</code> to trigger a file download.</p>
+
+                    <p><strong>Error codes</strong></p>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>HTTP status</th>
+                            <th>Code</th>
+                            <th>Description</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr>
+                            <td><code>400</code></td>
+                            <td><code>You didn't specify a correct invoice ID.</code></td>
+                            <td>Please provide a valid <code>invoice_id</code> as a GET parameter</td>
+                        </tr>
+                        <tr>
+                            <td><code>404</code></td>
+                            <td><code>No query results for model [Invoice]</code></td>
+                            <td>The <code>invoice_id</code> does not exist</td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <div class="title"><strong>URI Parameters</strong>
+                        <div class="collapse-button show">
+                            <span class="close">Hide</span><span class="open">Show</span>
+                        </div>
+                    </div>
+                    <div class="collapse-content">
+                        <dl class="inner">
+                            <dt>invoice_id</dt>
+                            <dd><code>number</code>&nbsp;<span class="required">(required)</span>&nbsp;<span
+                                    class="text-muted example"><strong>Example:&nbsp;</strong><span>1231</span></span>
+                                <p>The invoice id of the specific resource.</p>
+                            </dd>
+                            <dt>download</dt>
+                            <dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;<span
+                                    class="text-muted example"><strong>Example:&nbsp;</strong><span>false</span></span>
+                                <p>When set to <code>true</code>, the PDF is returned with
+                                    <code>Content-Disposition: attachment</code> to trigger a download. When
+                                    <code>false</code> or omitted (default), the PDF is returned with
+                                    <code>Content-Disposition: inline</code> for in-browser display.</p>
+                            </dd>
                         </dl>
                     </div>
                 </div>
