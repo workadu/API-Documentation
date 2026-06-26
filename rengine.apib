@@ -693,6 +693,8 @@ hit the endpoint [POST /api/invoices/publish] in order to send it again to mydat
 |  POST   | /api/invoiceline/                               | Add a new invoice line  |
 |  GET    | /api/series/{series_id}{series_id},...          | Get company series  |
 |  POST   | /api/invoices/publish                           | Publish a Draft invoice and optionaly send it to email| 
+|  POST   | /api/invoices/create-with-lines                 | Create an Invoice with customer and lines in a single request |
+|  GET    | /api/invoices/pdf/                              | Get invoice PDF |
 
 
 ## List Invoices [GET /api/invoices/]
@@ -908,6 +910,43 @@ This endpoint publish an already created invoice, and optionally send it to cust
 + Response 200
     + Attributes
         + `data` (Invoice)
+
+## Get Invoice PDF [GET /api/invoices/pdf/]
+This endpoint returns the PDF representation of an invoice.
+
+When `download` is `false` (default), the response is returned with `Content-Disposition: inline; filename="..."` so it can be displayed in the browser.
+When `download` is `true`, the response is returned with `Content-Disposition: attachment; filename="..."` to trigger a file download.
+
+**Error codes**
+
+| HTTP status      | Code                                                                                 | Description                                                                                                                                         |
+|------------------|--------------------------------------------------------------------------------------| ----------------------------------------------------------------------------------------------------------------------------------------------------|
+| `400`            | `You didn't specify a correct invoice ID.`                                           | Please provide a valid invoice_id as a GET parameter |
+| `400`            | `No query results for model [Invoice]`                                               | The invoice_id does not exist |
+
++ Parameters
+    + `invoice_id`: `1234` (number, required) - The invoice id of the specific resource.
+    + `download`: `false` (boolean, optional) - When set to `true`, the PDF is returned with `Content-Disposition: attachment` to trigger a download. When `false` or omitted (default), the PDF is returned with `Content-Disposition: inline` for in-browser display.
+
++ Request curl
+    curl https://app.workadu.com/api/invoices/pdf/ \
+    -H "Accept: application/vnd.rengine.v2+json" \
+    -u wk_abcd123123abcd1234: \
+    -d invoice_id = 1234
+
++ Request curl + optional
+    curl https://app.workadu.com/api/invoices/pdf/ \
+    -H "Accept: application/vnd.rengine.v2+json" \
+    -u wk_abcd123123abcd1234: \
+    -d invoice_id = 1234 \
+    -d download = true
+
++ Response 200 (application/pdf)
+    Content-Type: application/pdf
+    Content-Disposition: inline; filename="INV-123.pdf"
+
+    [PDF binary content]
+
 ## List withholdings [GET /api/invoices/{invoiceId}/withholdings]
 This endpoint lists all withholdings for the given invoice
 
