@@ -747,7 +747,8 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
     + `customer_id` :`1231` (number,required) - The customer id of the specific invoice. if not status parameter is set the invoice will be set up as a draft invoice.
     + `series_id` :`1231` (number,required) - The series id of the document.
     + `invoice_num` : `1` (number,optional) - Invoice number
-    + `discount_percent`  : 10 (number, optional) - A discount percent for the all invoice lines
+    + `discount_amount`  : 10 (number, optional) - A discount amount for the all invoice lines
+    + `discount_type`: `percent` (string, optional) - The discount type. Available values `fixed` & `percent` (default).
     + `vat_percent`  : 19 (number, optional) - A vat percent of this specific invoice. In case of not set company vat percent will be used.
     + `currency`  :  `EUR` (string, optional) - The currency of this specific invoice. In case of not set company currency will be used.
     + `payment_type`  :  1222 (number, optional) - The series of the payment type of the invoice. This is required when the invoice is for digital tax.
@@ -777,7 +778,7 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
     -u wk_abcd123123abcd1234: \
     -d customer_id = 1234 \
     -d series_id = 2100 \
-    -d discount_percent = 10 \ 
+    -d discount_amount = 10 \ 
     -d vat_percent = 19 \
     -d currency = "EUR" \
     -d payment_type = 1222 \
