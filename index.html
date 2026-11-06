@@ -5218,13 +5218,11 @@
     "fullname": "Jane Smith",
     "email": "jane@example.com",
     "vat_number": "123456789",
-    "mobile": "6911111111",
-    "country": "SWE"
+    "mobile": "6911111111"
   },
   "invoice": {
     "series_id": 3,
     "issue_date": "2025-10-14",
-    "includes_vat": true,
     "publish": true,
     "aade_send": true,
     "referrer_unique_id": "ERP-ORD-9988"
@@ -5234,8 +5232,7 @@
       "description": "Product A",
       "amount": 50.00,
       "quantity": 2,
-      "vat_percent": 24,
-      "oss_vat": 29
+      "vat_percent": 24
     },
     {
       "description": "Product B",
@@ -5288,8 +5285,6 @@
         "<span class="hljs-attribute">total_amount</span>": <span class="hljs-number">80.65</span>,
         "<span class="hljs-attribute">discount_percent</span>": <span class="hljs-number">0</span>,
         "<span class="hljs-attribute">vat_percent</span>": <span class="hljs-number">24</span>,
-        "<span class="hljs-attribute">oss_vat</span>": <span class="hljs-number">29</span>,
-        "<span class="hljs-attribute">oss_country</span>": <span class="hljs-string">"SWE"</span>,
         "<span class="hljs-attribute">measurement_code_id</span>": <span class="hljs-string">"10"</span>,
         "<span class="hljs-attribute">aade_measurement_code_id</span>": <span class="hljs-number">1</span>,
         "<span class="hljs-attribute">cpv_code_id</span>": <span class="hljs-string">"03000000-1"</span>
@@ -5631,14 +5626,6 @@
                         <code>referrer_unique_id</code> , the endpoint returns <code>409</code> if an invoice with that
                         ID already exists.</p>
 
-                    <p>For OSS invoices, the selected series must have OSS enabled. Send the OSS rate as
-                        <code>lines[].oss_vat</code>. The OSS country is derived from the customer's country; do not
-                        send an <code>oss_country</code> override.</p>
-
-                    <p>When <code>invoice.includes_vat</code> is <code>true</code>, line amounts already include VAT and
-                        the OSS tax is calculated inside the submitted amount. When it is <code>false</code> or omitted,
-                        the OSS tax is added to the submitted net amount.</p>
-
                     <p><strong>Error codes</strong></p>
                     <table>
                         <thead>
@@ -5673,11 +5660,6 @@
                             <td><code>422</code></td>
                             <td><code>invoice.currency validation failed</code></td>
                             <td>The provided currency code is not a valid ISO 4217 currency code.</td>
-                        </tr>
-                        <tr>
-                            <td><code>422</code></td>
-                            <td><code>Validation error</code></td>
-                            <td>The OSS rate is invalid, the selected series does not support OSS, or an <code>oss_country</code> override was supplied.</td>
                         </tr>
                         <tr>
                             <td><code>200</code></td>
@@ -5921,7 +5903,7 @@
 
                             <dt>invoice.includes_vat</dt>
                             <dd><code>boolean</code>&nbsp;<span>(optional)</span>&nbsp;
-                                <p>Set to <code>true</code> if line amounts already include VAT (VAT-inclusive pricing). If <code>false</code> or omitted, VAT is added to the submitted net amount.</p>
+                                <p>Set to <code>true</code> if line amounts already include VAT (VAT-inclusive pricing).</p>
                             </dd>
 
                             <dt>invoice.invoice_num</dt>
@@ -6030,8 +6012,7 @@
 
                             <dt>lines[].oss_vat</dt>
                             <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;
-                                <span class="text-muted example"><strong>Example:&nbsp;</strong><span>29</span></span>
-                                <p>OSS VAT percentage to apply to this line. The selected invoice series must have OSS enabled.</p>
+                                <p>OSS VAT percentage. Requires an OSS-enabled invoice series. The OSS country is taken from the customer's country.</p>
                             </dd>
 
                             <dt>lines[].line_discount</dt>
@@ -6057,11 +6038,6 @@
                             <dt>lines[].cpv_code</dt>
                             <dd><code>string</code>&nbsp;<span>(optional)</span>&nbsp;
                                 <p>CPV code for public procurement invoices.</p>
-                            </dd>
-
-                            <dt>lines[].oss_country</dt>
-                            <dd><code>string</code>&nbsp;<span>(response only)</span>&nbsp;
-                                <p>The OSS country derived from the customer's country. This field is returned on the invoice line and must not be sent in the request.</p>
                             </dd>
 
                         </dl>
@@ -6280,9 +6256,7 @@ Content-Disposition: inline; filename="INV-123.pdf"</code></pre>
   "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">12</span></span>,
   "<span class="hljs-attribute">quantity</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
   "<span class="hljs-attribute">line_discount</span>": <span class="hljs-value"><span class="hljs-number">10</span>
-</span>,
-  "<span class="hljs-attribute">oss_vat</span>": <span class="hljs-value"><span class="hljs-number">29</span></span>
-}</code></pre>
+</span>}</code></pre>
                                 <div style="height: 1px;"></div>
                             </div>
                         </div>
@@ -6361,8 +6335,6 @@ Content-Disposition: inline; filename="INV-123.pdf"</code></pre>
                         <a class="method post" href="#invoices-create-a-new-invoice-line-post">POST</a><code
                             class="uri">/api/invoiceline/</code></h4>
                     <p>This endpoint create an invoice item line to be added to a draft invoice.</p>
-                    <p>For OSS invoices, send <code>oss_vat</code> on the line. The OSS series must be enabled and the
-                        OSS country is derived from the invoice customer's country; do not send <code>oss_country</code>.</p>
                     <p><strong>Error codes</strong></p>
                     <table>
                         <thead>
@@ -6382,11 +6354,6 @@ Content-Disposition: inline; filename="INV-123.pdf"</code></pre>
                             <td><code>400</code></td>
                             <td><code>The invoice is not valid or exist</code></td>
                             <td>The invoice_id does not exist</td>
-                        </tr>
-                        <tr>
-                            <td><code>422</code></td>
-                            <td><code>Validation error</code></td>
-                            <td>The OSS rate is invalid, the invoice series does not support OSS, or an <code>oss_country</code> override was supplied.</td>
                         </tr>
                         </tbody>
                     </table>
@@ -6427,9 +6394,8 @@ Content-Disposition: inline; filename="INV-123.pdf"</code></pre>
                                     class="text-muted example"><strong>Example:&nbsp;</strong><span>24.00</span></span>
                             </dd>
                             <dt>oss_vat</dt>
-                            <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span
-                                    class="text-muted example"><strong>Example:&nbsp;</strong><span>29.00</span></span>
-                                <p>OSS VAT percentage for this line. The selected invoice series must have OSS enabled.</p>
+                            <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;
+                                <p>OSS VAT percentage. Requires an OSS-enabled invoice series. The OSS country is taken from the customer's country.</p>
                             </dd>
                             <dt>aade_measurement_code</dt>
                             <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span
@@ -6447,10 +6413,6 @@ Content-Disposition: inline; filename="INV-123.pdf"</code></pre>
                             <dd><code>number</code>&nbsp;<span>(optional)</span>&nbsp;<span
                                     class="text-muted example"><strong>Example:&nbsp;</strong><span>1</span></span>
                                 <p>The cpv code of this specific invoice line (see table 2). Required in B2G cases.</p>
-                            </dd>
-                            <dt>Response: oss_country</dt>
-                            <dd><code>string</code>&nbsp;<span>(response only)</span>&nbsp;
-                                <p>OSS country derived from the invoice customer's country. This field is returned on the line and must not be sent.</p>
                             </dd>
                         </dl>
                     </div><!--if action.schema.length--><!--    h5 Schema//   pre: code

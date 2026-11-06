@@ -750,7 +750,6 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
     + `discount_amount`  : 10 (number, optional) - A discount amount for the all invoice lines
     + `discount_type`: `percent` (string, optional) - The discount type. Available values `fixed` & `percent` (default).
     + `vat_percent`  : 19 (number, optional) - A vat percent of this specific invoice. In case of not set company vat percent will be used.
-    + `includes_vat` : `true` (boolean, optional) - When `true`, line amounts include VAT. When `false` or omitted, VAT is added to the line amount.
     + `currency`  :  `EUR` (string, optional) - The currency of this specific invoice. In case of not set company currency will be used.
     + `payment_type`  :  1222 (number, optional) - The series of the payment type of the invoice. This is required when the invoice is for digital tax.
     + `tag`  :  'Expense' (string, optional) - The tag of this specific invoice. 
@@ -784,83 +783,6 @@ This endpoint create an invoice (draft if status is not defined), for a given cu
     -d currency = "EUR" \
     -d payment_type = 1222 \
     -d tag = "#2AMSJ72"
-
-+ Response 200
-    + Attributes
-        + `data` (Invoice)
-
-
-## Create Invoice with Lines [POST /api/invoices/create-with-lines]
-This endpoint creates an invoice and its lines in one request. The invoice remains a draft unless `publish` is set to `true`.
-
-For OSS invoices, the selected series must have OSS enabled. Send the OSS rate as `oss_vat` on the line. The OSS country is derived from the customer's country; `oss_country` must not be sent by the API client.
-
-When `includes_vat` is `true`, the submitted line amount is treated as VAT-inclusive and the OSS tax is calculated inside that amount. When it is `false` or omitted, the OSS tax is added to the submitted net amount.
-
-**Error codes**
-
-| HTTP status | Code | Description |
-|-------------|------|-------------|
-| `400` | `The invoice lines are required` | Provide a non-empty `lines` array. |
-| `422` | `Validation error` | The OSS rate is invalid, the selected series does not support OSS, or an `oss_country` override was supplied. |
-
-+ Request (application/json)
-    + Headers
-
-            Accept: application/vnd.rengine.v2+json
-            Content-Type: application/json
-
-    + Body
-
-            {
-              "customer": {
-                "id": 1231
-              },
-              "invoice": {
-                "series_id": 169941,
-                "payment_type": 119,
-                "includes_vat": true,
-                "publish": false,
-                "aade_send": false,
-                "send": false
-              },
-              "lines": [
-                {
-                  "description": "Service",
-                  "amount": 129,
-                  "quantity": 1,
-                  "unit": "tem",
-                  "cpv_code": "32551100-1",
-                  "measurement_code": "H87",
-                  "aade_measurement_code": 1,
-                  "oss_vat": 29
-                }
-              ]
-            }
-
-+ Request curl
-    curl https://app.workadu.com/api/invoices/create-with-lines \
-    -X POST \
-    -H "Accept: application/vnd.rengine.v2+json" \
-    -H "Content-Type: application/json" \
-    -u wk_abcd123123abcd1234: \
-    -d '{
-      "customer": {"id": 1231},
-      "invoice": {
-        "series_id": 169941,
-        "payment_type": 119,
-        "includes_vat": true,
-        "publish": false,
-        "aade_send": false,
-        "send": false
-      },
-      "lines": [{
-        "description": "Service",
-        "amount": 129,
-        "quantity": 1,
-        "oss_vat": 29
-      }]
-    }'
 
 + Response 200
     + Attributes
@@ -923,7 +845,7 @@ This endpoint create an invoice item line to be added to a draft invoice.
     + `quantity`  : `10` (float, required) - Quantity of this specific invoice line.
     + `line_discount`  : `20.00` (float, optional) - A discount percentage of this specific invoice line.
     + `vat_percent`  : `24.00` (float, optional - The vat percentage of this specific invoice line.
-    + `oss_vat`  : `29.00` (float, optional) - The OSS VAT percentage for this line. The selected invoice series must have OSS enabled. The OSS country is taken from the customer's country; do not send `oss_country`.
+    + `oss_vat`: `29.00` (float, optional) - OSS VAT percentage. Requires an OSS-enabled invoice series. The OSS country is taken from the customer's country.
     + `aade_measurement_code`  :  `1` (number, optional) - The aade measurement code of this specific invoice line (see table 2). Required in delivery notes.
     + `measurement_code`  :  `1` (number, optional) - The european measurement code of this specific invoice line (see table 2). Required in B2G cases.
     + `cpv_code`  :  `1` (number, optional) - The cpv code of this specific invoice line (see table 2). Required in B2G cases.
@@ -1993,8 +1915,6 @@ Table 2: Aade measurement codes
 + `total_amount`: 20 (number, optional) - The total amount after multiply quantity with solo_amount.
 + `discount_percent`: 10 (number, optional) - The % discount of the total amount.
 + `vat_percent`: 0 (number, optional) - The % vat that will be applied in this line.
-+ `oss_vat`: 29 (number, optional) - The OSS VAT percentage applied to this line.
-+ `oss_country`: `SWE` (string, optional) - The OSS country derived from the customer's country.
 + `final_amount`: 18 (number, optional) - The final amount after discount and vat.
 
 
