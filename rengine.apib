@@ -1363,6 +1363,7 @@ Pay an invoice or invoices should concern the same customer. This payment end po
     + `deposit`  :  `157.22 or 30%` (string, optional) - If this is set to % (works in order_id, booking_id, invoice_ids) then it calulates at deposit amount the % of the total order or booking or invoices amount. If it set to amount mode then this specific amount will be added as payment 
     + `series`  :  `122` (number, optional) - The series of payment (e.g cash or credit card) for this payment. If none it will take the first payment type, usually CASH.
     + `comment`  :  `Payment for anything` (string, optional) - The comment that we want to add at the payment.
+    + `issue_date`: `2026-09-25` (string, optional) - API v2 payment date in YYYY-MM-DD format. Past dates are accepted. Defaults to today when omitted, null, or empty. Invalid dates return HTTP 422.
 
 + Request curl with Invoices
     curl https://app.workadu.com/api/services \ 
@@ -1391,6 +1392,7 @@ Pay an order or booking should concern the order or booking customer. This payme
     + `deposit`  :  `157.22 or 30%` (string, optional) - If this is set to % (works in order_id, booking_id, invoice_ids) then it calulates at deposit amount the % of the total order or booking or invoices amount. If it set to amount mode then this specific amount will be added as payment 
     + `series`  :  `122` (number, optional) - The series of payment (e.g cash or credit card) for this payment. If none it will take the first payment type, usually CASH.
     + `comment`  :  `Payment for anything` (string, optional) - The comment that we want to add at the payment.
+    + `issue_date`: `2026-09-25` (string, optional) - API v2 payment date in YYYY-MM-DD format. Past dates are accepted. Defaults to today when omitted, null, or empty. Invalid dates return HTTP 422.
 
 
 + Request curl with Order or Booking
@@ -1421,6 +1423,7 @@ This payment end point will add a payment and and will not relate it with an ord
     + `deposit`  :  `157.22 or 30%` (string, required) - If this is set to % (works in order_id, booking_id, invoice_ids) then it calulates at deposit amount the % of the total order or booking or invoices amount. If it set to amount mode then this specific amount will be added as payment 
     + `series`  :  `122` (number, optional) - The series of payment (e.g cash or credit card) for this payment. If none it will take the first payment type, usually CASH.
     + `comment`  :  `Payment for anything` (string, optional) - The comment that we want to add at the payment.
+    + `issue_date`: `2026-09-25` (string, optional) - API v2 payment date in YYYY-MM-DD format. Past dates are accepted. Defaults to today when omitted, null, or empty. Invalid dates return HTTP 422.
 
 
 + Request curl with Customer
