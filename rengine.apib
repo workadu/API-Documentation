@@ -845,6 +845,7 @@ This endpoint create an invoice item line to be added to a draft invoice.
     + `quantity`  : `10` (float, required) - Quantity of this specific invoice line.
     + `line_discount`  : `20.00` (float, optional) - A discount percentage of this specific invoice line.
     + `vat_percent`  : `24.00` (float, optional - The vat percentage of this specific invoice line.
+    + `oss_vat`: `29.00` (float, optional) - OSS VAT percentage. Requires an OSS-enabled invoice series. The OSS country is taken from the customer's country.
     + `aade_measurement_code`  :  `1` (number, optional) - The aade measurement code of this specific invoice line (see table 2). Required in delivery notes.
     + `measurement_code`  :  `1` (number, optional) - The european measurement code of this specific invoice line (see table 2). Required in B2G cases.
     + `cpv_code`  :  `1` (number, optional) - The cpv code of this specific invoice line (see table 2). Required in B2G cases.
